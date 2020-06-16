@@ -80,22 +80,22 @@ const HotelListAdmin: React.FC = () => {
         <Segment clearing>
       <Container clearing  >
         <Header as='h2' floated="left">
-          <Icon name='car' />
+          <Icon name='hotel' />
           <Header.Content>
-            Cars List
+            Hotels List
 
           <Header.Subheader>
-              Manage Your Application Cars
+              Manage Your Application Hotels
                   </Header.Subheader>
           </Header.Content>
         </Header>
     
         <Header as='h2' floated='right'>
           <Button
-            icon='car'
+            icon='hotel'
             onClick={openCreateForm}
             positive
-            content="Add Car"
+            content="Add Hotel"
             style={{ marginBottom: "0.3em" }}
           />
         </Header>

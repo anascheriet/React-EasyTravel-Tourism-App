@@ -55,12 +55,12 @@ const Cars = {
 }
 
 const Hotels = {
-    list: (): Promise<IHotel[]> => requests.get('/hotels'),
-    adminHotels: (name: string | undefined): Promise<IHotel[]> => requests.get(`hotels/adminHotels/${name}`),
-    details: (id: string) => requests.get(`/hotels/${id}`),
-    create: (hotel: IHotel) => requests.post('/hotels', hotel),
-    update: (hotel: IHotel) => requests.put(`/hotels/${hotel.id}`, hotel),
-    delete: (id: string) => requests.del(`/hotels/${id}`),
+    list: (): Promise<IHotel[]> => requests.get('/hotel'),
+    adminHotels: (name: string | undefined): Promise<IHotel[]> => requests.get(`hotel/adminHotels/${name}`),
+    details: (id: string) => requests.get(`/hotel/${id}`),
+    create: (hotel: IHotel) => requests.post('/hotel', hotel),
+    update: (hotel: IHotel) => requests.put(`/hotel/${hotel.id}`, hotel),
+    delete: (id: string) => requests.del(`/hotel/${id}`),
 }
 
 const User = {

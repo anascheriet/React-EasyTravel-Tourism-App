@@ -298,6 +298,9 @@ namespace server_app.Migrations
                     b.Property<string>("Country")
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("CreatorId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("CreatorName")
                         .HasColumnType("TEXT");
 
@@ -307,22 +310,15 @@ namespace server_app.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Package")
+                        .HasColumnType("TEXT");
+
                     b.Property<int>("Price")
                         .HasColumnType("INTEGER");
 
-                    b.Property<bool>("hasGym")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("hasParking")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("hasPool")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("hasSpa")
-                        .HasColumnType("INTEGER");
-
                     b.HasKey("id");
+
+                    b.HasIndex("CreatorId");
 
                     b.ToTable("Hotels");
                 });
@@ -396,6 +392,15 @@ namespace server_app.Migrations
                     b.HasOne("server_app.models.Car", "Product")
                         .WithMany()
                         .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("server_app.models.Hotel", b =>
+                {
+                    b.HasOne("server_app.models.AppUser", "Creator")
+                        .WithMany()
+                        .HasForeignKey("CreatorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

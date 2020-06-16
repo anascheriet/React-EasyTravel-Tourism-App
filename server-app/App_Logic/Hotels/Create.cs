@@ -19,10 +19,8 @@ namespace server_app.App_Logic.Hotels
             public string Country { get; set; }
             public string City { get; set; }
             public string Price { get; set; }
-            public string hasParking { get; set; }
-            public string hasPool { get; set; }
-            public string hasSpa { get; set; }
-            public string hasGym { get; set; }
+            public string package { get; set; }
+            public int CreatorId { get; set; }
             public string CreatorName { get; set; }
         }
 
@@ -64,10 +62,8 @@ namespace server_app.App_Logic.Hotels
                     Description = request.Description,
                     Adress = request.Adress,
                     Price = Int32.Parse(request.Price),
-                    hasParking = bool.Parse(request.hasParking),
-                    hasPool = bool.Parse(request.hasPool),
-                    hasSpa = bool.Parse(request.hasSpa),
-                    hasGym = bool.Parse(request.hasGym),
+                    Package = request.package,
+                    CreatorId = user != null ? user.Id : request.CreatorId,
                     CreatorName = user != null ? user.UserName : request.CreatorName,
                 };
 

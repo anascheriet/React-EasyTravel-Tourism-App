@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace server_app.Migrations
 {
-    public partial class initialAdd : Migration
+    public partial class InitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -48,28 +48,6 @@ namespace server_app.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Hotels",
-                columns: table => new
-                {
-                    id = table.Column<Guid>(nullable: false),
-                    Name = table.Column<string>(nullable: true),
-                    Adress = table.Column<string>(nullable: true),
-                    Description = table.Column<string>(nullable: true),
-                    Country = table.Column<string>(nullable: true),
-                    City = table.Column<string>(nullable: true),
-                    Price = table.Column<int>(nullable: false),
-                    hasParking = table.Column<bool>(nullable: false),
-                    hasPool = table.Column<bool>(nullable: false),
-                    hasSpa = table.Column<bool>(nullable: false),
-                    hasGym = table.Column<bool>(nullable: false),
-                    CreatorName = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Hotels", x => x.id);
                 });
 
             migrationBuilder.CreateTable(
@@ -204,6 +182,32 @@ namespace server_app.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Hotels",
+                columns: table => new
+                {
+                    id = table.Column<Guid>(nullable: false),
+                    Name = table.Column<string>(nullable: true),
+                    Adress = table.Column<string>(nullable: true),
+                    Description = table.Column<string>(nullable: true),
+                    Country = table.Column<string>(nullable: true),
+                    City = table.Column<string>(nullable: true),
+                    Price = table.Column<int>(nullable: false),
+                    Package = table.Column<string>(nullable: true),
+                    CreatorName = table.Column<string>(nullable: true),
+                    CreatorId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Hotels", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_Hotels_AspNetUsers_CreatorId",
+                        column: x => x.CreatorId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "CarBookings",
                 columns: table => new
                 {
@@ -283,6 +287,11 @@ namespace server_app.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Cars_CreatorId",
                 table: "Cars",
+                column: "CreatorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Hotels_CreatorId",
+                table: "Hotels",
                 column: "CreatorId");
         }
 

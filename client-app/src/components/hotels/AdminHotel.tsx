@@ -1,8 +1,8 @@
 import React, { useContext, useEffect } from 'react'
 import { RootStoreContext } from '../../app/stores/rootStore';
 import { LoadingComponent } from '../../app/layout/LoadingComponent';
-import HoteldashboardAdmin from './dashboard/admin/HoteldashboardAdmin';
 import { observer } from 'mobx-react-lite';
+import HotelDashBoardAdmin from './dashboard/admin/HotelDashBoardAdmin';
 
 const AdminHotel = () => {
     const rootStore = useContext(RootStoreContext);
@@ -18,8 +18,8 @@ const AdminHotel = () => {
     if (loadingInitial) return <LoadingComponent content="Loading Hotels..." />;
     return (
         <div>
-            <HoteldashboardAdmin />
+          <HotelDashBoardAdmin/>
         </div>
-    )
-}
+    );
+};
 export default observer(AdminHotel);

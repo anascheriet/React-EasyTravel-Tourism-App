@@ -20,10 +20,8 @@ namespace server_app.App_Logic.Hotels
             public string Country { get; set; }
             public string City { get; set; }
             public string Price { get; set; }
-            public string hasParking { get; set; }
-            public string hasPool { get; set; }
-            public string hasSpa { get; set; }
-            public string hasGym { get; set; }
+            public string package { get; set; }
+
         }
 
         public class Handler : IRequestHandler<Command>
@@ -43,10 +41,6 @@ namespace server_app.App_Logic.Hotels
                     throw new RestException(HttpStatusCode.NotFound, new { hotel = "Hotel Not Found" });
 
                 int? priceParsed = Int32.Parse(request.Price);
-                bool? hasParkingParsed = bool.Parse(request.hasParking);
-                bool? hasSpaParsed = bool.Parse(request.hasSpa);
-                bool? hasGymParsed = bool.Parse(request.hasGym);
-                bool? hasPoolParsed = bool.Parse(request.hasPool);
 
                 hotel.Name = request.Name ?? hotel.Name;
                 hotel.Description = request.Description ?? hotel.Description;
@@ -54,10 +48,7 @@ namespace server_app.App_Logic.Hotels
                 hotel.Country = request.Country ?? hotel.Country;
                 hotel.City = request.City ?? hotel.City;
                 hotel.Adress = request.Adress ?? hotel.Adress;
-                hotel.hasParking = hasParkingParsed ?? hotel.hasParking;
-                hotel.hasPool = hasPoolParsed ?? hotel.hasPool;
-                hotel.hasGym = hasGymParsed ?? hotel.hasGym;
-                hotel.hasSpa = hasSpaParsed ?? hotel.hasSpa;
+                hotel.Package = request.package ?? hotel.Package;
 
 
 

@@ -14,10 +14,12 @@ export const Navbar = () => {
         </Menu.Item>
 
         <Menu.Item as={NavLink} exact to='/cars' name="Cars" />
+        <Menu.Item as={NavLink} exact to='/hotels' name="Hotels" />
         {user !== null && user!.status === "SudoAdmin" &&
           <Menu.Item as={NavLink} exact to='/admins' name="Admins" />}
+        
         <Menu.Item name="Restaurants" />
-        <Menu.Item as={NavLink} exact to='/hotels' name="Hotels" />
+       
         <Menu.Item name="Good Plans" />
 
         {user! &&

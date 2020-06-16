@@ -7,7 +7,7 @@ import { observer } from "mobx-react-lite";
 import WelcomePage from "../../components/Home/WelcomePage";
 import { LoginForm } from "../../components/users/LoginForm";
 import { ToastContainer } from 'react-toastify'
-import NotFound from "../../components/cars/NotFound";
+import NotFound from "./NotFound";
 import 'react-toastify/dist/ReactToastify.css';
 import { RootStoreContext } from "../stores/rootStore";
 import { LoadingComponent } from "./LoadingComponent";
@@ -16,7 +16,8 @@ import Admins from "../../components/users/Admins";
 import AdminCar from "../../components/cars/AdminCar";
 import ClientCar from "../../components/cars/ClientCar";
 import CarOffer from "../../components/cars/dashboard/Client/CarOffer";
-import { AdminHotel } from "../../components/hotels/AdminHotel";
+import AdminHotel from "../../components/hotels/AdminHotel";
+
 function App() {
   const rootStore = useContext(RootStoreContext);
   const { setAppLoaded, token, appLoaded } = rootStore.commonStore;
@@ -46,13 +47,14 @@ function App() {
             <Container style={{ marginTop: "7em" }}>
               <Switch>
                 <Route exact path="/Login" component={LoginForm} />
+
                 {user?.status === "Client" ? (
                   <Route exact path="/cars" component={ClientCar} />) : (<Route exact path="/cars" component={AdminCar} />)}
-                {user?.status !== "Client" && <Route exact path="/hotels" component={AdminHotel} />}
+                {user?.status === "Client" ? (
+                  <Route exact path="/hotels" component={WelcomePage} />) : (<Route exact path="/hotels" component={AdminHotel} />)}
+
                 <Route path="/cars/:id" component={CarOffer} />
-                <Route exact path="/cars" component={AdminCar} />
                 <Route exact path="/admins" component={Admins} />
-                <Route path='/notfound' component={NotFound} />
                 <Route component={NotFound} />
               </Switch>
             </Container>

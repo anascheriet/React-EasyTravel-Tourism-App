@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext} from 'react'
 import { observer } from 'mobx-react-lite'
 import { RootStoreContext } from '../../../../app/stores/rootStore';
 import { Grid } from 'semantic-ui-react';
@@ -9,6 +9,8 @@ import { HotelForm } from '../../form/HotelForm';
 const HotelDashboardAdmin: React.FC = () => {
     const rootStore = useContext(RootStoreContext);
     const { editMode, selectedHotel } = rootStore.hotelStore;
+
+
     return (
         <div>
             <Grid>

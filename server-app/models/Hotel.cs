@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace server_app.models
 {
     public class Hotel : Service
@@ -7,10 +9,11 @@ namespace server_app.models
         public string Country { get; set; }
         public string City { get; set; }
         public int Price { get; set; }
-        public bool hasParking { get; set; }
-        public bool hasPool { get; set; }
-        public bool hasSpa { get; set; }
-        public bool hasGym { get; set; }
+        public string Package{ get; set; }
         public string CreatorName { get; set; }
+
+        [ForeignKey("Creator")]
+        public int CreatorId { get; set; }
+        public virtual AppUser Creator { get; set; }
     }
 }

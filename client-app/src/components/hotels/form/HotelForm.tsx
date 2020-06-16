@@ -3,7 +3,7 @@ import { IHotel } from '../../../app/models/Hotel'
 import { RootStoreContext } from '../../../app/stores/rootStore';
 import { v4 as uuid } from "uuid";
 import countries from '../../../app/common/Countries_Cities_DropDown/CountryCityData';
-import { Segment, Form, Input, Button } from 'semantic-ui-react';
+import { Segment, Form, Button } from 'semantic-ui-react';
 
 interface IProps {
     hotel: IHotel;
@@ -14,6 +14,7 @@ export const HotelForm: React.FC<IProps> = ({
 }) => {
     const rootStore = useContext(RootStoreContext);
     const { createHotel, editHotel, cancelOpenForm } = rootStore.hotelStore;
+    const { user } = rootStore.userStore;
 
     const initializeForm = () => {
         if (initialFormState) {
@@ -29,15 +30,12 @@ export const HotelForm: React.FC<IProps> = ({
                 city: "",
                 CreatorName: "",
                 adress: "",
-                hasPool: "",
-                hasParking: "",
-                hasSpa: "",
-                hasGym: ""
+                package: "",
             };
         }
     };
 
-    const [hotel, setHotel] = useState<IHotel>(initialFormState);
+    const [hotel, setHotel] = useState<IHotel>(initializeForm);
 
     const handleSubmit = () => {
         if (hotel.id.length === 0) {
@@ -45,7 +43,7 @@ export const HotelForm: React.FC<IProps> = ({
                 ...hotel,
                 id: uuid(),
             };
-            createHotel(hotel);
+            createHotel(newHotel);
         }
         else {
             editHotel(hotel);
@@ -86,7 +84,7 @@ export const HotelForm: React.FC<IProps> = ({
     }
 
 
-
+    hotel!.CreatorName = user?.displayName;
 
     return (
         <Segment clearing >
@@ -111,19 +109,17 @@ export const HotelForm: React.FC<IProps> = ({
                     name="price"
                     value={hotel.price}
                     icon='dollar'
-
                     placeholder='Price'
                 />
 
-                <Input
-                    label={{ basic: true, content: 'Options' }}
-                    labelPosition='right'
-                    name='options'
+                <Form.Input
+                    name='adress'
                     onChange={handleInputChange}
-                    placeholder='Full or Basic'
+                    placeholder='Adress'
                     value={hotel.adress}
-                    fluid
                 />
+
+
 
 
                 <select name="country"
@@ -151,14 +147,22 @@ export const HotelForm: React.FC<IProps> = ({
                     })}
 
                 </select>
+                <select value={hotel.package} onChange={handleInputChange} name="package"
+                    style={{ marginTop: "1em" }}
 
+                >
+                    <option selected disabled value="">Select Package Options</option>
+                    <option key="PP" value="Parking, Spa, Gym & Pool"> Parking, Spa, Gym & Pool</option>
+                    <option key="SP" value="Parking & Pool"> Parking & Pool</option>
+                    <option key="BP" value="Parking"> Parking & Pool</option>
 
-
+                </select>
                 <Button
                     style={{ marginTop: "0.7em" }}
                     floated="right"
                     positive
                     type="submit"
+                    onClick={(()=>console.log(hotel.CreatorName, hotel.package))}
                     content="Submit" />
                 <Button
                     style={{ marginTop: "0.7em" }}
@@ -169,5 +173,5 @@ export const HotelForm: React.FC<IProps> = ({
                 />
             </Form>
         </Segment>
-    )
-}
+    );
+};
