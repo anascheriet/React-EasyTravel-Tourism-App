@@ -2,7 +2,7 @@ namespace server_app.models
 {
     public class Hotel : Service
     {
-        public string Adresse { get; set; }
+        public string Adress { get; set; }
         public string Description { get; set; }
         public string Country { get; set; }
         public string City { get; set; }

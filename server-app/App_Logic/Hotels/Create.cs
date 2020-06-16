@@ -14,7 +14,7 @@ namespace server_app.App_Logic.Hotels
     {
         public class Command : Service, IRequest
         {
-            public string Adresse { get; set; }
+            public string Adress { get; set; }
             public string Description { get; set; }
             public string Country { get; set; }
             public string City { get; set; }
@@ -31,7 +31,7 @@ namespace server_app.App_Logic.Hotels
             public CommandValidator()
             {
                 RuleFor(x => x.Name).NotEmpty();
-                RuleFor(x => x.Adresse).NotEmpty();
+                RuleFor(x => x.Adress).NotEmpty();
                 RuleFor(x => x.Country).NotEmpty();
                 RuleFor(x => x.City).NotEmpty();
                 RuleFor(x => x.Price).NotEmpty();
@@ -62,7 +62,7 @@ namespace server_app.App_Logic.Hotels
                     Country = request.Country,
                     City = request.City,
                     Description = request.Description,
-                    Adresse = request.Adresse,
+                    Adress = request.Adress,
                     Price = Int32.Parse(request.Price),
                     hasParking = bool.Parse(request.hasParking),
                     hasPool = bool.Parse(request.hasPool),

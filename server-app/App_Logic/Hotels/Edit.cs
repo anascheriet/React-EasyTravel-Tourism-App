@@ -15,7 +15,7 @@ namespace server_app.App_Logic.Hotels
     {
         public class Command : Service, IRequest
         {
-            public string Adresse { get; set; }
+            public string Adress { get; set; }
             public string Description { get; set; }
             public string Country { get; set; }
             public string City { get; set; }
@@ -53,7 +53,7 @@ namespace server_app.App_Logic.Hotels
                 hotel.Price = priceParsed ?? hotel.Price;
                 hotel.Country = request.Country ?? hotel.Country;
                 hotel.City = request.City ?? hotel.City;
-                hotel.Adresse = request.Adresse ?? hotel.Adresse;
+                hotel.Adress = request.Adress ?? hotel.Adress;
                 hotel.hasParking = hasParkingParsed ?? hotel.hasParking;
                 hotel.hasPool = hasPoolParsed ?? hotel.hasPool;
                 hotel.hasGym = hasGymParsed ?? hotel.hasGym;

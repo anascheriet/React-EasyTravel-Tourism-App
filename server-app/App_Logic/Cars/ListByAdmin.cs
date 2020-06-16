@@ -17,7 +17,7 @@ namespace server_app.App_Logic.Cars
 
         public class Query : IRequest<List<Car>>
         {
-            public string name { set; get; }
+            public string name { set;get; }
         }
 
         public class Handler : IRequestHandler<Query, List<Car>>

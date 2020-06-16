@@ -17,7 +17,7 @@ export default class CarStore {
   @observable adminCarList: ICar[] = [];
   @observable clientCarList: ICar[] = [];
   @observable selectedCar: ICar | undefined | null;
-  @observable carBookingToAdd: ICarBooking | undefined = {  
+  @observable carBookingToAdd: ICarBooking | undefined = {
     productid: "",
     startingfrom: undefined,
     endingDate: undefined

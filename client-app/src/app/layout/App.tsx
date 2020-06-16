@@ -15,7 +15,8 @@ import ModalContainer from "../common/modals/ModalContainer";
 import Admins from "../../components/users/Admins";
 import AdminCar from "../../components/cars/AdminCar";
 import ClientCar from "../../components/cars/ClientCar";
-import  CarOffer  from "../../components/cars/dashboard/Client/CarOffer";
+import CarOffer from "../../components/cars/dashboard/Client/CarOffer";
+import { AdminHotel } from "../../components/hotels/AdminHotel";
 function App() {
   const rootStore = useContext(RootStoreContext);
   const { setAppLoaded, token, appLoaded } = rootStore.commonStore;
@@ -47,7 +48,8 @@ function App() {
                 <Route exact path="/Login" component={LoginForm} />
                 {user?.status === "Client" ? (
                   <Route exact path="/cars" component={ClientCar} />) : (<Route exact path="/cars" component={AdminCar} />)}
-                <Route path="/cars/:id" component={CarOffer} />  
+                {user?.status !== "Client" && <Route exact path="/hotels" component={AdminHotel} />}
+                <Route path="/cars/:id" component={CarOffer} />
                 <Route exact path="/cars" component={AdminCar} />
                 <Route exact path="/admins" component={Admins} />
                 <Route path='/notfound' component={NotFound} />

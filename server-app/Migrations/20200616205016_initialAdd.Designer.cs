@@ -9,8 +9,8 @@ using server_app.Data;
 namespace server_app.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200615140834_initial")]
-    partial class initial
+    [Migration("20200616205016_initialAdd")]
+    partial class initialAdd
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -283,6 +283,50 @@ namespace server_app.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("CarBookings");
+                });
+
+            modelBuilder.Entity("server_app.models.Hotel", b =>
+                {
+                    b.Property<Guid>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Adress")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("City")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Country")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("CreatorName")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Price")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("hasGym")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("hasParking")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("hasPool")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("hasSpa")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("id");
+
+                    b.ToTable("Hotels");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>

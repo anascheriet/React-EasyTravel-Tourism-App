@@ -17,7 +17,7 @@ export const Navbar = () => {
         {user !== null && user!.status === "SudoAdmin" &&
           <Menu.Item as={NavLink} exact to='/admins' name="Admins" />}
         <Menu.Item name="Restaurants" />
-        <Menu.Item name="Hotels" />
+        <Menu.Item as={NavLink} exact to='/hotels' name="Hotels" />
         <Menu.Item name="Good Plans" />
 
         {user! &&

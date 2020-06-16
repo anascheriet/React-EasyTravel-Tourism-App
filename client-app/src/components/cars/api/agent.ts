@@ -3,6 +3,7 @@ import { ICar, ICarBooking } from "../../../app/models/Car";
 import { IUser, IUserFormValues } from "../../../app/models/User";
 import { history } from "../../..";
 import { toast } from "react-toastify";
+import { IHotel } from "../../../app/models/Hotel";
 
 axios.defaults.baseURL = 'http://localhost:5000';
 
@@ -45,12 +46,21 @@ const requests = {
 
 const Cars = {
     list: (): Promise<ICar[]> => requests.get('/cars'),
-    adminCars: (name: string | undefined):Promise<ICar[]> => requests.get(`cars/adminCars/${name}`),
+    adminCars: (name: string | undefined): Promise<ICar[]> => requests.get(`cars/adminCars/${name}`),
     details: (id: string) => requests.get(`/cars/${id}`),
     create: (car: ICar) => requests.post('/cars', car),
     update: (car: ICar) => requests.put(`/cars/${car.id}`, car),
     delete: (id: string) => requests.del(`/cars/${id}`),
-    createBooking:(carbooking: ICarBooking) => requests.post('carbooking', carbooking)
+    createBooking: (carbooking: ICarBooking) => requests.post('carbooking', carbooking)
+}
+
+const Hotels = {
+    list: (): Promise<IHotel[]> => requests.get('/hotels'),
+    adminHotels: (name: string | undefined): Promise<IHotel[]> => requests.get(`hotels/adminHotels/${name}`),
+    details: (id: string) => requests.get(`/hotels/${id}`),
+    create: (hotel: IHotel) => requests.post('/hotels', hotel),
+    update: (hotel: IHotel) => requests.put(`/hotels/${hotel.id}`, hotel),
+    delete: (id: string) => requests.del(`/hotels/${id}`),
 }
 
 const User = {
@@ -63,5 +73,6 @@ const User = {
 
 export default {
     Cars,
-    User
+    User,
+    Hotels
 }

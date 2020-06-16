@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace server_app.Migrations
 {
-    public partial class initial : Migration
+    public partial class initialAdd : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -48,6 +48,28 @@ namespace server_app.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Hotels",
+                columns: table => new
+                {
+                    id = table.Column<Guid>(nullable: false),
+                    Name = table.Column<string>(nullable: true),
+                    Adress = table.Column<string>(nullable: true),
+                    Description = table.Column<string>(nullable: true),
+                    Country = table.Column<string>(nullable: true),
+                    City = table.Column<string>(nullable: true),
+                    Price = table.Column<int>(nullable: false),
+                    hasParking = table.Column<bool>(nullable: false),
+                    hasPool = table.Column<bool>(nullable: false),
+                    hasSpa = table.Column<bool>(nullable: false),
+                    hasGym = table.Column<bool>(nullable: false),
+                    CreatorName = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Hotels", x => x.id);
                 });
 
             migrationBuilder.CreateTable(
@@ -283,6 +305,9 @@ namespace server_app.Migrations
 
             migrationBuilder.DropTable(
                 name: "CarBookings");
+
+            migrationBuilder.DropTable(
+                name: "Hotels");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
