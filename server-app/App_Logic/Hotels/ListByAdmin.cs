@@ -9,33 +9,33 @@ using server_app.Data;
 using server_app.Infrastructure.Interfaces;
 using server_app.models;
 
-namespace server_app.App_Logic.Cars
+namespace server_app.App_Logic.Hotels
 {
     public class ListByAdmin
     {
 
 
-        public class Query : IRequest<List<Car>>
+        public class Query : IRequest<List<Hotel>>
         {
             public string name { set; get; }
         }
 
-        public class Handler : IRequestHandler<Query, List<Car>>
+        public class Handler : IRequestHandler<Query, List<Hotel>>
         {
             private readonly DataContext _context;
-            private readonly UserManager<AppUser> _userManager;
             private readonly IUserAccessor _useAccessor;
+            private readonly UserManager<AppUser> _userManager;
             public Handler(DataContext context, UserManager<AppUser> userManager, IUserAccessor useAccessor)
             {
-                _useAccessor = useAccessor;
                 _userManager = userManager;
+                _useAccessor = useAccessor;
                 _context = context;
             }
 
-            public async Task<List<Car>> Handle(Query request, CancellationToken cancellationToken)
+            public async Task<List<Hotel>> Handle(Query request, CancellationToken cancellationToken)
             {
-                var AdminCars = await _context.Cars.Where(x => x.CreatorName == request.name).ToListAsync();
-                return AdminCars;
+                var AdminHotels = await _context.Hotels.Where(x => x.CreatorName == request.name).ToListAsync();
+                return AdminHotels;
             }
         }
 

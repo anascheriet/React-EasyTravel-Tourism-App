@@ -13,6 +13,7 @@ namespace server_app.Data
 
         public DbSet<Car> Cars { get; set; }
         public DbSet<CarBooking> CarBookings { get; set; }
+        public DbSet<Hotel> Hotels { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

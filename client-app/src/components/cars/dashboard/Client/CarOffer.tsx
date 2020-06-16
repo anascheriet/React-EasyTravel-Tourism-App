@@ -4,7 +4,6 @@ import { observer } from 'mobx-react-lite';
 import { RootStoreContext } from '../../../../app/stores/rootStore';
 import { Grid, Segment, Item, Image, Header, Button, Icon, Comment, Form } from 'semantic-ui-react';
 import CarBooking from '../../form/CarBooking';
-import { ICarBooking } from '../../../../app/models/Car';
 
 
 

@@ -3,7 +3,6 @@ import { SyntheticEvent } from "react";
 import { ICar, ICarBooking } from "../models/Car";
 import agent from "../../components/cars/api/agent";
 import { RootStore } from "./rootStore";
-import { history } from "../..";
 
 
 export default class CarStore {

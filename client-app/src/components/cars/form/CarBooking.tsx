@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 import { RootStoreContext } from '../../../app/stores/rootStore'
-import { Form, Button, Header, Label } from 'semantic-ui-react'
+import { Form, Button, Header } from 'semantic-ui-react'
 import { ICarBooking } from '../../../app/models/Car'
 
 import { observer } from 'mobx-react-lite'

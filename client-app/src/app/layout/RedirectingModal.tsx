@@ -1,5 +1,5 @@
 import React from 'react'
-import { Modal, Button, Header, Segment } from 'semantic-ui-react'
+import {Header} from 'semantic-ui-react'
 
 export const RedirectingModal = () => {
   return (
