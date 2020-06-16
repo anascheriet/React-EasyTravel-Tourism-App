@@ -5548,11 +5548,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\anasc\\Desktop\\Projet PFA 2020\\EasyTravel\\server-app\\server-app.csproj",
+      "projectUniqueName": "C:\\Users\\anasc\\Desktop\\PFA_REACT-EasyTravel\\server-app\\server-app.csproj",
       "projectName": "server-app",
-      "projectPath": "C:\\Users\\anasc\\Desktop\\Projet PFA 2020\\EasyTravel\\server-app\\server-app.csproj",
+      "projectPath": "C:\\Users\\anasc\\Desktop\\PFA_REACT-EasyTravel\\server-app\\server-app.csproj",
       "packagesPath": "C:\\Users\\anasc\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\anasc\\Desktop\\Projet PFA 2020\\EasyTravel\\server-app\\obj\\",
+      "outputPath": "C:\\Users\\anasc\\Desktop\\PFA_REACT-EasyTravel\\server-app\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\PROGRAM FILES\\DOTNET\\sdk\\NuGetFallbackFolder"

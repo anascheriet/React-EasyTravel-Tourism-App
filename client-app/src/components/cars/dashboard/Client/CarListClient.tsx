@@ -125,6 +125,7 @@ export const CarListClient = () => {
         <Item.Group divided>
           {carsFiltered.map((car) => (
             <Item key={car.id}>
+              <Item.Image size='small' src={`/assets/carImages/${car?.name}.jpg`} />
               <Item.Content>
                 <Item.Header as="a">{car.name}</Item.Header>
                 <Item.Meta>{car.price}$</Item.Meta>
