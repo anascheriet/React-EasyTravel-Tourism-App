@@ -22,8 +22,7 @@ namespace server_app.App_Logic.Hotels
             public string package { get; set; }
             public string Price { get; set; }
             public string Rooms { get; set; }
-            public string MaxPeople { get; set; }
-
+            public string People { get; set; }
         }
 
         public class Handler : IRequestHandler<Command>
@@ -44,8 +43,8 @@ namespace server_app.App_Logic.Hotels
 
                 int? priceParsed = Int32.Parse(request.Price);
                 int? roomsParsed = Int32.Parse(request.Rooms);
-                int? maxPeopleParsed = Int32.Parse(request.MaxPeople);
-
+                int? peopleParsed = Int32.Parse(request.People);
+    
                 hotel.Name = request.Name ?? hotel.Name;
                 hotel.Description = request.Description ?? hotel.Description;
                 hotel.Price = priceParsed ?? hotel.Price;
@@ -54,7 +53,8 @@ namespace server_app.App_Logic.Hotels
                 hotel.Adress = request.Adress ?? hotel.Adress;
                 hotel.Package = request.package ?? hotel.Package;
                 hotel.Rooms = roomsParsed ?? hotel.Rooms;
-                hotel.MaxPeople = maxPeopleParsed ?? hotel.MaxPeople;
+                hotel.People = peopleParsed ?? hotel.People;
+
 
 
 

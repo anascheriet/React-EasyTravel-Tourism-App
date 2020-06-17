@@ -12,7 +12,7 @@ namespace server_app.models
         public string Package{ get; set; }
         public string CreatorName { get; set; }
         public int Rooms { get; set; }
-        public int MaxPeople { get; set; }
+        public int People { get; set; }
 
         [ForeignKey("Creator")]
         public int CreatorId { get; set; }

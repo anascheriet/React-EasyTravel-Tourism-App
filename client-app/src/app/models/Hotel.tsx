@@ -5,7 +5,7 @@ export interface IHotel {
     adress: string;
     price: number | any;
     rooms: number | any;
-    maxpeople: number | any;
+    people: number | any;
     country: string;
     city: string;
     CreatorName: string | undefined;

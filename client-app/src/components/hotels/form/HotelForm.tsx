@@ -26,13 +26,13 @@ export const HotelForm: React.FC<IProps> = ({
                 description: "",
                 price: "",
                 rooms: "",
+                people: "",
                 options: "",
                 country: "",
                 city: "",
                 CreatorName: "",
                 adress: "",
                 package: "",
-                maxpeople: "",
             };
         }
     };
@@ -121,9 +121,9 @@ export const HotelForm: React.FC<IProps> = ({
                 />
                 <Form.Input
                     onChange={handleInputChange}
-                    name="maxpeople"
-                    value={hotel.maxpeople}
-                    placeholder='Maximum Amount Of People'
+                    name="people"
+                    value={hotel.people}
+                    placeholder='Maximum Number Of People'
                 />
 
                 <Form.Input

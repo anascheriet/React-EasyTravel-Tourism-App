@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace server_app.Migrations
 {
-    public partial class InitialMigration : Migration
+    public partial class InitialMig : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -194,6 +194,8 @@ namespace server_app.Migrations
                     Price = table.Column<int>(nullable: false),
                     Package = table.Column<string>(nullable: true),
                     CreatorName = table.Column<string>(nullable: true),
+                    Rooms = table.Column<int>(nullable: false),
+                    People = table.Column<int>(nullable: false),
                     CreatorId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>

@@ -9,8 +9,8 @@ using server_app.Data;
 namespace server_app.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200617150203_UpdateHotel")]
-    partial class UpdateHotel
+    [Migration("20200617165140_InitialMig")]
+    partial class InitialMig
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -309,14 +309,14 @@ namespace server_app.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("MaxPeople")
-                        .HasColumnType("INTEGER");
-
                     b.Property<string>("Name")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Package")
                         .HasColumnType("TEXT");
+
+                    b.Property<int>("People")
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("Price")
                         .HasColumnType("INTEGER");

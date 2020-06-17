@@ -307,14 +307,14 @@ namespace server_app.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("MaxPeople")
-                        .HasColumnType("INTEGER");
-
                     b.Property<string>("Name")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Package")
                         .HasColumnType("TEXT");
+
+                    b.Property<int>("People")
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("Price")
                         .HasColumnType("INTEGER");

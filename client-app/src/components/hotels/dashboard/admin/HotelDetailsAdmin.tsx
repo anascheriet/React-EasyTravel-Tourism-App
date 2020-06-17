@@ -22,6 +22,10 @@ const HotelDetailsAdmin: React.FC = () => {
                     {selectedHotel!.description}
                     <br />
                         {selectedHotel!.package} Available
+                        <br />
+                        {selectedHotel!.rooms} Rooms
+                        <br />
+                        {selectedHotel!.people} People
                 </Card.Description>
                 <Label style={{ marginTop: "0.7em" }} basic content={selectedHotel!.adress} />
             </Card.Content>

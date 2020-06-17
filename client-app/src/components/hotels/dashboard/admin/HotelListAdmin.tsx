@@ -85,7 +85,7 @@ const HotelListAdmin: React.FC = () => {
             Hotel Rooms List
 
           <Header.Subheader>
-              Manage Your Application Hotel Rooms Offers
+              Manage Your Application Hotel Offers
                   </Header.Subheader>
           </Header.Content>
         </Header>
@@ -95,7 +95,7 @@ const HotelListAdmin: React.FC = () => {
             icon='hotel'
             onClick={openCreateForm}
             positive
-            content="Add A Hotel Room Offer"
+            content="Add A Hotel Stay Offer"
             style={{ marginBottom: "0.3em" }}
           />
         </Header>
@@ -150,7 +150,8 @@ const HotelListAdmin: React.FC = () => {
               <Item.Description>
                 <div>{hotel.description}</div>
                 <div>{hotel!.package} Available</div>
-                {hotel!.rooms} Rooms with a maximum of { hotel!.maxpeople} People
+                <div >{hotel!.rooms} Rooms</div>
+                {hotel!.people} People
               </Item.Description>
               <Item.Extra>
                 <Button
