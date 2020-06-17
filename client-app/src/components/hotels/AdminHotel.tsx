@@ -6,14 +6,14 @@ import HotelDashBoardAdmin from './dashboard/admin/HotelDashBoardAdmin';
 
 const AdminHotel = () => {
     const rootStore = useContext(RootStoreContext);
-    const { loadAllHotels, emptyAllHotels, loadingInitial } = rootStore.hotelStore;
+    const { loadAdminHotels, emptyAdminHotels, loadingInitial } = rootStore.hotelStore;
     const { user } = rootStore.userStore;
     useEffect(() => {
 
-        loadAllHotels();
-        emptyAllHotels();
+        loadAdminHotels(user?.username);
+        emptyAdminHotels();
         //empty the array so it can be re-loaded --to be updated
-    }, [loadAllHotels, emptyAllHotels]);
+    }, [loadAdminHotels, emptyAdminHotels]);
 
     if (loadingInitial) return <LoadingComponent content="Loading Hotels..." />;
     return (

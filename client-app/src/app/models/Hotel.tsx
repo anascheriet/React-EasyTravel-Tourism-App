@@ -11,3 +11,9 @@ export interface IHotel {
     CreatorName: string | undefined;
     package: string
 }
+
+export interface IHotelBooking{
+    startingfrom: Date | undefined;
+    endingDate: Date | undefined;
+    productid: string;
+}

@@ -1,6 +1,6 @@
 import { RootStore } from "./rootStore";
 import { observable, computed, action } from "mobx";
-import { IHotel } from "../models/Hotel";
+import { IHotel, IHotelBooking } from "../models/Hotel";
 import agent from "../../components/cars/api/agent";
 import { SyntheticEvent } from "react";
 
@@ -20,6 +20,11 @@ export default class HotelStore {
     @observable editMode = false;
     @observable submitting = false;
     @observable target = '';
+    @observable hotelBookingToAdd: IHotelBooking | undefined = {
+        productid: "",
+        startingfrom: undefined,
+        endingDate: undefined
+    };
 
     @computed get adminHotelsByPrice() {
         return this.adminHotelList.slice().sort(
@@ -79,6 +84,20 @@ export default class HotelStore {
             console.log(error);
         }
     }
+
+    @action createHotelBooking = async (hotelBooking: IHotelBooking) => {
+        this.submitting = true;
+        try {
+            this.hotelBookingToAdd = hotelBooking;
+            await agent.Hotels.createBooking(hotelBooking);
+            this.rootStore.modalStore.closeModal();
+        } catch (error) {
+            this.submitting = false;
+            console.log(error);
+        }
+    };
+
+
 
     @action editHotel = async (hotel: IHotel) => {
         this.submitting = true;

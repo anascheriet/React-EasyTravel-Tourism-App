@@ -3,7 +3,7 @@ import { ICar, ICarBooking } from "../../../app/models/Car";
 import { IUser, IUserFormValues } from "../../../app/models/User";
 import { history } from "../../..";
 import { toast } from "react-toastify";
-import { IHotel } from "../../../app/models/Hotel";
+import { IHotel, IHotelBooking } from "../../../app/models/Hotel";
 
 axios.defaults.baseURL = 'http://localhost:5000';
 
@@ -61,6 +61,7 @@ const Hotels = {
     create: (hotel: IHotel) => requests.post('/hotel', hotel),
     update: (hotel: IHotel) => requests.put(`/hotel/${hotel.id}`, hotel),
     delete: (id: string) => requests.del(`/hotel/${id}`),
+    createBooking: (hotelbooking: IHotelBooking) => requests.post('hotelbooking', hotelbooking)
 }
 
 const User = {
