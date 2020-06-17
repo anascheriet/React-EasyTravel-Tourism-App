@@ -64,6 +64,20 @@ export default class HotelStore {
         }
     };
 
+    @action loadOfferedHotel = async (id: string) => {
+        let hotel = this.clientHotelList.find(x => x.id === id);
+        if (hotel) {
+            this.OfferedHotel = hotel;
+        }
+        else
+            try {
+                hotel = await agent.Hotels.details(id);
+                this.OfferedHotel = hotel;
+            } catch (error) {
+                console.log(error);
+            }
+    }
+
     @action emptyAdminHotels = () => {
         this.adminHotelList = [];
     }

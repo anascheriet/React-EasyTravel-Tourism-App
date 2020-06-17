@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from 'react'
 import { observer } from 'mobx-react-lite'
 import { RootStoreContext } from '../../app/stores/rootStore';
 import { LoadingComponent } from '../../app/layout/LoadingComponent';
-import { HotelDashboardClient } from './dashboard/client/HotelDashboardClient';
+import HotelListClient from './dashboard/client/HotelListClient';
 
  const ClientHotel = () => {
     const rootStore = useContext(RootStoreContext);
@@ -13,10 +13,10 @@ import { HotelDashboardClient } from './dashboard/client/HotelDashboardClient';
         emptyAllHotels();
     }, [loadAllHotels, emptyAllHotels]);
 
-    if(loadingInitial) return <LoadingComponent content="Loading Hotel Rooms..." />
+    if(loadingInitial) return <LoadingComponent content="Loading Hotel Offers..." />
     return (
         <div>
-            <HotelDashboardClient />
+           <HotelListClient />
         </div>
     )
 }

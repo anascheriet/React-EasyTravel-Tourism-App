@@ -74,7 +74,8 @@ export const CarListClient = () => {
     }
   
     return (
-  
+      <Grid>
+      <Grid.Column width={10}>
       <Segment clearing>
         <Container clearing  >
           <Header as='h2' floated="left">
@@ -94,34 +95,7 @@ export const CarListClient = () => {
           <Header as='h3' dividing>
           </Header>
         </Container >
-  
-        <Container style={{ marginTop: "1.5em", marginBottom: "0.7em" }}>
-          <Grid width={16}>
-            <Grid.Column width={5} >
-              <Input type="text" icon='search' fluid
-                value={countrySearchString}
-                onChange={handleCountryFilterChange}
-                placeholder="Search by country ..." />
-  
-            </Grid.Column>
-  
-            <Grid.Column width={5}>
-              <Input type="text" icon="search" fluid
-                value={citySearchString}
-                onChange={handleCityFilterChange}
-                placeholder="Select by city..." />
-  
-            </Grid.Column>
-  
-            <Grid.Column width={5}>
-              <Input type="text" icon="search" fluid
-                value={nameSearchString}
-                onChange={handleNameFilterChange}
-                placeholder="Select by name..." />
-            </Grid.Column>
-          </Grid>
-        </Container>
-        <Header as='h3' dividing> </Header>
+
         <Item.Group divided>
           {carsFiltered.map((car) => (
             <Item key={car.id}>
@@ -153,6 +127,51 @@ export const CarListClient = () => {
           ))}
         </Item.Group>
       </Segment>
+      </Grid.Column>
+      <Grid.Column width={6}>
+        <Segment clearing>
+          <Container clearing >
+          <Header as="h2" floated="left">
+            <Icon name='filter' />
+            <Header.Content>
+              Filters
+
+              <Header.Subheader>
+                Filter by Country, City or Car Name !
+                </Header.Subheader>
+
+              </Header.Content>
+              </Header>
+              </Container>
+              <Container style={{ marginTop: "5em" }}>
+          <Header as='h3' dividing>
+          </Header>
+        </Container >
+              <Container >
+         <br/>
+              <Input type="text" icon='search' fluid
+                value={countrySearchString}
+                onChange={handleCountryFilterChange}
+                placeholder="Search by country ..." />
+  
+           
+  
+            <br/>
+              <Input type="text" icon="search" fluid
+                value={citySearchString}
+                onChange={handleCityFilterChange}
+                placeholder="Select by city..." />
+  
+            <br/>
+              <Input type="text" icon="search" fluid
+                value={nameSearchString}
+                onChange={handleNameFilterChange}
+                placeholder="Select by name..." />
+            
+        </Container>
+        </Segment>
+        </Grid.Column>
+        </Grid>
     );
   };
   

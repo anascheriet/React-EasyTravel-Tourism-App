@@ -13,7 +13,7 @@ const AdminHotel = () => {
         loadAdminHotels(user?.username);
         emptyAdminHotels();
         //empty the array so it can be re-loaded --to be updated
-    }, [loadAdminHotels, emptyAdminHotels]);
+    }, [loadAdminHotels, emptyAdminHotels, user]);
 
     if (loadingInitial) return <LoadingComponent content="Loading Hotels..." />;
     return (

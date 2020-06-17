@@ -1,9 +1,10 @@
-import React, { useState, useEffect, useContext, Fragment } from 'react'
+import React, { useEffect, useContext, Fragment } from 'react'
 import { observer } from 'mobx-react-lite'
 import { RouteComponentProps } from 'react-router-dom';
 import { RootStoreContext } from '../../../../app/stores/rootStore';
 import { Grid, Segment, Image, Item, Button, Icon, Header, Comment, Form } from 'semantic-ui-react';
 import HotelBooking from '../../form/HotelBooking';
+
 
 const hotelImageTextStyle = {
     position: 'absolute',
@@ -21,17 +22,18 @@ interface offerId {
 const HotelOffer: React.FC<RouteComponentProps<offerId>> = ({
     match
 }) => {
-    const [id, setId] = useState("");
-    useEffect(() => {
-        setId(match.params.id);
-    }, [match.params.id])
 
     const rootStore = useContext(RootStoreContext);
-    const { clientHotelList, hotelBookingToAdd } = rootStore.hotelStore;
+    const { loadOfferedHotel, OfferedHotel, hotelBookingToAdd } = rootStore.hotelStore;
     const { openModal } = rootStore.modalStore;
-    let hotel = clientHotelList.find(x => x.id === id);
 
-    hotelBookingToAdd!.productid = id;
+    
+    useEffect(() => {
+        loadOfferedHotel(match.params.id);
+    }, [match.params.id, loadOfferedHotel])
+
+    hotelBookingToAdd!.productid = match.params.id;
+
 
 
     return (
@@ -51,12 +53,12 @@ const HotelOffer: React.FC<RouteComponentProps<offerId>> = ({
                             <Item.Group>
                                 <Item>
                                     <Item.Content>
-                                        <h1><b>{hotel?.name}</b></h1>
+                                        <h1><b>{OfferedHotel?.name}</b></h1>
                                         <p>
-                                            <strong>{hotel?.package} </strong>
+                                            <strong>{OfferedHotel?.package} available </strong>
                                         </p>
                                         <p>
-                                            Price: <strong>{hotel?.price} $</strong>
+                                            <strong>${OfferedHotel?.price} per Night</strong>
                                         </p>
                                     </Item.Content>
                                 </Item>
@@ -64,7 +66,7 @@ const HotelOffer: React.FC<RouteComponentProps<offerId>> = ({
                         </Segment>
                     </Segment>
                     <Segment clearing attached='bottom'>
-                        <Button color='orange' onClick={() => openModal(<HotelBooking/>)}>Book This Offer</Button>
+                        <Button color='orange' onClick={() => openModal(<HotelBooking />)}>Book This Offer</Button>
                     </Segment>
                 </Segment.Group>
 
@@ -77,7 +79,7 @@ const HotelOffer: React.FC<RouteComponentProps<offerId>> = ({
                                 <Icon size='large' color='teal' name='info' />
                             </Grid.Column>
                             <Grid.Column width={15}>
-                                <p>{hotel?.description}</p>
+                                <p>{OfferedHotel?.description}</p>
                             </Grid.Column>
                         </Grid>
                     </Segment>
@@ -87,7 +89,7 @@ const HotelOffer: React.FC<RouteComponentProps<offerId>> = ({
                                 <Icon name='marker' size='large' color='teal' />
                             </Grid.Column>
                             <Grid.Column width={11}>
-                                <span>{hotel?.city}, {hotel?.country}</span>
+                                <span>{OfferedHotel?.adress}, {OfferedHotel?.city}, {OfferedHotel?.country}</span>
                             </Grid.Column>
                         </Grid>
                     </Segment>
@@ -117,11 +119,11 @@ const HotelOffer: React.FC<RouteComponentProps<offerId>> = ({
                             <Comment>
                                 <Comment.Avatar src='/assets/user.png' />
                                 <Comment.Content>
-                                    <Comment.Author as='a'>Matt</Comment.Author>
+                                    <Comment.Author as='a'>Sophie</Comment.Author>
                                     <Comment.Metadata>
-                                        <div>Today at 5:42PM</div>
+                                        <div>Yesterday at 10:15AM</div>
                                     </Comment.Metadata>
-                                    <Comment.Text>Great Car!</Comment.Text>
+                                    <Comment.Text>Amazing Stay, would love to go again !</Comment.Text>
                                     <Comment.Actions>
                                         <Comment.Action>Reply</Comment.Action>
                                     </Comment.Actions>
@@ -131,11 +133,11 @@ const HotelOffer: React.FC<RouteComponentProps<offerId>> = ({
                             <Comment>
                                 <Comment.Avatar src='/assets/user.png' />
                                 <Comment.Content>
-                                    <Comment.Author as='a'>Joe Henderson</Comment.Author>
+                                    <Comment.Author as='a'>Jake Paul</Comment.Author>
                                     <Comment.Metadata>
-                                        <div>5 days ago</div>
+                                        <div>2 days ago</div>
                                     </Comment.Metadata>
-                                    <Comment.Text>I wish i had this car it's so awesome</Comment.Text>
+                                    <Comment.Text>So many memories made in this room !</Comment.Text>
                                     <Comment.Actions>
                                         <Comment.Action>Reply</Comment.Action>
                                     </Comment.Actions>

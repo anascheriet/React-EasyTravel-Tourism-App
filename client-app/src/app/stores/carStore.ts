@@ -72,6 +72,21 @@ export default class CarStore {
     }
   };
 
+  @action loadOfferedCar = async (id: string) => {
+    let car = this.clientCarList.find(x => x.id === id);
+    if (car) {
+      this.OfferedCar = car;
+    }
+    else
+      try {
+        car = await agent.Cars.details(id);
+        this.OfferedCar = car;
+      } catch (error) {
+        console.log(error);
+      }
+
+  }
+
   @action emptyAdminCars = () => {
     this.adminCarList = [];
   }

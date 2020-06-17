@@ -1,6 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react'
 import { observer } from 'mobx-react-lite'
-import HotelListAdmin from '../admin/HotelListAdmin'
 import { RootStoreContext } from '../../../../app/stores/rootStore';
 import { Segment, Container, Header, Icon, Grid, Input, Item, Button, Label } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
@@ -24,7 +23,7 @@ const HotelListClient = () => {
       setCitySearchString(event.target.value);
     }
   
-    const handleNameFilterChange = (event: any) => {
+    const handleRoomsFilterChange = (event: any) => {
         setRoomsSearchString(event.target.value);
     }
 
@@ -39,7 +38,7 @@ const HotelListClient = () => {
       if (citySearchString.length > 0 && countrySearchString.length > 0 && roomsSearchString.length > 0) {
         hotelsFiltered = hotelsFiltered.filter((x) => {
           return x.city.toLowerCase().match(citySearchString) && x.country.toLowerCase().match(countrySearchString)
-            && x.name.toLowerCase().match(roomsSearchString);
+            && String(x.rooms).match(roomsSearchString);
         });
       }
       else if (citySearchString.length > 0 && countrySearchString.length > 0 && roomsSearchString.length === 0) {
@@ -49,12 +48,12 @@ const HotelListClient = () => {
       }
       else if (citySearchString.length > 0 && countrySearchString.length === 0 && roomsSearchString.length > 0) {
         hotelsFiltered = hotelsFiltered.filter((x) => {
-          return x.city.toLowerCase().match(citySearchString) && x.name.toLowerCase().match(roomsSearchString);
+          return x.city.toLowerCase().match(citySearchString) && String(x.rooms).match(roomsSearchString);
         });
       }
       else if (citySearchString.length === 0 && countrySearchString.length > 0 && roomsSearchString.length > 0) {
         hotelsFiltered = hotelsFiltered.filter((x) => {
-          return x.name.toLowerCase().match(roomsSearchString) && x.country.toLowerCase().match(countrySearchString);
+          return String(x.rooms).match(roomsSearchString) && x.country.toLowerCase().match(countrySearchString);
         });
       }
       else if (citySearchString.length > 0 && countrySearchString.length === 0 && roomsSearchString.length === 0) {
@@ -69,17 +68,19 @@ const HotelListClient = () => {
       }
       else if (citySearchString.length === 0 && countrySearchString.length === 0 && roomsSearchString.length > 0) {
         hotelsFiltered = hotelsFiltered.filter((x) => {
-          return x.name.toLowerCase().match(roomsSearchString);
+          return String(x.rooms).match(roomsSearchString);
         });
       }
     
     
 
     return (
+      <Grid>
+        <Grid.Column width={10}>
         <Segment clearing>
         <Container clearing  >
           <Header as='h2' floated="left">
-            <Icon name='car' />
+            <Icon name='hotel' />
             <Header.Content>
               Hotel Stay Deals
   
@@ -95,33 +96,7 @@ const HotelListClient = () => {
           </Header>
         </Container >
   
-        <Container style={{ marginTop: "1.5em", marginBottom: "0.7em" }}>
-          <Grid width={16}>
-            <Grid.Column width={5} >
-              <Input type="text" icon='search' fluid
-                value={countrySearchString}
-                onChange={handleCountryFilterChange}
-                placeholder="Search by country ..." />
-  
-            </Grid.Column>
-  
-            <Grid.Column width={5}>
-              <Input type="text" icon="search" fluid
-                value={citySearchString}
-                onChange={handleCityFilterChange}
-                placeholder="Select by city..." />
-  
-            </Grid.Column>
-  
-            <Grid.Column width={5}>
-              <Input type="text" icon="search" fluid
-                value={roomsSearchString}
-                onChange={handleNameFilterChange}
-                placeholder="Select by name..." />
-            </Grid.Column>
-          </Grid>
-        </Container>
-        <Header as='h3' dividing> </Header>
+        
         <Item.Group divided>
           {hotelsFiltered.map((hotel) => (
             <Item key={hotel.id}>
@@ -152,6 +127,50 @@ const HotelListClient = () => {
         ))}
          </Item.Group>
       </Segment>
+      </Grid.Column>
+      <Grid.Column width={6}>
+        <Segment clearing >
+        <Container clearing  >
+          <Header as='h2' floated="left">
+            <Icon name='filter' />
+            <Header.Content>
+              Filters
+  
+            <Header.Subheader>
+                Filter by Country, City or Number of Rooms per Deal !
+                    </Header.Subheader>
+            </Header.Content>
+          </Header>
+           
+        </Container>
+        <Container style={{ marginTop: "5.5em" }}>
+          <Header as='h3' dividing>
+          </Header>
+        </Container >
+        <Container >
+            <br/>
+              <Input type="text" icon='search' fluid
+                value={countrySearchString}
+                onChange={handleCountryFilterChange}
+                placeholder="Filter by country ..." />
+  <br/>
+           
+              <Input type="text" icon="search" fluid
+                value={citySearchString}
+                onChange={handleCityFilterChange}
+                placeholder="Filter by city..." />
+  
+  <br/>
+              <Input type="text" icon="search" fluid
+                value={roomsSearchString}
+                onChange={handleRoomsFilterChange}
+                placeholder="Filter by number of rooms..." />
+            
+        </Container>
+        </Segment>
+
+      </Grid.Column>
+      </Grid>
     );
 };
 export default observer(HotelListClient)

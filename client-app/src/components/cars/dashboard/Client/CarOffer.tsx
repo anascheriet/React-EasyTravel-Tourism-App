@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext, Fragment } from 'react'
+import React, { useEffect, useContext, Fragment } from 'react'
 import { RouteComponentProps } from 'react-router-dom';
 import { observer } from 'mobx-react-lite';
 import { RootStoreContext } from '../../../../app/stores/rootStore';
@@ -22,23 +22,17 @@ interface offerId {
 }
 
 const CarOffer: React.FC<RouteComponentProps<offerId>> = ({ match }) => {
-
-    const [id, setId] = useState("");
-    useEffect(() => {
-        setId(match.params.id);
-    }, [match.params.id])
-
     const rootStore = useContext(RootStoreContext);
-    const { clientCarList, carBookingToAdd } = rootStore.carStore;
+    const {loadOfferedCar, OfferedCar, carBookingToAdd } = rootStore.carStore;
     const { openModal } = rootStore.modalStore;
-    let car = clientCarList.find(x => x.id === id);//still have to treat call from link(fetch from database);
-    // <Image
-    //             src={`/assets/carImages/${car?.name}.jpg`}
-    //             wrapped
-    //             ui={false}
-    //         />
 
-    carBookingToAdd!.productid = id;
+ 
+    useEffect(() => {
+        
+        loadOfferedCar(match.params.id);
+    }, [match.params.id,loadOfferedCar])
+
+    carBookingToAdd!.productid = match.params.id;
     
     return (
         <Grid>
@@ -52,17 +46,17 @@ const CarOffer: React.FC<RouteComponentProps<offerId>> = ({ match }) => {
 
                 <Segment.Group>
                     <Segment basic attached='top' style={{ padding: '0' }}>
-                        <Image src={`/assets/carImages/${car?.name}.jpg`} fluid />
+                        <Image src={`/assets/carImages/${OfferedCar?.name}.jpg`} fluid />
                         <Segment basic style={carImageTextStyle}>
                             <Item.Group>
                                 <Item>
                                     <Item.Content>
-                                        <h1><b>{car?.name}</b></h1>
+                                        <h1><b>{OfferedCar?.name}</b></h1>
                                         <p>
-                                            <strong>{car?.options} </strong>
+                                            <strong>{OfferedCar?.options} </strong>
                                         </p>
                                         <p>
-                                            Price: <strong>{car?.price} $</strong>
+                                            Price: <strong>{OfferedCar?.price} $</strong>
                                         </p>
                                     </Item.Content>
                                 </Item>
@@ -83,7 +77,7 @@ const CarOffer: React.FC<RouteComponentProps<offerId>> = ({ match }) => {
                                 <Icon size='large' color='teal' name='info' />
                             </Grid.Column>
                             <Grid.Column width={15}>
-                                <p>{car?.description}</p>
+                                <p>{OfferedCar?.description}</p>
                             </Grid.Column>
                         </Grid>
                     </Segment>
@@ -93,7 +87,7 @@ const CarOffer: React.FC<RouteComponentProps<offerId>> = ({ match }) => {
                                 <Icon name='marker' size='large' color='teal' />
                             </Grid.Column>
                             <Grid.Column width={11}>
-                                <span>{car?.city}, {car?.country}</span>
+                                <span>{OfferedCar?.city}, {OfferedCar?.country}</span>
                             </Grid.Column>
                         </Grid>
                     </Segment>

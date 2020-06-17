@@ -4,7 +4,8 @@ import React from "react";
 import { LoadingComponent } from "../../app/layout/LoadingComponent";
 import { observer } from 'mobx-react-lite';
 import { RootStoreContext } from "../../app/stores/rootStore";
-import { CarDashboardClient } from "./dashboard/Client/CarDashboardClient";
+import { CarListClient } from "./dashboard/Client/CarListClient";
+
 
 const ClientCar = () => {
   const rootStore = useContext(RootStoreContext);
@@ -24,7 +25,7 @@ const ClientCar = () => {
   return (
     <div>
 
-      <CarDashboardClient />
+      <CarListClient />
 
     </div>
   );
