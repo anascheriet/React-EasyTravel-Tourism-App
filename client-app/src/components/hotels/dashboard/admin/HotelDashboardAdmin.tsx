@@ -6,6 +6,7 @@ import HotelListAdmin from './HotelListAdmin';
 import HotelDetailsAdmin from './HotelDetailsAdmin';
 import { HotelForm } from '../../form/HotelForm';
 
+
 const HotelDashboardAdmin: React.FC = () => {
     const rootStore = useContext(RootStoreContext);
     const { editMode, selectedHotel } = rootStore.hotelStore;

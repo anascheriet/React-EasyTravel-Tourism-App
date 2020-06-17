@@ -11,6 +11,8 @@ namespace server_app.models
         public int Price { get; set; }
         public string Package{ get; set; }
         public string CreatorName { get; set; }
+        public int Rooms { get; set; }
+        public int MaxPeople { get; set; }
 
         [ForeignKey("Creator")]
         public int CreatorId { get; set; }

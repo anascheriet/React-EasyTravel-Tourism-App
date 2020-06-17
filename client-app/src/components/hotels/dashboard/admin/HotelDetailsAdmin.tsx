@@ -8,7 +8,8 @@ const HotelDetailsAdmin: React.FC = () => {
     const { selectedHotel, openEditForm, cancelSelectedHotel } = rootStore.hotelStore;
     return (
         <Card fluid>
-            <Image src={`/assets/carImages/${selectedHotel!.name}.jpg`} fluid />
+            {/* <Image src={`/assets/carImages/${selectedHotel!.name}.jpg`} fluid /> */}
+            <Image src='/assets/placeholder.png' fluid />
             <Card.Content>
                 <Card.Header>{selectedHotel!.name}</Card.Header>
                 <Card.Meta>
@@ -19,6 +20,8 @@ const HotelDetailsAdmin: React.FC = () => {
                 </Card.Meta>
                 <Card.Description>
                     {selectedHotel!.description}
+                    <br />
+                        {selectedHotel!.package} Available
                 </Card.Description>
                 <Label style={{ marginTop: "0.7em" }} basic content={selectedHotel!.adress} />
             </Card.Content>

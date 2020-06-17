@@ -19,8 +19,10 @@ namespace server_app.App_Logic.Hotels
             public string Description { get; set; }
             public string Country { get; set; }
             public string City { get; set; }
-            public string Price { get; set; }
             public string package { get; set; }
+            public string Price { get; set; }
+            public string Rooms { get; set; }
+            public string MaxPeople { get; set; }
 
         }
 
@@ -41,6 +43,8 @@ namespace server_app.App_Logic.Hotels
                     throw new RestException(HttpStatusCode.NotFound, new { hotel = "Hotel Not Found" });
 
                 int? priceParsed = Int32.Parse(request.Price);
+                int? roomsParsed = Int32.Parse(request.Rooms);
+                int? maxPeopleParsed = Int32.Parse(request.MaxPeople);
 
                 hotel.Name = request.Name ?? hotel.Name;
                 hotel.Description = request.Description ?? hotel.Description;
@@ -49,6 +53,8 @@ namespace server_app.App_Logic.Hotels
                 hotel.City = request.City ?? hotel.City;
                 hotel.Adress = request.Adress ?? hotel.Adress;
                 hotel.Package = request.package ?? hotel.Package;
+                hotel.Rooms = roomsParsed ?? hotel.Rooms;
+                hotel.MaxPeople = maxPeopleParsed ?? hotel.MaxPeople;
 
 
 

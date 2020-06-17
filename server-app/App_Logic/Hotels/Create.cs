@@ -22,6 +22,8 @@ namespace server_app.App_Logic.Hotels
             public string package { get; set; }
             public int CreatorId { get; set; }
             public string CreatorName { get; set; }
+            public string Rooms { get; set; }
+            public string MaxPeople { get; set; }
         }
 
         public class CommandValidator : AbstractValidator<Command>
@@ -62,6 +64,8 @@ namespace server_app.App_Logic.Hotels
                     Description = request.Description,
                     Adress = request.Adress,
                     Price = Int32.Parse(request.Price),
+                    Rooms = Int32.Parse(request.Rooms),
+                    MaxPeople = Int32.Parse(request.MaxPeople),
                     Package = request.package,
                     CreatorId = user != null ? user.Id : request.CreatorId,
                     CreatorName = user != null ? user.UserName : request.CreatorName,

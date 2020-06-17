@@ -5,97 +5,97 @@ import { Segment, Container, Header, Icon, Button, Grid, Input, Item, Label } fr
 
 const HotelListAdmin: React.FC = () => {
 
-    const rootStore = useContext(RootStoreContext);
-    const { adminHotelsByPrice, selectHotel, deleteHotel, submitting, target, openCreateForm } = rootStore.hotelStore;
+  const rootStore = useContext(RootStoreContext);
+  const { adminHotelsByPrice, selectHotel, deleteHotel, submitting, target, openCreateForm } = rootStore.hotelStore;
 
 
-    const [citySearchString, setCitySearchString] = useState('');
+  const [citySearchString, setCitySearchString] = useState('');
 
-    const [countrySearchString, setCountrySearchString] = useState("");
+  const [countrySearchString, setCountrySearchString] = useState("");
 
-    const [nameSearchString, setNameSearchString] = useState("");
+  const [nameSearchString, setNameSearchString] = useState("");
 
-    const handleCountryFilterChange = (event: any) => {
-        setCountrySearchString(event.target.value);
-    }
-
-
-    const handleCityFilterChange = (event: any) => {
-        setCitySearchString(event.target.value);
-    }
-
-    const handleNameFilterChange = (event: any) => {
-        setNameSearchString(event.target.value);
-    }
-
-    var hotelsFiltered = adminHotelsByPrice;
+  const handleCountryFilterChange = (event: any) => {
+    setCountrySearchString(event.target.value);
+  }
 
 
-    if (citySearchString.length > 0 && countrySearchString.length > 0 && nameSearchString.length > 0) {
-        hotelsFiltered = hotelsFiltered.filter((x) => {
-            return x.city.toLowerCase().match(citySearchString) && x.country.toLowerCase().match(countrySearchString)
-                && x.name.toLowerCase().match(nameSearchString);
-        });
-    }
-    else if (citySearchString.length > 0 && countrySearchString.length > 0 && nameSearchString.length === 0) {
-        hotelsFiltered = hotelsFiltered.filter((x) => {
-            return x.city.toLowerCase().match(citySearchString) && x.country.toLowerCase().match(countrySearchString);
-        });
-    }
-    else if (citySearchString.length > 0 && countrySearchString.length === 0 && nameSearchString.length > 0) {
-        hotelsFiltered = hotelsFiltered.filter((x) => {
-            return x.city.toLowerCase().match(citySearchString) && x.name.toLowerCase().match(nameSearchString);
-        });
-    }
-    else if (citySearchString.length === 0 && countrySearchString.length > 0 && nameSearchString.length > 0) {
-        hotelsFiltered = hotelsFiltered.filter((x) => {
-            return x.name.toLowerCase().match(nameSearchString) && x.country.toLowerCase().match(countrySearchString);
-        });
-    }
-    else if (citySearchString.length > 0 && countrySearchString.length === 0 && nameSearchString.length === 0) {
-        hotelsFiltered = hotelsFiltered.filter((x) => {
-            return x.city.toLowerCase().match(citySearchString);
-        });
-    }
-    else if (citySearchString.length === 0 && countrySearchString.length > 0 && nameSearchString.length === 0) {
-        hotelsFiltered = hotelsFiltered.filter((x) => {
-            return x.country.toLowerCase().match(countrySearchString);
-        });
-    }
-    else if (citySearchString.length === 0 && countrySearchString.length === 0 && nameSearchString.length > 0) {
-        hotelsFiltered = hotelsFiltered.filter((x) => {
-            return x.name.toLowerCase().match(nameSearchString);
-        });
-    }
+  const handleCityFilterChange = (event: any) => {
+    setCitySearchString(event.target.value);
+  }
 
-    useEffect(() => {
-        setCitySearchString(citySearchString.trim().toLowerCase());
-        setCountrySearchString(countrySearchString.trim().toLowerCase());
-        setNameSearchString(nameSearchString.trim().toLowerCase());
-    }, [citySearchString, countrySearchString, nameSearchString])
+  const handleNameFilterChange = (event: any) => {
+    setNameSearchString(event.target.value);
+  }
+
+  var hotelsFiltered = adminHotelsByPrice;
 
 
+  if (citySearchString.length > 0 && countrySearchString.length > 0 && nameSearchString.length > 0) {
+    hotelsFiltered = hotelsFiltered.filter((x) => {
+      return x.city.toLowerCase().match(citySearchString) && x.country.toLowerCase().match(countrySearchString)
+        && x.name.toLowerCase().match(nameSearchString);
+    });
+  }
+  else if (citySearchString.length > 0 && countrySearchString.length > 0 && nameSearchString.length === 0) {
+    hotelsFiltered = hotelsFiltered.filter((x) => {
+      return x.city.toLowerCase().match(citySearchString) && x.country.toLowerCase().match(countrySearchString);
+    });
+  }
+  else if (citySearchString.length > 0 && countrySearchString.length === 0 && nameSearchString.length > 0) {
+    hotelsFiltered = hotelsFiltered.filter((x) => {
+      return x.city.toLowerCase().match(citySearchString) && x.name.toLowerCase().match(nameSearchString);
+    });
+  }
+  else if (citySearchString.length === 0 && countrySearchString.length > 0 && nameSearchString.length > 0) {
+    hotelsFiltered = hotelsFiltered.filter((x) => {
+      return x.name.toLowerCase().match(nameSearchString) && x.country.toLowerCase().match(countrySearchString);
+    });
+  }
+  else if (citySearchString.length > 0 && countrySearchString.length === 0 && nameSearchString.length === 0) {
+    hotelsFiltered = hotelsFiltered.filter((x) => {
+      return x.city.toLowerCase().match(citySearchString);
+    });
+  }
+  else if (citySearchString.length === 0 && countrySearchString.length > 0 && nameSearchString.length === 0) {
+    hotelsFiltered = hotelsFiltered.filter((x) => {
+      return x.country.toLowerCase().match(countrySearchString);
+    });
+  }
+  else if (citySearchString.length === 0 && countrySearchString.length === 0 && nameSearchString.length > 0) {
+    hotelsFiltered = hotelsFiltered.filter((x) => {
+      return x.name.toLowerCase().match(nameSearchString);
+    });
+  }
 
-    return (
-        <Segment clearing>
+  useEffect(() => {
+    setCitySearchString(citySearchString.trim().toLowerCase());
+    setCountrySearchString(countrySearchString.trim().toLowerCase());
+    setNameSearchString(nameSearchString.trim().toLowerCase());
+  }, [citySearchString, countrySearchString, nameSearchString])
+
+
+
+  return (
+    <Segment clearing>
       <Container clearing  >
         <Header as='h2' floated="left">
           <Icon name='hotel' />
           <Header.Content>
-            Hotels List
+            Hotel Rooms List
 
           <Header.Subheader>
-              Manage Your Application Hotels
+              Manage Your Application Hotel Rooms Offers
                   </Header.Subheader>
           </Header.Content>
         </Header>
-    
+
         <Header as='h2' floated='right'>
           <Button
             icon='hotel'
             onClick={openCreateForm}
             positive
-            content="Add Hotel"
+            content="Add A Hotel Room Offer"
             style={{ marginBottom: "0.3em" }}
           />
         </Header>
@@ -139,6 +139,7 @@ const HotelListAdmin: React.FC = () => {
       <Item.Group divided>
         {hotelsFiltered.map((hotel) => (
           <Item key={hotel.id}>
+            <Item.Image src="/assets/placeholder.png" size='medium' />
             <Item.Content>
               <Item.Header as="a">{hotel.name}</Item.Header>
               <Item.Meta>{hotel.price}$ per day</Item.Meta>
@@ -148,6 +149,8 @@ const HotelListAdmin: React.FC = () => {
               </Item.Meta>
               <Item.Description>
                 <div>{hotel.description}</div>
+                <div>{hotel!.package} Available</div>
+                {hotel!.rooms} Rooms with a maximum of { hotel!.maxpeople} People
               </Item.Description>
               <Item.Extra>
                 <Button
@@ -172,7 +175,7 @@ const HotelListAdmin: React.FC = () => {
         ))}
       </Item.Group>
     </Segment>
-    )
+  )
 }
 
 export default observer(HotelListAdmin)

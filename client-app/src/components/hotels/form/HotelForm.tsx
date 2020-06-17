@@ -25,12 +25,14 @@ export const HotelForm: React.FC<IProps> = ({
                 name: "",
                 description: "",
                 price: "",
+                rooms: "",
                 options: "",
                 country: "",
                 city: "",
                 CreatorName: "",
                 adress: "",
                 package: "",
+                maxpeople: "",
             };
         }
     };
@@ -111,6 +113,18 @@ export const HotelForm: React.FC<IProps> = ({
                     icon='dollar'
                     placeholder='Price'
                 />
+                <Form.Input
+                    onChange={handleInputChange}
+                    name="rooms"
+                    value={hotel.rooms}
+                    placeholder='Number Of Rooms'
+                />
+                <Form.Input
+                    onChange={handleInputChange}
+                    name="maxpeople"
+                    value={hotel.maxpeople}
+                    placeholder='Maximum Amount Of People'
+                />
 
                 <Form.Input
                     name='adress'
@@ -154,7 +168,7 @@ export const HotelForm: React.FC<IProps> = ({
                     <option selected disabled value="">Select Package Options</option>
                     <option key="PP" value="Parking, Spa, Gym & Pool"> Parking, Spa, Gym & Pool</option>
                     <option key="SP" value="Parking & Pool"> Parking & Pool</option>
-                    <option key="BP" value="Parking"> Parking & Pool</option>
+                    <option key="BP" value="Parking">Parking</option>
 
                 </select>
                 <Button
@@ -162,7 +176,7 @@ export const HotelForm: React.FC<IProps> = ({
                     floated="right"
                     positive
                     type="submit"
-                    onClick={(()=>console.log(hotel.CreatorName, hotel.package))}
+                    onClick={(() => console.log(hotel.CreatorName, hotel.package))}
                     content="Submit" />
                 <Button
                     style={{ marginTop: "0.7em" }}
