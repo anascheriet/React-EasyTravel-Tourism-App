@@ -9,18 +9,18 @@ using server_app.Data;
 using server_app.Infrastructure.Interfaces;
 using server_app.models;
 
-namespace server_app.App_Logic.Cars
+namespace server_app.App_Logic.Flights
 {
     public class ListByAdmin
     {
 
 
-        public class Query : IRequest<List<Car>>
+        public class Query : IRequest<List<Flight>>
         {
             public string name { set; get; }
         }
 
-        public class Handler : IRequestHandler<Query, List<Car>>
+        public class Handler : IRequestHandler<Query, List<Flight>>
         {
             private readonly DataContext _context;
             private readonly UserManager<AppUser> _userManager;
@@ -32,10 +32,10 @@ namespace server_app.App_Logic.Cars
                 _context = context;
             }
 
-            public async Task<List<Car>> Handle(Query request, CancellationToken cancellationToken)
+            public async Task<List<Flight>> Handle(Query request, CancellationToken cancellationToken)
             {
-                var AdminCars = await _context.Cars.Where(x => x.CreatorName == request.name).ToListAsync();
-                return AdminCars;
+                var AdminFlights = await _context.Flights.Where(x => x.CreatorName == request.name).ToListAsync();
+                return AdminFlights;
             }
         }
 

@@ -11,7 +11,7 @@ namespace server_app.App_logic.Cars
 {
     public class Edit
     {
-        
+
         public class Command : Service, IRequest
         {
             public string Description { get; set; }
@@ -33,10 +33,10 @@ namespace server_app.App_logic.Cars
             {
                 var car = await _context.Cars.FindAsync(request.id);
                 if (car == null)
-                    throw new RestException(HttpStatusCode.NotFound, new {car= "Car Not Found"});
+                    throw new RestException(HttpStatusCode.NotFound, new { car = "Car Not Found" });
 
                 int? priceParsed = Int32.Parse(request.Price);
-                
+
                 car.Name = request.Name ?? car.Name;
                 car.Description = request.Description ?? car.Description;
                 car.Price = priceParsed ?? car.Price; //problem here when not updating the price value
