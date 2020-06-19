@@ -4,6 +4,7 @@ import { createContext } from 'react';
 import CommonStore from './commonStore';
 import ModalStore from './modalStore';
 import HotelStore from './hotelStore';
+import FlightStore from './flightStore';
 
 export class RootStore {
     carStore: CarStore;
@@ -11,6 +12,7 @@ export class RootStore {
     commonStore: CommonStore;
     modalStore: ModalStore;
     hotelStore: HotelStore;
+    flightStore: FlightStore;
 
     constructor(){
         this.carStore = new CarStore(this);
@@ -18,6 +20,7 @@ export class RootStore {
         this.commonStore = new CommonStore(this);
         this.modalStore = new ModalStore(this);
         this.hotelStore = new HotelStore(this);
+        this.flightStore = new FlightStore(this);
     }
 }
 

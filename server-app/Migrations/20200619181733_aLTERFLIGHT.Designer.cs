@@ -9,8 +9,8 @@ using server_app.Data;
 namespace server_app.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200617165140_InitialMig")]
-    partial class InitialMig
+    [Migration("20200619181733_aLTERFLIGHT")]
+    partial class aLTERFLIGHT
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -285,6 +285,61 @@ namespace server_app.Migrations
                     b.ToTable("CarBookings");
                 });
 
+            modelBuilder.Entity("server_app.models.Flight", b =>
+                {
+                    b.Property<Guid>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("CreatorId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("CreatorName")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("DepartingArrivingTime")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("DepartingCity")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("DepartingCountry")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("DepartingDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("DepartingDepartingTime")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("DestinationCity")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("DestinationCountry")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Price")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("ReturnDepartingTime")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime?>("ReturningDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Type")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("CreatorId");
+
+                    b.ToTable("Flights");
+                });
+
             modelBuilder.Entity("server_app.models.Hotel", b =>
                 {
                     b.Property<Guid>("id")
@@ -329,6 +384,34 @@ namespace server_app.Migrations
                     b.HasIndex("CreatorId");
 
                     b.ToTable("Hotels");
+                });
+
+            modelBuilder.Entity("server_app.models.HotelBooking", b =>
+                {
+                    b.Property<int>("HotelBookingId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("BookingDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ClientName")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("EndingDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("ProductId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("StartingFromDate")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("HotelBookingId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("HotelBookings");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
@@ -404,11 +487,29 @@ namespace server_app.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("server_app.models.Flight", b =>
+                {
+                    b.HasOne("server_app.models.AppUser", "Creator")
+                        .WithMany()
+                        .HasForeignKey("CreatorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("server_app.models.Hotel", b =>
                 {
                     b.HasOne("server_app.models.AppUser", "Creator")
                         .WithMany()
                         .HasForeignKey("CreatorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("server_app.models.HotelBooking", b =>
+                {
+                    b.HasOne("server_app.models.Hotel", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

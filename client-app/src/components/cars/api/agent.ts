@@ -4,6 +4,7 @@ import { IUser, IUserFormValues } from "../../../app/models/User";
 import { history } from "../../..";
 import { toast } from "react-toastify";
 import { IHotel, IHotelBooking } from "../../../app/models/Hotel";
+import { IFlight } from "../../../app/models/Flight";
 
 axios.defaults.baseURL = 'http://localhost:5000';
 
@@ -64,6 +65,15 @@ const Hotels = {
     createBooking: (hotelbooking: IHotelBooking) => requests.post('hotelbooking', hotelbooking)
 }
 
+const Flights = {
+    list: (): Promise<IFlight[]> => requests.get('/flight'),
+    adminFlights: (name: string | undefined): Promise<IFlight[]> => requests.get(`flight/adminFlights/${name}`),
+    details: (id: string) => requests.get(`/flight/${id}`),
+    create: (flight: IFlight) => requests.post('/flight', flight),
+    update: (flight: IFlight) => requests.put(`/flight/${flight.id}`, flight),
+    delete: (id: string) => requests.del(`/flight/${id}`),
+}
+
 const User = {
     listadmins: (): Promise<IUserFormValues[]> => requests.get('users/admins'),
     listsudoadmins: (): Promise<IUserFormValues[]> => requests.get('users/sudoadmins'),
@@ -75,5 +85,6 @@ const User = {
 export default {
     Cars,
     User,
-    Hotels
+    Hotels,
+    Flights
 }

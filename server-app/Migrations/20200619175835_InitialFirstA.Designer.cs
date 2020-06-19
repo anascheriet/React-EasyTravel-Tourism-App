@@ -9,8 +9,8 @@ using server_app.Data;
 namespace server_app.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200617180317_HotelBookings")]
-    partial class HotelBookings
+    [Migration("20200619175835_InitialFirstA")]
+    partial class InitialFirstA
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -285,6 +285,58 @@ namespace server_app.Migrations
                     b.ToTable("CarBookings");
                 });
 
+            modelBuilder.Entity("server_app.models.Flight", b =>
+                {
+                    b.Property<Guid>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("CreatorId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("CreatorName")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("DepartingArrivingTime")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("DepartingCity")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("DepartingCountry")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("DepartingDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("DepartingDepartingTime")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("DestinationCity")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("DestinationCountry")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Price")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime?>("ReturningDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Type")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("CreatorId");
+
+                    b.ToTable("Flights");
+                });
+
             modelBuilder.Entity("server_app.models.Hotel", b =>
                 {
                     b.Property<Guid>("id")
@@ -428,6 +480,15 @@ namespace server_app.Migrations
                     b.HasOne("server_app.models.Car", "Product")
                         .WithMany()
                         .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("server_app.models.Flight", b =>
+                {
+                    b.HasOne("server_app.models.AppUser", "Creator")
+                        .WithMany()
+                        .HasForeignKey("CreatorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

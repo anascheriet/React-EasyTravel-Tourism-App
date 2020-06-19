@@ -15,13 +15,15 @@ namespace server_app.App_Logic.Flights
         public class Command : Service, IRequest
         {
             public string DepartingDate { get; set; }
-            public string ArrivingDate { get; set; }
-            public string DepartingTime { get; set; }
-            public string ArrivingTime { get; set; }
+            public string ReturningDate { get; set; }
+            public string DepartingDepartingTime { get; set; }
+            public string DepartingArrivingTime { get; set; }
             public string DepartingCountry { get; set; }
             public string DepartingCity { get; set; }
-            public string ArrivingCountry { get; set; }
-            public string ArrivingCity { get; set; }
+            public string DestinationCountry { get; set; }
+            public string DestinationCity { get; set; }
+            public string ReturnDepartingTime { get; set; }
+            public string ReturnArrivingTime { get; set; }
             public string Type { get; set; }
             public string Price { get; set; }
             public string CreatorName { get; set; }
@@ -35,7 +37,8 @@ namespace server_app.App_Logic.Flights
                 RuleFor(x => x.Name).NotEmpty();
                 RuleFor(x => x.DepartingCity).NotEmpty();
                 RuleFor(x => x.DepartingCountry).NotEmpty();
-                RuleFor(x => x.DepartingTime).NotEmpty();
+                RuleFor(x => x.DepartingDepartingTime).NotEmpty();
+                RuleFor(x => x.DepartingArrivingTime).NotEmpty();
                 RuleFor(x => x.Type).NotEmpty();
                 RuleFor(x => x.Price).NotEmpty();
             }
@@ -64,11 +67,13 @@ namespace server_app.App_Logic.Flights
                     DepartingCountry = request.DepartingCountry,
                     DepartingCity = request.DepartingCity,
                     DepartingDate = DateTime.Parse(request.DepartingDate),
-                    DepartingTime = request.DepartingTime,
-                    ArrivingCountry = request.ArrivingCountry,
-                    ArrivingCity = request.ArrivingCity,
-                    ArrivingDate = DateTime.Parse(request.ArrivingDate),
-                    ArrivingTime = request.ArrivingTime,
+                    DepartingDepartingTime = request.DepartingDepartingTime,
+                    DepartingArrivingTime = request.DepartingArrivingTime,
+                    DestinationCountry = request.DestinationCountry,
+                    DestinationCity = request.DestinationCity,
+                    ReturningDate = request.ReturningDate == null ? DateTime.MinValue : DateTime.Parse(request.ReturningDate),
+                    ReturnDepartingTime = request.ReturnDepartingTime,
+                    ReturnArrivingTime = request.ReturnArrivingTime,
                     Type = request.Type,
                     Price = Int32.Parse(request.Price),
                     CreatorId = user != null ? user.Id : request.CreatorId,

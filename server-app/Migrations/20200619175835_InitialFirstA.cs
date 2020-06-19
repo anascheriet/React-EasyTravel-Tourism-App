@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace server_app.Migrations
 {
-    public partial class InitialMig : Migration
+    public partial class InitialFirstA : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -182,6 +182,36 @@ namespace server_app.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Flights",
+                columns: table => new
+                {
+                    id = table.Column<Guid>(nullable: false),
+                    Name = table.Column<string>(nullable: true),
+                    DepartingDate = table.Column<DateTime>(nullable: false),
+                    ReturningDate = table.Column<DateTime>(nullable: true),
+                    DepartingDepartingTime = table.Column<string>(nullable: true),
+                    DepartingArrivingTime = table.Column<string>(nullable: true),
+                    DepartingCountry = table.Column<string>(nullable: true),
+                    DepartingCity = table.Column<string>(nullable: true),
+                    DestinationCountry = table.Column<string>(nullable: true),
+                    DestinationCity = table.Column<string>(nullable: true),
+                    Type = table.Column<string>(nullable: true),
+                    Price = table.Column<int>(nullable: false),
+                    CreatorName = table.Column<string>(nullable: true),
+                    CreatorId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Flights", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_Flights_AspNetUsers_CreatorId",
+                        column: x => x.CreatorId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Hotels",
                 columns: table => new
                 {
@@ -239,6 +269,29 @@ namespace server_app.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "HotelBookings",
+                columns: table => new
+                {
+                    HotelBookingId = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    ClientName = table.Column<string>(nullable: true),
+                    ProductId = table.Column<Guid>(nullable: false),
+                    BookingDate = table.Column<DateTime>(nullable: false),
+                    StartingFromDate = table.Column<DateTime>(nullable: false),
+                    EndingDate = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_HotelBookings", x => x.HotelBookingId);
+                    table.ForeignKey(
+                        name: "FK_HotelBookings_Hotels_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Hotels",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -292,6 +345,16 @@ namespace server_app.Migrations
                 column: "CreatorId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Flights_CreatorId",
+                table: "Flights",
+                column: "CreatorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_HotelBookings_ProductId",
+                table: "HotelBookings",
+                column: "ProductId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Hotels_CreatorId",
                 table: "Hotels",
                 column: "CreatorId");
@@ -318,13 +381,19 @@ namespace server_app.Migrations
                 name: "CarBookings");
 
             migrationBuilder.DropTable(
-                name: "Hotels");
+                name: "Flights");
+
+            migrationBuilder.DropTable(
+                name: "HotelBookings");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "Cars");
+
+            migrationBuilder.DropTable(
+                name: "Hotels");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");

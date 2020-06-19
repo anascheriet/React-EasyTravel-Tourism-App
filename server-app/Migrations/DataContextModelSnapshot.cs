@@ -289,34 +289,31 @@ namespace server_app.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("ArrivingCity")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("ArrivingCountry")
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime?>("ArrivingDate")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("ArrivingTime")
-                        .HasColumnType("TEXT");
-
                     b.Property<int>("CreatorId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("CreatorName")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("DeaprtingCity")
+                    b.Property<string>("DepartingArrivingTime")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("DepartingCounytry")
+                    b.Property<string>("DepartingCity")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("DepartingCountry")
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("DepartingDate")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("DepartingTime")
+                    b.Property<string>("DepartingDepartingTime")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("DestinationCity")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("DestinationCountry")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
@@ -324,6 +321,15 @@ namespace server_app.Migrations
 
                     b.Property<int>("Price")
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("ReturnArrivingTime")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ReturnDepartingTime")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime?>("ReturningDate")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Type")
                         .HasColumnType("TEXT");

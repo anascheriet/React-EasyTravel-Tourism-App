@@ -14,14 +14,16 @@ namespace server_app.App_Logic.Flights
         public class Command : Service, IRequest
         {
 
-            public string DepartingDate { get; set; }
-            public string ArrivingDate { get; set; }
-            public string DepartingTime { get; set; }
-            public string ArrivingTime { get; set; }
+           public string DepartingDate { get; set; }
+            public string ReturningDate { get; set; }
+            public string DepartingDepartingTime { get; set; }
+            public string DepartingArrivingTime { get; set; }
             public string DepartingCountry { get; set; }
             public string DepartingCity { get; set; }
-            public string ArrivingCountry { get; set; }
-            public string ArrivingCity { get; set; }
+            public string DestinationCountry { get; set; }
+            public string DestinationCity { get; set; }
+            public string ReturnDepartingTime { get; set; }
+            public string ReturnArrivingTime { get; set; }
             public string Type { get; set; }
             public string Price { get; set; }
         }
@@ -42,7 +44,7 @@ namespace server_app.App_Logic.Flights
 
 
                 int? priceParsed = Int32.Parse(request.Price);
-                DateTime? arrivingDateParsed = DateTime.Parse(request.ArrivingDate);
+                DateTime? returningDateParsed = DateTime.Parse(request.ReturningDate);
                 DateTime? departingDateParsed = DateTime.Parse(request.DepartingDate);
 
 
@@ -53,18 +55,23 @@ namespace server_app.App_Logic.Flights
 
                 flight.DepartingCountry = request.DepartingCountry ?? flight.DepartingCountry;
                 flight.DepartingCity = request.DepartingCity ?? flight.DepartingCity;
-                flight.DepartingTime = request.DepartingTime ?? flight.DepartingTime;
+                flight.DepartingDepartingTime = request.DepartingDepartingTime ?? flight.DepartingDepartingTime;
+                flight.DepartingArrivingTime = request.DepartingArrivingTime ?? flight.DepartingArrivingTime;
                 flight.DepartingDate = departingDateParsed ?? flight.DepartingDate;
 
-                flight.ArrivingCountry = request.ArrivingCountry ?? flight.ArrivingCountry;
-                flight.ArrivingCity = request.ArrivingCity ?? flight.ArrivingCity;
-                flight.ArrivingTime = request.ArrivingTime ?? flight.ArrivingTime;
-                flight.ArrivingDate = arrivingDateParsed ?? flight.ArrivingDate;
+                flight.DestinationCountry = request.DestinationCountry ?? flight.DestinationCountry;
+                flight.DestinationCity = request.DestinationCity ?? flight.DestinationCity;
+
+
+
+                flight.ReturnDepartingTime = request.ReturnDepartingTime ?? flight.ReturnDepartingTime;
+                flight.ReturnArrivingTime = request.ReturnArrivingTime ?? flight.ReturnArrivingTime;
+                flight.ReturningDate = returningDateParsed ?? flight.ReturningDate;
 
 
 
 
-
+ 
                 var success = await _context.SaveChangesAsync() > 0;
 
                 if (success) return Unit.Value;

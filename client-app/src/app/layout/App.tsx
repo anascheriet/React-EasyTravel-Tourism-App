@@ -19,6 +19,7 @@ import CarOffer from "../../components/cars/dashboard/Client/CarOffer";
 import AdminHotel from "../../components/hotels/AdminHotel";
 import HotelOffer from "../../components/hotels/dashboard/client/HotelOffer";
 import ClientHotel from "../../components/hotels/ClientHotel";
+import AdminFlight from "../../components/flights/AdminFlight";
 
 function App() {
   const rootStore = useContext(RootStoreContext);
@@ -54,6 +55,7 @@ function App() {
                   <Route exact path="/cars" component={ClientCar} />) : (<Route exact path="/cars" component={AdminCar} />)}
                 {user?.status === "Client" ? (
                   <Route exact path="/hotels" component={ClientHotel} />) : (<Route exact path="/hotels" component={AdminHotel} />)}
+                <Route exact path="/flights" component={AdminFlight} />
 
                 <Route path="/cars/:id" component={CarOffer} />
                 <Route path="/hotels/:id" component={HotelOffer} />
