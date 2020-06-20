@@ -289,6 +289,12 @@ namespace server_app.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("CombinedDepLocation")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("CombinedDestination")
+                        .HasColumnType("TEXT");
+
                     b.Property<int>("CreatorId")
                         .HasColumnType("INTEGER");
 

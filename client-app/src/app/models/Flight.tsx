@@ -19,4 +19,7 @@ export interface IFlight {
     returningDate: Date | undefined;
     
     CreatorName: string | undefined;
+
+    combinedDepLocation?: string;
+    combinedDestination?: string
 }

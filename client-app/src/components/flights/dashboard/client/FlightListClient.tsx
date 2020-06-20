@@ -1,13 +1,11 @@
-import React, { useContext, useState, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
+import { observer } from 'mobx-react-lite'
 import { RootStoreContext } from '../../../../app/stores/rootStore';
-import { Segment, Container, Header, Icon, Button, Grid, Input, Item, Label, Dropdown, Form } from 'semantic-ui-react';
-import { observer } from 'mobx-react-lite';
+import { Grid, Segment, Container, Header, Label, Button, Item, Icon, Input } from 'semantic-ui-react';
 
-const FlightListAdmin: React.FC = () => {
+const FlightListClient = () => {
     const rootStore = useContext(RootStoreContext);
-    const { adminFlightsByPrice, selectFlight, deleteFlight, submitting, target, openCreateForm } = rootStore.flightStore;
-
-
+    const { clientFlightsByPrice } = rootStore.flightStore;
 
     const [depDateString, setdepDateString] = useState("");
     const [retDateString, setretDateString] = useState("");
@@ -43,7 +41,7 @@ const FlightListAdmin: React.FC = () => {
 
 
 
-    var flightsFiltered = adminFlightsByPrice;
+    var flightsFiltered = clientFlightsByPrice;
 
     if(typeString.length > 0 && depDateString.length > 0 && depLocationString.length > 0 &&  retDateString.length > 0  && destinationString.length > 0 ){
       flightsFiltered = flightsFiltered.filter((x) => {
@@ -195,100 +193,27 @@ const FlightListAdmin: React.FC = () => {
     }
    
 
-
-
-    
-
     return (
-      
+        <Grid>
+        <Grid.Column width={10}>
         <Segment clearing>
         <Container clearing  >
           <Header as='h2' floated="left">
             <Icon name='plane' />
             <Header.Content>
-             Flight Tickets List
+              Flight Ticket Deals
   
             <Header.Subheader>
-                Manage Your Application Flight Tickets Offers
+                Search and Book an offer of your choice !
                     </Header.Subheader>
             </Header.Content>
           </Header>
-  
-          <Header as='h2' floated='right'>
-            <Button
-              icon='plane'
-              onClick={openCreateForm}
-              positive
-              content="Add A Flight Ticket"
-              style={{ marginBottom: "0.3em" }}
-            />
-          </Header>
+           
         </Container>
         <Container style={{ marginTop: "5em", marginBottom: "1em" }}>
           <Header as='h3' dividing>
-  
-  
           </Header>
         </Container >
-  
-  
-  
-        <Container style={{ marginTop: "1.5em", marginBottom: "0.7em" }}>
-          <Grid width={16}>
-          <Grid.Column width={5} >
-          <label><b>Ticket Type:</b></label>
-           <select defaultValue={typeString} onChange={handleTypeFilterChange} name="type"
-                    style={{ marginTop: "1em", marginBottom: "1em" }}
-                >
-                    <option selected disabled value=""></option>
-                    <option key="OWT" value="One Way Ticket">One Way Ticket</option>
-                    <option key="RT" value="Round Trip">Round Trip</option>
-
-                </select>
-         </Grid.Column>
-            <Grid.Column width={5} >
-              <label><b>Departure Date:</b></label>
-              <Input type="date" fluid
-                value={depDateString}
-                onChange={handleDepDateFilterChange}
-                />
-            </Grid.Column>
-            <Grid.Column width={5} >
-            {typeString === "round trip" &&
-            <div>
-            <label><b>Return Date:</b></label>
-            <Input type="date" fluid
-                value={retDateString}
-                onChange={handleRetDateFilterChange}
-             />
-                </div>
-            }
-   </Grid.Column>
-          </Grid>
-          <Grid width={16} style={{marginTop: "0em"}}>
-          <Grid.Column width={5} >
-          <label><b>From:</b></label>
-              <Input type="text" icon="search" fluid
-                  value={depLocationString}
-                  onChange={handleDepLocationFilterChange}
-                  placeholder="City, Country..." />
-    
-              </Grid.Column>
-              
-              <Grid.Column width={5}>
-              <label><b>To:</b></label>
-                <Input type="text" icon="search" fluid
-                  value={destinationString}
-                  onChange={handleDestinationFilterChange}
-                  placeholder="City, Country..." />
-              </Grid.Column>
-              <Grid.Column width={5} >
-              
-            </Grid.Column>
-
-          </Grid>
-        </Container>
-        <Header as='h3' dividing> </Header>
         <Item.Group divided>
           {flightsFiltered.map((flight) => (
   
@@ -300,38 +225,91 @@ const FlightListAdmin: React.FC = () => {
                   {flight.type} 
                 </Item.Description>
                 <Item.Meta>{flight.price}$ per person</Item.Meta>
-                <Item.Meta>
-                  
-              Leaves {flight.departingCity}, {flight.departingCountry} at {flight.departingDepartingTime} of {String(flight.departingDate).split("T")[0]} <br/>
-              Arrives To {flight.destinationCity}, {flight.destinationCountry} on {flight.departingArrivingTime}
-                </Item.Meta>
-               
-                <Item.Extra>
-                  <Button
-                    onClick={() => selectFlight(flight.id)}
-                    floated="right"
-                    content="View"
-                    color="blue"
-                  />
-                  <Button
-                    name={flight.id}
-                    loading={target === flight.id && submitting}
-                    onClick={(e) => deleteFlight(e, flight.id)}
-                    floated="right"
-                    content="Delete"
-                    color="red"
-  
-                  />
-
+                <Item.Description>
+                <b>Flight Departure:</b>  {flight.combinedDepLocation} at &nbsp; 
+                {flight.departingDepartingTime} <Icon name="long arrow alternate right" color="orange" size="big" /> {flight.combinedDestination} at {flight.departingArrivingTime} on {String(flight.departingDate).split("T")[0]}
+                </Item.Description>
+                <Item.Description>
                  {flight.type ==="Round Trip" &&
-                  <Label basic >Return Flight: Leaves at {flight.returnDepartingTime} of {String(flight.returningDate).split("T")[0]}, arrives at {flight.returnArrivingTime}</Label>}
-                </Item.Extra>
+                  <div><b>Return Flight:</b> {flight.combinedDestination} at &nbsp; 
+                  {flight.returnDepartingTime} <Icon name="long arrow alternate right" color="orange" size="big" /> {flight.combinedDepLocation} at {flight.returnArrivingTime} on {String(flight.returningDate).split("T")[0]}  </div>}
+                  <Button color='orange' floated='right'>
+            Book
+            <Icon name='chevron right' />
+          </Button>
+          {/* {String(flight.returningDate).split("T")[0]} */}
+                </Item.Description>
               </Item.Content>
             </Item>
           ))}
         </Item.Group>
       </Segment>
-    )
+      </Grid.Column>
+      <Grid.Column width={6}>
+        <Segment clearing >
+        <Container clearing  >
+        <Header as='h2' floated="left">
+            <Icon name='filter' />
+            <Header.Content>
+              Filters
+  
+            <Header.Subheader>
+                Filter by Ticket Type, Flight Locations or Flight Dates!
+                    </Header.Subheader>
+            </Header.Content>
+          </Header>
+        </Container>
+        <Container style={{ marginTop: "5.5em" }}>
+          <Header as='h3' dividing>
+          </Header>
+        </Container >
+        <Container>
+            <br/>
+            <label><b>Ticket Type:</b></label><br/>
+           <select className="mdb-select md-form colorful-select dropdown-primary" defaultValue={typeString} onChange={handleTypeFilterChange} name="type"
+                    style={{ marginTop: "1em", marginBottom: "1em" }}
+                >
+                    <option selected disabled value=""></option>
+                    <option key="OWT" value="One Way Ticket">One Way Ticket</option>
+                    <option key="RT" value="Round Trip">Round Trip</option>
+
+                </select>
+      
+            <br/>
+            <br/>
+              <label><b>Departure Date:</b></label>
+              <Input style={{marginBottom: "1em"}} type="date" fluid
+                value={depDateString}
+                onChange={handleDepDateFilterChange}
+                />
+            
+            {typeString === "round trip" &&
+            <div>
+            <label><b>Return Date:</b></label>
+            <Input style={{marginBottom: "1em"}} type="date" fluid
+                value={retDateString}
+                onChange={handleRetDateFilterChange}
+             />
+                </div>
+            }
+ 
+          <label><b>From:</b></label>
+              <Input style={{marginBottom: "1em"}} type="text" icon="search" fluid
+                  value={depLocationString}
+                  onChange={handleDepLocationFilterChange}
+                  placeholder="City, Country..." />
+    
+             
+              <label><b>To:</b></label>
+                <Input type="text" icon="search" fluid
+                  value={destinationString}
+                  onChange={handleDestinationFilterChange}
+                  placeholder="City, Country..." />
+        </Container>
+            </Segment>
+            </Grid.Column >   
+            </Grid>   
+            )
 }
 
-export default observer(FlightListAdmin)
+export default observer(FlightListClient);

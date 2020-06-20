@@ -68,6 +68,9 @@ namespace server_app.App_Logic.Flights
                 flight.ReturnArrivingTime = request.ReturnArrivingTime ?? flight.ReturnArrivingTime;
                 flight.ReturningDate = returningDateParsed ?? flight.ReturningDate;
 
+                flight.CombinedDestination = flight.DestinationCity + ", " + flight.DestinationCountry;
+                flight.CombinedDepLocation = flight.DepartingCity + ", " + flight.DepartingCountry;
+
 
 
 

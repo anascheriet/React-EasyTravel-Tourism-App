@@ -78,6 +78,8 @@ namespace server_app.App_Logic.Flights
                     Price = Int32.Parse(request.Price),
                     CreatorId = user != null ? user.Id : request.CreatorId,
                     CreatorName = user != null ? user.UserName : request.CreatorName,
+                    CombinedDepLocation = request.DepartingCity + ", " + request.DepartingCountry,
+                    CombinedDestination = request.DestinationCity +", " + request.DestinationCountry,
                 };
                 _context.Flights.Add(flight);
                 var success = await _context.SaveChangesAsync() > 0;

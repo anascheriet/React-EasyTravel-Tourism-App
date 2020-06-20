@@ -9,8 +9,8 @@ using server_app.Data;
 namespace server_app.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200619183400_aLTERFLIGHT2")]
-    partial class aLTERFLIGHT2
+    [Migration("20200620193645_InitialMIGADD")]
+    partial class InitialMIGADD
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -289,6 +289,12 @@ namespace server_app.Migrations
                 {
                     b.Property<Guid>("id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("CombinedDepLocation")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("CombinedDestination")
                         .HasColumnType("TEXT");
 
                     b.Property<int>("CreatorId")

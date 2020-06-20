@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace server_app.Migrations
 {
-    public partial class InitialFirstA : Migration
+    public partial class InitialMIGADD : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -193,8 +193,12 @@ namespace server_app.Migrations
                     DepartingArrivingTime = table.Column<string>(nullable: true),
                     DepartingCountry = table.Column<string>(nullable: true),
                     DepartingCity = table.Column<string>(nullable: true),
+                    CombinedDepLocation = table.Column<string>(nullable: true),
+                    CombinedDestination = table.Column<string>(nullable: true),
                     DestinationCountry = table.Column<string>(nullable: true),
                     DestinationCity = table.Column<string>(nullable: true),
+                    ReturnDepartingTime = table.Column<string>(nullable: true),
+                    ReturnArrivingTime = table.Column<string>(nullable: true),
                     Type = table.Column<string>(nullable: true),
                     Price = table.Column<int>(nullable: false),
                     CreatorName = table.Column<string>(nullable: true),
