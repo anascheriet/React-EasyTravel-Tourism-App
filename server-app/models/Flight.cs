@@ -11,6 +11,8 @@ namespace server_app.models
         public string DepartingArrivingTime { get; set; }
         public string DepartingCountry { get; set; }
         public string DepartingCity { get; set; }
+        //public string CombinedDepLocation {get;set;}
+        //public string CombinedDestination { get; set; }
         public string DestinationCountry { get; set; }
         public string DestinationCity { get; set; }
         public string ReturnDepartingTime { get; set; }

@@ -39,7 +39,7 @@ export const FlightForm: React.FC<IProps> = ({
 
                 returnDepartingTime: "",
                 returnArrivingTime: "",
-                returnDate: undefined,
+                returningDate: undefined,
 
                 CreatorName: "",
             };
@@ -239,7 +239,7 @@ export const FlightForm: React.FC<IProps> = ({
                         <Form.Input label='Returning Date: '
                             onChange={handleInputChange}
                             name="returningdate"
-                            defaultValue={flight.returnDate}
+                            defaultValue={flight.returningDate}
                             type="date"
                         />
                         <Form.Input
