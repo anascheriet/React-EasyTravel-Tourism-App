@@ -14,6 +14,7 @@ namespace server_app.Data
         public DbSet<Car> Cars { get; set; }
         public DbSet<Hotel> Hotels { get; set; }
         public DbSet<Flight> Flights { get; set; }
+        public DbSet<FlightBooking> FlightBookings { get; set; }
         public DbSet<CarBooking> CarBookings { get; set; }
         public DbSet<HotelBooking> HotelBookings { get; set; }
 

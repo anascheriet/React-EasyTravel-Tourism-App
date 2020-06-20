@@ -23,3 +23,9 @@ export interface IFlight {
     combinedDepLocation?: string;
     combinedDestination?: string
 }
+
+export interface IFlightBooking{
+    adults: string;
+    kids: string;
+    productid: string;
+}

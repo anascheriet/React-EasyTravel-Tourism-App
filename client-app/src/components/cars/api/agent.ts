@@ -4,7 +4,7 @@ import { IUser, IUserFormValues } from "../../../app/models/User";
 import { history } from "../../..";
 import { toast } from "react-toastify";
 import { IHotel, IHotelBooking } from "../../../app/models/Hotel";
-import { IFlight } from "../../../app/models/Flight";
+import { IFlight, IFlightBooking } from "../../../app/models/Flight";
 
 axios.defaults.baseURL = 'http://localhost:5000';
 
@@ -72,6 +72,7 @@ const Flights = {
     create: (flight: IFlight) => requests.post('/flight', flight),
     update: (flight: IFlight) => requests.put(`/flight/${flight.id}`, flight),
     delete: (id: string) => requests.del(`/flight/${id}`),
+    createBooking: (flightbooking: IFlightBooking ) => requests.post('flightbooking', flightbooking),
 }
 
 const User = {

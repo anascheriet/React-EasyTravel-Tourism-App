@@ -2,10 +2,12 @@ import React, { useContext, useEffect, useState } from 'react'
 import { observer } from 'mobx-react-lite'
 import { RootStoreContext } from '../../../../app/stores/rootStore';
 import { Grid, Segment, Container, Header, Label, Button, Item, Icon, Input } from 'semantic-ui-react';
+import FlightBooking from '../../form/FlightBooking';
 
 const FlightListClient = () => {
     const rootStore = useContext(RootStoreContext);
-    const { clientFlightsByPrice } = rootStore.flightStore;
+    const { clientFlightsByPrice, flightBookingToAdd } = rootStore.flightStore;
+    const { openModal } = rootStore.modalStore;
 
     const [depDateString, setdepDateString] = useState("");
     const [retDateString, setretDateString] = useState("");
@@ -191,6 +193,10 @@ const FlightListClient = () => {
         return  x.type.toLowerCase().match(typeString);
          });
     }
+
+    const setProductId = (id: string) => {
+      flightBookingToAdd!.productid = id;
+    }
    
 
     return (
@@ -216,8 +222,15 @@ const FlightListClient = () => {
         </Container >
         <Item.Group divided>
           {flightsFiltered.map((flight) => (
-  
+            
+           
             <Item key={flight.id}>
+               <>
+            <label hidden>
+            {flightBookingToAdd!.productid = flight.id}
+          </label>
+          </>
+            
               {/* <Item.Image src="/assets/placeholder.png" size='medium' /> */}
               <Item.Content>
                 <Item.Header as="a">{flight.name}</Item.Header>
@@ -233,7 +246,9 @@ const FlightListClient = () => {
                  {flight.type ==="Round Trip" &&
                   <div><b>Return Flight:</b> {flight.combinedDestination} at &nbsp; 
                   {flight.returnDepartingTime} <Icon name="long arrow alternate right" color="orange" size="big" /> {flight.combinedDepLocation} at {flight.returnArrivingTime} on {String(flight.returningDate).split("T")[0]}  </div>}
-                  <Button color='orange' floated='right'>
+                  <Button color='orange' 
+                  floated='right'
+                  onClick={() => openModal(<FlightBooking />)}>
             Book
             <Icon name='chevron right' />
           </Button>

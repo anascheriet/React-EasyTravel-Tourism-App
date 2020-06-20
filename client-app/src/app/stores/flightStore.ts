@@ -1,5 +1,5 @@
 import { RootStore } from "./rootStore";
-import { IFlight } from "../models/Flight";
+import { IFlight, IFlightBooking } from "../models/Flight";
 import { observable, computed, action } from "mobx";
 import agent from "../../components/cars/api/agent";
 import { SyntheticEvent } from "react";
@@ -19,6 +19,11 @@ export default class FlightStore {
     @observable editMode = false;
     @observable submitting = false;
     @observable target = '';
+    @observable flightBookingToAdd: IFlightBooking | undefined = {
+        productid: "",
+        adults: "",
+        kids: ""
+    };
 
     @computed get adminFlightsByPrice() {
         return this.adminFlightList.slice().sort(
@@ -78,6 +83,18 @@ export default class FlightStore {
             console.log(error);
         }
     }
+
+    @action createFlightBooking = async (flightBooking: IFlightBooking) => {
+        this.submitting = true;
+        try {
+            this.flightBookingToAdd = flightBooking;
+            await agent.Flights.createBooking(flightBooking);
+            this.rootStore.modalStore.closeModal();
+        } catch (error) {
+            this.submitting = false;
+            console.log(error);
+        }
+    };
 
     @action editFlight = async (flight: IFlight) => {
         this.submitting = true;
