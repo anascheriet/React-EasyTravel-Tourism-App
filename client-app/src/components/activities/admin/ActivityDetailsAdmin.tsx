@@ -8,7 +8,7 @@ const ActivityDetailsAdmin: React.FC = () => {
     const { selectedActivity, openEditForm, cancelSelectedActivity } = rootStore.activityStore;
     return (
         <Card fluid>
-            <Image src={`/assets/carImages/${selectedActivity!.name}.jpg`} fluid />
+            <Image src={`/assets/activityImages/${selectedActivity!.name}.jpg`} fluid />
             <Card.Content>
                 <Card.Header>{selectedActivity!.name}</Card.Header>
                 <Card.Meta>

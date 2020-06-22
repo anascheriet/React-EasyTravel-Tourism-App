@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using server_app.Data;
 
 namespace server_app.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20200622182340_TestFirst")]
+    partial class TestFirst
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -156,37 +158,6 @@ namespace server_app.Migrations
                     b.HasIndex("CreatorId");
 
                     b.ToTable("Activities");
-                });
-
-            modelBuilder.Entity("server_app.models.ActivityBooking", b =>
-                {
-                    b.Property<int>("ActivityBookingId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<DateTime>("ActivityDate")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Adults")
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("BookingDate")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("ClientName")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Kids")
-                        .HasColumnType("TEXT");
-
-                    b.Property<Guid>("ProductId")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("ActivityBookingId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("ActivityBookings");
                 });
 
             modelBuilder.Entity("server_app.models.AppRole", b =>
@@ -579,15 +550,6 @@ namespace server_app.Migrations
                     b.HasOne("server_app.models.AppUser", "Creator")
                         .WithMany()
                         .HasForeignKey("CreatorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("server_app.models.ActivityBooking", b =>
-                {
-                    b.HasOne("server_app.models.Activity", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

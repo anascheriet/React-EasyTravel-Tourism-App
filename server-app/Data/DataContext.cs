@@ -18,6 +18,7 @@ namespace server_app.Data
         public DbSet<FlightBooking> FlightBookings { get; set; }
         public DbSet<CarBooking> CarBookings { get; set; }
         public DbSet<HotelBooking> HotelBookings { get; set; }
+        public DbSet<ActivityBooking> ActivityBookings { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

@@ -1,7 +1,7 @@
 import React, { SyntheticEvent } from 'react'
 import { RootStore } from './rootStore';
 import { observable, computed, action } from 'mobx';
-import { IActivity } from '../models/Activity';
+import { IActivity, IActivityBooking } from '../models/Activity';
 import agent from '../../components/cars/api/agent';
 
 export default class ActivityStore {
@@ -15,12 +15,17 @@ export default class ActivityStore {
     @observable adminActivityList: IActivity[] = [];
     @observable clientActivityList: IActivity[] = [];
     @observable selectedActivity: IActivity | undefined | null;
-
     @observable OfferedActivity: IActivity | undefined = undefined;
     @observable loadingInitial = false;
     @observable editMode = false;
     @observable submitting = false;
     @observable target = '';
+    @observable activityBookingToAdd: IActivityBooking | undefined = {
+        productid: "",
+        activityDate: undefined,
+        adults: "",
+        kids: ""
+    };
 
     @computed get adminActivitiesByPrice() {
         return this.adminActivityList.slice().sort(
@@ -49,7 +54,7 @@ export default class ActivityStore {
         }
     };
 
-    @action loadAllActivities = async (name: string | undefined) => {
+    @action loadAllActivities = async () => {
         this.loadingInitial = true;
         try {
 
@@ -63,6 +68,20 @@ export default class ActivityStore {
             this.loadingInitial = false;
         }
     };
+
+    @action loadOfferedActivity = async (id: string) => {
+        let activity = this.clientActivityList.find(x => x.id === id);
+        if (activity) {
+            this.OfferedActivity = activity;
+        }
+        else
+            try {
+                activity = await agent.Activities.details(id);
+                this.OfferedActivity = activity;
+            } catch (error) {
+                console.log(error);
+            }
+    }
 
     @action emptyAdminActivities = () => {
         this.adminActivityList = [];
@@ -79,6 +98,18 @@ export default class ActivityStore {
             this.adminActivityList.push(activity);
             this.editMode = false;
             this.submitting = false;
+        } catch (error) {
+            this.submitting = false;
+            console.log(error);
+        }
+    };
+
+    @action createActivityBooking = async (activityBooking: IActivityBooking) => {
+        this.submitting = true;
+        try {
+            this.activityBookingToAdd = activityBooking;
+            await agent.Activities.createBooking(activityBooking);
+            this.rootStore.modalStore.closeModal();
         } catch (error) {
             this.submitting = false;
             console.log(error);

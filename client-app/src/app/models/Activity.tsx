@@ -10,3 +10,10 @@ export interface IActivity{
     duration : string;
     CreatorName: string;
 }
+
+export interface IActivityBooking{
+    adults: string;
+    kids: string;
+    productid: string;
+    activityDate: Date | undefined;
+}

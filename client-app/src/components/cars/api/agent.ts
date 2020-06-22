@@ -5,7 +5,7 @@ import { history } from "../../..";
 import { toast } from "react-toastify";
 import { IHotel, IHotelBooking } from "../../../app/models/Hotel";
 import { IFlight, IFlightBooking } from "../../../app/models/Flight";
-import { IActivity } from "../../../app/models/Activity";
+import { IActivity, IActivityBooking } from "../../../app/models/Activity";
 
 axios.defaults.baseURL = 'http://localhost:5000';
 
@@ -83,6 +83,7 @@ const Activities = {
     create: (activity: IActivity) => requests.post('/activity', activity),
     update: (activity: IActivity) => requests.put(`/activity/${activity.id}`, activity),
     delete: (id: string) => requests.del(`/activity/${id}`),
+    createBooking: (activitybooking: IActivityBooking ) => requests.post('activitybooking', activitybooking),
 }
 
 const User = {

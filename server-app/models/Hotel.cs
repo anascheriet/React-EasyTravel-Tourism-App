@@ -17,5 +17,5 @@ namespace server_app.models
         [ForeignKey("Creator")]
         public int CreatorId { get; set; }
         public virtual AppUser Creator { get; set; }
-    }
+    } 
 }

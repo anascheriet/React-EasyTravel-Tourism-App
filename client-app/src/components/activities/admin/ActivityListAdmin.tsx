@@ -101,7 +101,7 @@ const ActivityListAdmin: React.FC = () => {
                     <Item key={activity.id}>
                         <Item.Content>
                             <Item.Header as="a">{activity.name}</Item.Header>
-                            <Item.Meta>{activity.price}$ per day</Item.Meta>
+                            <Item.Meta>{activity.price}$ per adult</Item.Meta>
                             <Item.Meta>
                                 {/* <Flag name={activity.country} /> */}
                                 {activity.city}, {activity.country}

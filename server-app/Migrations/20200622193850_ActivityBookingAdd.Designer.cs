@@ -9,8 +9,8 @@ using server_app.Data;
 namespace server_app.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200622004452_TestT")]
-    partial class TestT
+    [Migration("20200622193850_ActivityBookingAdd")]
+    partial class ActivityBookingAdd
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -158,6 +158,37 @@ namespace server_app.Migrations
                     b.HasIndex("CreatorId");
 
                     b.ToTable("Activities");
+                });
+
+            modelBuilder.Entity("server_app.models.ActivityBooking", b =>
+                {
+                    b.Property<int>("ActivityBookingId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("ActivityDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Adults")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("BookingDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ClientName")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Kids")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("ProductId")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("ActivityBookingId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("ActivityBookings");
                 });
 
             modelBuilder.Entity("server_app.models.AppRole", b =>
@@ -550,6 +581,15 @@ namespace server_app.Migrations
                     b.HasOne("server_app.models.AppUser", "Creator")
                         .WithMany()
                         .HasForeignKey("CreatorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("server_app.models.ActivityBooking", b =>
+                {
+                    b.HasOne("server_app.models.Activity", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

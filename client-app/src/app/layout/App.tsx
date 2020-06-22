@@ -22,6 +22,8 @@ import ClientHotel from "../../components/hotels/ClientHotel";
 import AdminFlight from "../../components/flights/AdminFlight";
 import ClientFlight from "../../components/flights/ClientFlight";
 import AdminActivity from "../../components/activities/AdminActivity";
+import ActivityOffer from "../../components/activities/client/ActivityOffer";
+import ClientActivity from "../../components/activities/ClientActivity";
 
 function App() {
   const rootStore = useContext(RootStoreContext);
@@ -44,6 +46,7 @@ function App() {
     <div className="App">
       <ModalContainer />
       <Route exact path="/" component={WelcomePage} />
+      {user === null && <Route exact path="/" component={WelcomePage} /> }
       <Route path={'/(.+)'}
         render={() => (
           <Fragment>
@@ -60,10 +63,12 @@ function App() {
 
                 {user?.status === "Client" ? (
                   <Route exact path="/flights" component={ClientFlight} />) : (<Route exact path="/flights" component={AdminFlight} />)}
-                <Route path="/activities" component={AdminActivity} />
+               {user?.status === "Client" ? (
+                  <Route exact path="/activities" component={ClientActivity} />) : (<Route exact path="/flights" component={AdminActivity} />)}
 
                 <Route path="/cars/:id" component={CarOffer} />
                 <Route path="/hotels/:id" component={HotelOffer} />
+                <Route path="/activities/:id" component={ActivityOffer} />
                 <Route exact path="/admins" component={Admins} />
                 <Route component={NotFound} />
               </Switch>
