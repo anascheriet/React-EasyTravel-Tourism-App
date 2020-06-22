@@ -8,11 +8,11 @@ namespace server_app.models
         public string Description { get; set; }
         public string Country { get; set; }
         public string City { get; set; }
-        public int Price { get; set; }
+        public string Price { get; set; }
         public string Package{ get; set; }
         public string CreatorName { get; set; }
-        public int Rooms { get; set; }
-        public int People { get; set; }
+        public string Rooms { get; set; }
+        public string People { get; set; }
 
         [ForeignKey("Creator")]
         public int CreatorId { get; set; }

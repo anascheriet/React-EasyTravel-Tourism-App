@@ -18,7 +18,7 @@ namespace server_app.models
         public string ReturnDepartingTime { get; set; }
         public string ReturnArrivingTime { get; set; }
         public string Type { get; set; }
-        public int Price { get; set; }
+        public string Price { get; set; }
         public string CreatorName { get; set; }
 
         [ForeignKey("Creator")]

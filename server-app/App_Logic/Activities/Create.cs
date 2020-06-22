@@ -59,7 +59,7 @@ namespace server_app.App_Logic.Activities
                     id = request.id,
                     Name = request.Name,
                     Description = request.Description,
-                    Price = Int32.Parse(request.Price),
+                    Price = request.Price,
                     Adress = request.Adress,
                     Country = request.Country,
                     City = request.City,

@@ -5,7 +5,7 @@ namespace server_app.models
     public class Car : Service
     {
         public string Description { get; set; }
-        public int Price { get; set; }
+        public string Price { get; set; }
         public string Options { get; set; }
         public string Country  { get; set; }
         public string City { get; set; }

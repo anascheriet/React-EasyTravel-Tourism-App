@@ -39,7 +39,8 @@ namespace server_app.App_logic.Cars
 
                 car.Name = request.Name ?? car.Name;
                 car.Description = request.Description ?? car.Description;
-                car.Price = priceParsed ?? car.Price; //problem here when not updating the price value
+                car.Price = request.Price ?? car.Price;
+                // car.Price = priceParsed ?? car.Price; //problem here when not updating the price value
                 car.Options = request.Options ?? car.Options;
                 car.Country = request.Country ?? car.Country;
                 car.City = request.City ?? car.City;

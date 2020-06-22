@@ -2,7 +2,7 @@ export interface IFlight {
     id: string;
     name: string;
     type: string;
-    price: number | any;
+    price: string;
 
     departingCountry: string;
     departingCity: string;

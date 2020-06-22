@@ -148,8 +148,8 @@ namespace server_app.Migrations
                     b.Property<string>("Package")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("Price")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("Price")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("id");
 
@@ -283,8 +283,8 @@ namespace server_app.Migrations
                     b.Property<string>("Options")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("Price")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("Price")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("id");
 
@@ -368,8 +368,8 @@ namespace server_app.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("Price")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("Price")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("ReturnArrivingTime")
                         .HasColumnType("TEXT");
@@ -448,14 +448,14 @@ namespace server_app.Migrations
                     b.Property<string>("Package")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("People")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("People")
+                        .HasColumnType("TEXT");
 
-                    b.Property<int>("Price")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("Price")
+                        .HasColumnType("TEXT");
 
-                    b.Property<int>("Rooms")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("Rooms")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("id");
 

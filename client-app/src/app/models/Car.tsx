@@ -2,7 +2,7 @@ export interface ICar{
     id : string;
     name: string;
     description: string;
-    price: number | any;
+    price: string;
     options: string;
     country: string;
     city: string;

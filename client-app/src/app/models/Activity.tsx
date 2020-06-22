@@ -3,7 +3,7 @@ export interface IActivity{
     name: string;
     description: string;
     adress: string;
-    price: number | any;
+    price: string;
     package: string;
     country: string;
     city: string;

@@ -28,13 +28,13 @@ export default class HotelStore {
 
     @computed get adminHotelsByPrice() {
         return this.adminHotelList.slice().sort(
-            (a, b) => a.price - b.price
+            (a, b) => Number(a.price) - Number(b.price)
         );
     }
 
     @computed get clientHotelsByPrice() {
         return this.clientHotelList.slice().sort(
-            (a, b) => a.price - b.price
+            (a, b) => Number(a.price) - Number(b.price)
         );
     }
 

@@ -7,7 +7,7 @@ namespace server_app.models
         public string Country { get; set; }
         public string City { get; set; }
         public string Description { get; set; }
-        public int Price {get;set;}
+        public string Price {get;set;}
         public string Adress { get; set; }
         public string Package { get; set; }
         public string Duration { get; set; }

@@ -75,7 +75,7 @@ namespace server_app.App_Logic.Flights
                     ReturnDepartingTime = request.ReturnDepartingTime,
                     ReturnArrivingTime = request.ReturnArrivingTime,
                     Type = request.Type,
-                    Price = Int32.Parse(request.Price),
+                    Price = request.Price,
                     CreatorId = user != null ? user.Id : request.CreatorId,
                     CreatorName = user != null ? user.UserName : request.CreatorName,
                     CombinedDepLocation = request.DepartingCity + ", " + request.DepartingCountry,

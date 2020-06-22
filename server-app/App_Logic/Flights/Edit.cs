@@ -51,7 +51,7 @@ namespace server_app.App_Logic.Flights
                 flight.Name = request.Name ?? flight.Name;
                 flight.Type = request.Type ?? flight.Type;
                 
-                flight.Price = priceParsed ?? flight.Price;
+                flight.Price = request.Price ?? flight.Price;
 
                 flight.DepartingCountry = request.DepartingCountry ?? flight.DepartingCountry;
                 flight.DepartingCity = request.DepartingCity ?? flight.DepartingCity;

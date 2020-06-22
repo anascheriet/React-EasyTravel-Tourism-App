@@ -27,13 +27,13 @@ export default class FlightStore {
 
     @computed get adminFlightsByPrice() {
         return this.adminFlightList.slice().sort(
-            (a, b) => a.price - b.price
+            (a, b) => Number(a.price) - Number(b.price)
         );
     }
 
     @computed get clientFlightsByPrice() {
         return this.clientFlightList.slice().sort(
-            (a, b) => a.price - b.price
+            (a, b) => Number(a.price) - Number(b.price)
         );
     }
 

@@ -9,8 +9,8 @@ using server_app.Data;
 namespace server_app.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200620223345_FlightBooking")]
-    partial class FlightBooking
+    [Migration("20200622004452_TestT")]
+    partial class TestT
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -115,6 +115,49 @@ namespace server_app.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("server_app.models.Activity", b =>
+                {
+                    b.Property<Guid>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Adress")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("City")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Country")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("CreatorId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("CreatorName")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Duration")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Package")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Price")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("CreatorId");
+
+                    b.ToTable("Activities");
                 });
 
             modelBuilder.Entity("server_app.models.AppRole", b =>
@@ -242,8 +285,8 @@ namespace server_app.Migrations
                     b.Property<string>("Options")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("Price")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("Price")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("id");
 
@@ -327,8 +370,8 @@ namespace server_app.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("Price")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("Price")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("ReturnArrivingTime")
                         .HasColumnType("TEXT");
@@ -407,14 +450,14 @@ namespace server_app.Migrations
                     b.Property<string>("Package")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("People")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("People")
+                        .HasColumnType("TEXT");
 
-                    b.Property<int>("Price")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("Price")
+                        .HasColumnType("TEXT");
 
-                    b.Property<int>("Rooms")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("Rooms")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("id");
 
@@ -498,6 +541,15 @@ namespace server_app.Migrations
                     b.HasOne("server_app.models.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("server_app.models.Activity", b =>
+                {
+                    b.HasOne("server_app.models.AppUser", "Creator")
+                        .WithMany()
+                        .HasForeignKey("CreatorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

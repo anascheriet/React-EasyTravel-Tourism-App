@@ -30,13 +30,13 @@ export default class CarStore {
 
   @computed get adminCarsByPrice() {
     return this.adminCarList.slice().sort(
-      (a, b) => a.price - b.price
+      (a, b) => Number(a.price) - Number(b.price)
     );
   }
 
   @computed get ClientCarsByPrice() {
     return this.clientCarList.slice().sort(
-      (a, b) => a.price - b.price
+      (a, b) => Number(a.price) - Number(b.price)
     );
   }
 

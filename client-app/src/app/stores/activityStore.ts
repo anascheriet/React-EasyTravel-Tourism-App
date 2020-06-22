@@ -24,13 +24,13 @@ export default class ActivityStore {
 
     @computed get adminActivitiesByPrice() {
         return this.adminActivityList.slice().sort(
-            (a, b) => a.price - b.price
+            (a, b) => Number(a.price) - Number(b.price)
         );
     }
 
     @computed get ClientActivitiesByPrice() {
         return this.clientActivityList.slice().sort(
-            (a, b) => a.price - b.price
+            (a, b) => Number(a.price) - Number(b.price)
         );
     }
 

@@ -3,9 +3,9 @@ export interface IHotel {
     name: string;
     description: string;
     adress: string;
-    price: number | any;
-    rooms: number | any;
-    people: number | any;
+    price: string;
+    rooms: string;
+    people: string;
     country: string;
     city: string;
     CreatorName: string | undefined;
