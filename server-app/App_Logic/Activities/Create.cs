@@ -32,7 +32,6 @@ namespace server_app.App_Logic.Activities
                 RuleFor(x => x.Description).NotEmpty();
                 RuleFor(x => x.Price).NotEmpty();
                 RuleFor(x => x.Name).NotEmpty();
-                RuleFor(x => x.Adress).NotEmpty();
                 RuleFor(x => x.Country).NotEmpty();
                 RuleFor(x => x.City).NotEmpty();
                 RuleFor(x => x.Package).NotEmpty();

@@ -13,16 +13,16 @@ export const Navbar = () => {
           Easy Travel
         </Menu.Item>
 
-        
+
         <Menu.Item as={NavLink} exact to='/hotels' name="Hotels" />
-        <Menu.Item as={NavLink} exact to='/flights' name="Flight Tickets"/>
+        <Menu.Item as={NavLink} exact to='/flights' name="Flight Tickets" />
         <Menu.Item as={NavLink} exact to='/cars' name="Cars" />
         {user !== null && user!.status === "SudoAdmin" &&
           <Menu.Item as={NavLink} exact to='/admins' name="Admins" />}
-        
+
         <Menu.Item name="Restaurants" />
-       
-        <Menu.Item name="Good Plans" />
+
+        <Menu.Item as={NavLink} exact to='/activities' name="Activities" />
 
         {user! &&
           <Menu.Item position='right'>

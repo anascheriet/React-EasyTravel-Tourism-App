@@ -21,6 +21,7 @@ import HotelOffer from "../../components/hotels/dashboard/client/HotelOffer";
 import ClientHotel from "../../components/hotels/ClientHotel";
 import AdminFlight from "../../components/flights/AdminFlight";
 import ClientFlight from "../../components/flights/ClientFlight";
+import AdminActivity from "../../components/activities/AdminActivity";
 
 function App() {
   const rootStore = useContext(RootStoreContext);
@@ -37,7 +38,7 @@ function App() {
 
 
 
-  if (!appLoaded) return <LoadingComponent content='Loading app...' />
+  if (!appLoaded) return <LoadingComponent content='Loading App...' />
 
   return (
     <div className="App">
@@ -56,9 +57,10 @@ function App() {
                   <Route exact path="/cars" component={ClientCar} />) : (<Route exact path="/cars" component={AdminCar} />)}
                 {user?.status === "Client" ? (
                   <Route exact path="/hotels" component={ClientHotel} />) : (<Route exact path="/hotels" component={AdminHotel} />)}
-                
+
                 {user?.status === "Client" ? (
                   <Route exact path="/flights" component={ClientFlight} />) : (<Route exact path="/flights" component={AdminFlight} />)}
+                <Route path="/activities" component={AdminActivity} />
 
                 <Route path="/cars/:id" component={CarOffer} />
                 <Route path="/hotels/:id" component={HotelOffer} />

@@ -39,11 +39,12 @@ namespace server_app.App_Logic.Activities
                 if (activity == null)
                     throw new RestException(HttpStatusCode.NotFound, new { activity = "Activity Not Found" });
 
-                int? priceParsed = Int32.Parse(request.Price);
+                // int? priceParsed = Int32.Parse(request.Price);
+                if(request.Price != "") {activity.Price = Int32.Parse(request.Price); }
 
                 activity.Name = request.Name ?? activity.Name;
                 activity.Description = request.Description ?? activity.Description;
-                activity.Price = priceParsed ?? activity.Price; //problem here when not updating the price value
+                //activity.Price = priceParsed ?? activity.Price; //problem here when not updating the price value
                 activity.Package = request.Package ?? activity.Package;
                 activity.Duration = request.Duration ?? activity.Duration;
                 activity.Country = request.Country ?? activity.Country;
