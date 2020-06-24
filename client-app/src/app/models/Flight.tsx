@@ -25,6 +25,7 @@ export interface IFlight {
 }
 
 export interface IFlightBooking{
+    flightBookingId?: number;
     adults: string;
     kids: string;
     productId: string;

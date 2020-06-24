@@ -100,6 +100,21 @@ export default class HotelStore {
             }
     }
 
+    @action deleteHotelBooking = async (event: SyntheticEvent<HTMLButtonElement>, id: number) => {
+        this.submitting = true;
+        this.target = event.currentTarget.name;
+        try {
+          await agent.Hotels.deleteBooking(id);
+          this.bookedHotelList.splice(this.bookedHotelList.findIndex(a => a.hotelBookingId === id), 1);
+          this.submitting = false;
+          this.target = '';
+        } catch (error) {
+          this.submitting = false;
+          this.target = '';
+          console.log(error);
+        }
+      }
+
     @action emptyAdminHotels = () => {
         this.adminHotelList = [];
     }

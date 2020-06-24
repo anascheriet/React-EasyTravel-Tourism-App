@@ -176,6 +176,21 @@ export default class ActivityStore {
         }
     }
 
+    @action deleteActivityBooking = async (event: SyntheticEvent<HTMLButtonElement>, id: number) => {
+        this.submitting = true;
+        this.target = event.currentTarget.name;
+        try {
+          await agent.Cars.deleteBooking(id);
+          this.bookedActivitiesList.splice(this.bookedActivitiesList.findIndex(a => a.activityBookingId === id), 1);
+          this.submitting = false;
+          this.target = '';
+        } catch (error) {
+          this.submitting = false;
+          this.target = '';
+          console.log(error);
+        }
+      }
+
     @action openCreateForm = () => {
         this.editMode = true;
         this.selectedActivity = undefined;

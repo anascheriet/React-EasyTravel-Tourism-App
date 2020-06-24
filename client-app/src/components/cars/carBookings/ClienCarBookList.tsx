@@ -3,10 +3,15 @@ import { RootStoreContext } from '../../../app/stores/rootStore';
 import { observer } from 'mobx-react-lite';
 import { Label, Segment, Header, Icon, Button, Grid, Item, Container, Input } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
+import { SuccessfullCancellingModal } from '../../../app/layout/SuccessfullCancellingModal';
+import { CancelBookingErrorModal } from '../../../app/layout/CancelBookingErrorModal';
 
 const ClientCarBookList = () => {
     const rootStore = useContext(RootStoreContext);
-    const { carBookingsByDate, clientCarList } = rootStore.carStore;
+    const { carBookingsByDate,deleteCarBooking , clientCarList, target, submitting } = rootStore.carStore;
+    const { openModal } = rootStore.modalStore;
+    const {dateDiffInDays} = rootStore.commonStore;
+
 
     const [bookingDateString, setbookingDateString] = useState("");
 
@@ -25,6 +30,15 @@ const ClientCarBookList = () => {
             return x.bookingDate?.match(bookingDateString);
         });
       }
+
+      const verifyDelete = (id: number, diff: number) => {
+          if(diff > 7){
+              deleteCarBooking(id).then(() => openModal(<SuccessfullCancellingModal />));
+          }
+          else openModal(<CancelBookingErrorModal />)
+      }
+
+      
     
     return (
         <div>
@@ -34,12 +48,19 @@ const ClientCarBookList = () => {
                             <Fragment>
                                 {carsFiltered.map((carB) => {
                                     { var CARBk = clientCarList.find(a => a.id === carB.productId) }
-                                    {var dateFrom = new Date(carB.endingDate!)}
+                                    {var todayDate = new Date().toISOString().slice(0,10);}
+                                    {var datenow = new Date(todayDate)}
+                                    {var dateFrom = new Date(carB.startingFromDate!)}
+                                    {var diff = dateDiffInDays(datenow,dateFrom)}
                                     {var dateEnd = new Date(carB.startingFromDate!)}
                                     {var days = (dateFrom.getDate() - dateEnd.getDate())}
-                                    {console.log(CARBk)}
+                                  
+                                
                                     return <div>
-                                        <Label color='teal' size='large' key={carB.bookingDate}>
+                                        {/* <Label color='teal' size='large'>{diff}</Label> */}
+                                        {/* <Label color='teal' size='large'>{d}</Label> */}
+                                        <Label color='teal' size='large'>{diff}</Label>
+                                        <Label color='teal' style={{marginTop: "1em"}} size='large' key={carB.bookingDate}>
                                         Booked On: {carB.bookingDate?.split("T")[0]} At {carB.bookingDate?.split("T")[1].split('.')[0]}
                                         </Label>
                                         <Segment clearing>
@@ -58,12 +79,18 @@ const ClientCarBookList = () => {
                                                         </Item.Meta>
                                                
                   <b>Total To Pay: {(Number(CARBk?.price) * days)}$</b>
-                                <Button color='red' floated='right'>
-                                     <Icon name='cancel' />
-                                        Cancel Booking
-                                </Button>         
+                                <Button
+                                 color='red'
+                                  floated='right'
+                                  loading={target === String(carB.carBookingId) && submitting}
+                                  onClick={(e) => verifyDelete(carB.carBookingId!, diff)}
+                                  >
+                                      
+                                 <Icon name='cancel' />
+                                 Cancel Booking
+                                </Button>       
                                 <Button color='blue' as={Link} to={`/cars/${carB.productId}`}
-                                                            floated='right'>
+                                floated='right'>
                                         <Icon name='eye' />
                                                 View Item
                                          </Button>

@@ -12,6 +12,7 @@ export interface IActivity{
 }
 
 export interface IActivityBooking{
+    activityBookingId?: number;
     adults: string;
     kids: string;
     productId: string;

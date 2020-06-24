@@ -177,6 +177,20 @@ export default class CarStore {
     }
   }
 
+  @action deleteCarBooking = async (id: number) => {
+    this.submitting = true;
+    try {
+      await agent.Cars.deleteBooking(id);
+      this.bookedCarList.splice(this.bookedCarList.findIndex(a => a.carBookingId === id), 1);
+      this.submitting = false;
+      this.target = '';
+    } catch (error) {
+      this.submitting = false;
+      this.target = '';
+      console.log(error);
+    }
+  }
+
   @action openCreateForm = () => {
     this.editMode = true;
     this.selectedCar = undefined;

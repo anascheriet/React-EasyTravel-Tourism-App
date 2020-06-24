@@ -55,6 +55,7 @@ const Cars = {
     delete: (id: string) => requests.del(`/cars/${id}`),
     createBooking: (carbooking: ICarBooking) => requests.post('carbooking', carbooking),
     listBookedCars: (name: string | undefined): Promise<ICarBooking[]> => requests.get(`carbooking/${name}`),
+    deleteBooking: (id: number) => requests.del(`/carbooking/${id}`),
 }
 
 const Hotels = {
@@ -66,6 +67,7 @@ const Hotels = {
     delete: (id: string) => requests.del(`/hotel/${id}`),
     createBooking: (hotelbooking: IHotelBooking) => requests.post('hotelbooking', hotelbooking),
     listBookedHotels: (name: string | undefined): Promise<IHotelBooking[]> => requests.get(`hotelbooking/${name}`),
+    deleteBooking: (id: number) => requests.del(`/hotelbooking/${id}`),
 }
 
 const Flights = {
@@ -77,6 +79,7 @@ const Flights = {
     delete: (id: string) => requests.del(`/flight/${id}`),
     createBooking: (flightbooking: IFlightBooking) => requests.post('flightbooking', flightbooking),
     listBookedFlights: (name: string | undefined): Promise<IFlightBooking[]> => requests.get(`flightbooking/${name}`),
+    deleteBooking: (id: number) => requests.del(`/flightbooking/${id}`),
 }
 
 const Activities = {
@@ -88,6 +91,7 @@ const Activities = {
     delete: (id: string) => requests.del(`/activity/${id}`),
     createBooking: (activitybooking: IActivityBooking) => requests.post('activitybooking', activitybooking),
     listBookedActivities: (name: string | undefined): Promise<IActivityBooking[]> => requests.get(`activitybooking/${name}`),
+    deleteBooking: (id: number) => requests.del(`/activitybooking/${id}`),
 }
 
 const User = {

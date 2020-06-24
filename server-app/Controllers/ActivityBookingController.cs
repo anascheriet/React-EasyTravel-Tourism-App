@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using MediatR;
@@ -30,6 +31,12 @@ namespace server_app.Controllers
         public async Task<ActionResult<List<ActivityBooking>>> List(string name)
         {
             return await _mediator.Send(new List.Query { name = name });
+        }
+
+         [HttpDelete("{id}")]
+        public async Task<ActionResult<Unit>> Delete(int id)
+        {
+            return await _mediator.Send(new Delete.Command { id = id });
         }
 
     }

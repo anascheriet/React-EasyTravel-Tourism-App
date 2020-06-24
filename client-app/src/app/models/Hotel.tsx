@@ -13,6 +13,7 @@ export interface IHotel {
 }
 
 export interface IHotelBooking{
+    hotelBookingId?: number;
     startingFromDate: Date | undefined;
     endingDate: Date | undefined;
     productId: string;
