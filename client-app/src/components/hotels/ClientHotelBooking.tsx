@@ -1,12 +1,14 @@
-import React, { useContext, Fragment, useState, useEffect } from 'react'
-import { RootStoreContext } from '../../../app/stores/rootStore';
+import React, { useContext, useEffect, useState, Fragment } from 'react'
+import { RootStoreContext } from '../../app/stores/rootStore';
+import { LoadingComponent } from '../../app/layout/LoadingComponent';
 import { observer } from 'mobx-react-lite';
-import { Label, Segment, Header, Icon, Button, Grid, Item, Container, Input } from 'semantic-ui-react';
+import { Label, Grid, Segment, Item, Button, Icon, Header, Container, Input } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
-const ClientCarBookList = () => {
+const ClientHotelBooking = () => {
     const rootStore = useContext(RootStoreContext);
-    const { carBookingsByDate, clientCarList } = rootStore.carStore;
+    const { loadClientHotelBookings,loadAllHotels, emptyAllHotels,loadingInitial,hotelBookingsByDate,clientHotelsByPrice, emptyHotelBookings } = rootStore.hotelStore;
+    const { user } = rootStore.userStore;
 
     const [bookingDateString, setbookingDateString] = useState("");
 
@@ -14,55 +16,66 @@ const ClientCarBookList = () => {
         setbookingDateString(event.target.value);
       }
 
-      useEffect(() => {
+    useEffect(() => {
         setbookingDateString(bookingDateString);
-      },[bookingDateString])
+        loadAllHotels();
+        emptyAllHotels();
+        loadClientHotelBookings(user?.username);
+        emptyHotelBookings();
+        //emptyHotelBookings();
+    }, [loadAllHotels,loadClientHotelBookings,emptyHotelBookings,bookingDateString]);
 
-      var carsFiltered = carBookingsByDate;
+    var hotelsFiltered = hotelBookingsByDate;
 
       if(bookingDateString.length > 0){
-        carsFiltered = carsFiltered.filter((x) => {
+        hotelsFiltered = hotelsFiltered.filter((x) => {
             return x.bookingDate?.match(bookingDateString);
         });
       }
-    
+
+
+    if (loadingInitial) return <LoadingComponent content="Loading Your Hotel Bookings..." />;
+
+console.log(hotelBookingsByDate.length);
+
     return (
         <div>
-             <Grid>
-                        <Grid.Column width={10}>
-                         {carsFiltered.length !== 0 ? ( 
+        <Grid>
+            <Grid.Column width={10}>
+                         {hotelBookingsByDate.length !== 0 ? ( 
                             <Fragment>
-                                {carsFiltered.map((carB) => {
-                                    { var CARBk = clientCarList.find(a => a.id === carB.productId) }
-                                    {var dateFrom = new Date(carB.endingDate!)}
-                                    {var dateEnd = new Date(carB.startingFromDate!)}
+                                {hotelBookingsByDate.map((hotelB) => {
+                                    { var HTLBk = clientHotelsByPrice.find(a => a.id === hotelB.productId) }
+                                    {var dateFrom = new Date(hotelB.endingDate!)}
+                                    {var dateEnd = new Date(hotelB.startingFromDate!)}
                                     {var days = (dateFrom.getDate() - dateEnd.getDate())}
-                                    {console.log(CARBk)}
+                                    {console.log(HTLBk)}
                                     return <div>
-                                        <Label color='teal' size='large' key={carB.bookingDate}>
-                                        Booked On: {carB.bookingDate?.split("T")[0]} At {carB.bookingDate?.split("T")[1].split('.')[0]}
+                                        <Label color='teal' size='large' key={hotelB.bookingDate} style={{marginTop:"1em"}}>
+                                        Booked On: {hotelB.bookingDate?.split("T")[0]} At {hotelB.bookingDate?.split("T")[1].split('.')[0]}
                                         </Label>
                                         <Segment clearing>
                                             <Item.Group>
-                                                <Item key={carB.productId}>
-                                                <Item.Image src={`/assets/carImages/${CARBk?.name}.jpg`} fluid />
+                                                <Item key={hotelB.productId}>
+                                                <Item.Image src={"/assets/placeholder.png"} fluid />
                                                     <Item.Content>
                                                         <Item.Header as="a">
-                                                            {CARBk?.name}
+                                                            {HTLBk?.name}
                                                         </Item.Header>
                                                         <Item.Description>
-                                                           <b> Booked from {String(carB.startingFromDate).split('T')[0]} To {String(carB.endingDate).split('T')[0]} ({days} days) </b>
+                                                           <b> Booked from {String(hotelB.startingFromDate).split('T')[0]} To {String(hotelB.endingDate).split('T')[0]} ({days} days) </b>
                                                         </Item.Description>
                                                         <Item.Meta>
-                                                            {CARBk?.price}$ <br/>
+                                                            {HTLBk?.city}, {HTLBk?.country} <br/>
+                                                            {HTLBk?.price}$ <br/>
                                                         </Item.Meta>
                                                
-                  <b>Total To Pay: {(Number(CARBk?.price) * days)}$</b>
+                  <b>Total To Pay: {(Number(HTLBk?.price) * days)}$</b>
                                 <Button color='red' floated='right'>
                                      <Icon name='cancel' />
                                         Cancel Booking
                                 </Button>         
-                                <Button color='blue' as={Link} to={`/cars/${carB.productId}`}
+                                <Button color='blue' as={Link} to={`/hotels/${hotelB.productId}`}
                                                             floated='right'>
                                         <Icon name='eye' />
                                                 View Item
@@ -79,12 +92,12 @@ const ClientCarBookList = () => {
                                 <>
                         <Segment placeholder>
                             <Header icon>
-                                <Icon name='car' />
-                                 Oops - No Car Bookings Available.
+                                <Icon name='hotel' />
+                                 Oops - No Hotel Bookings Available.
                             </Header>
                             <Segment.Inline>
-                                <Button as={Link} to='/cars' primary>
-                                    Go To Cars page
+                                <Button as={Link} to='/hotels' primary>
+                                    Go To Hotels page
      </Button>
                             </Segment.Inline>
                         </Segment>
@@ -119,8 +132,8 @@ const ClientCarBookList = () => {
             </Segment>
                         </Grid.Column>
                     </Grid>
-    </div>
+        </div>
     )
 }
 
-export default observer(ClientCarBookList);
+export default observer(ClientHotelBooking);

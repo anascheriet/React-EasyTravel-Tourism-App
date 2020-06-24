@@ -72,6 +72,7 @@ const HotelListClient = () => {
         });
       }
     
+      console.log(clientHotelsByPrice.length)
     
 
     return (

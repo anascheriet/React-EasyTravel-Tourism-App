@@ -27,6 +27,7 @@ import ClientActivity from "../../components/activities/ClientActivity";
 import ClientCarBooking from "../../components/cars/ClientCarBooking";
 import ClientFlightBooking from "../../components/flights/ClientFlightBooking";
 import ClientActivityBookings from "../../components/activities/ClientActivityBookings";
+import ClientHotelBooking from "../../components/hotels/ClientHotelBooking";
 
 function App() {
   const rootStore = useContext(RootStoreContext);
@@ -74,6 +75,8 @@ function App() {
                     <Route exact path="/ActivityBookings" component={ClientActivityBookings} />) : (<Route exact path="/ActivityBookings" component={NotFound} />)}
                     {user?.status === "Client" ? (
                     <Route exact path="/FlightBookings" component={ClientFlightBooking} /> ) : (<Route exact path="/FlightBookings" component={NotFound} />)}
+                     {user?.status === "Client" ? (
+                    <Route exact path="/HotelBookings" component={ClientHotelBooking} /> ) : (<Route exact path="/HotelBookings" component={NotFound} />)}
 
                 <Route path="/cars/:id" component={CarOffer} />
                 <Route path="/hotels/:id" component={HotelOffer} />

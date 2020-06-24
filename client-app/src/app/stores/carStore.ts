@@ -40,7 +40,7 @@ export default class CarStore {
       (a, b) => Number(a.price) - Number(b.price)
     );
   }
-
+  
   @computed get carBookingsByDate(){
     return this.bookedCarList.slice().sort(
       (a,b) => Date.parse(a.bookingDate!) - Date.parse(b.bookingDate!)
@@ -78,7 +78,6 @@ export default class CarStore {
       this.loadingInitial = false;
     }
   };
-
 
   @action loadAllCars = async () => {
     //let testArray: ICar [] = [];

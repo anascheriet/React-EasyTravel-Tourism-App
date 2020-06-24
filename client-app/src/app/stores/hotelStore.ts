@@ -23,7 +23,7 @@ export default class HotelStore {
     @observable target = '';
     @observable hotelBookingToAdd: IHotelBooking | undefined = {
         productId: "",
-        startingfrom: undefined,
+        startingFromDate: undefined,
         endingDate: undefined
     };
 
@@ -36,6 +36,12 @@ export default class HotelStore {
     @computed get clientHotelsByPrice() {
         return this.clientHotelList.slice().sort(
             (a, b) => Number(a.price) - Number(b.price)
+        );
+    }
+
+    @computed get hotelBookingsByDate() {
+        return this.bookedHotelList.slice().sort(
+            (a, b) => Date.parse(a.bookingDate!) - Date.parse(b.bookingDate!)
         );
     }
 
@@ -53,20 +59,19 @@ export default class HotelStore {
     };
 
     @action loadClientHotelBookings = async (name: string | undefined) => {
-        //let testArray: ICar [] = [];
         this.loadingInitial = true;
         try {
-    
-          const HotelBs = await agent.Hotels.listBookedHotels(name);
-          HotelBs.forEach((HotelB) => {
-            this.bookedHotelList.push(HotelB);
-          });
-          this.loadingInitial = false;
+
+            const hotelBs = await agent.Hotels.listBookedHotels(name);
+            hotelBs.forEach((hotelB) => {
+                this.bookedHotelList.push(hotelB);
+            });
+            this.loadingInitial = false;
         } catch (error) {
-          console.log(error);
-          this.loadingInitial = false;
+            console.log(error);
+            this.loadingInitial = false;
         }
-      };
+    };
 
     @action loadAllHotels = async () => {
         this.loadingInitial = true;
@@ -102,6 +107,11 @@ export default class HotelStore {
     @action emptyAllHotels = () => {
         this.clientHotelList = [];
     }
+
+    @action emptyHotelBookings = () => {
+        this.bookedHotelList = [];
+    }
+
 
     @action createHotel = async (hotel: IHotel) => {
         this.submitting = true;

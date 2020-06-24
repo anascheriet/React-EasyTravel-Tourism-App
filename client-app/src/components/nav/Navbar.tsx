@@ -30,7 +30,7 @@ export const Navbar = () => {
                   <Dropdown text='My Bookings' pointing>
                     <Dropdown.Menu>
                       <Dropdown.Item icon='plane' as={Link} to={'FlightBookings'} text='My Flight Bookings' />
-                      <Dropdown.Item as={Link} to={'/Bookings/Hotels'} text='My Hotel Bookings' icon='hotel' />
+                      <Dropdown.Item as={Link} to={'HotelBookings'} text='My Hotel Bookings' icon='hotel' />
                       <Dropdown.Item icon='ticket' text='My Activity Bookings' as={Link} to={'ActivityBookings'}/>
                       <Dropdown.Item text='My Car Bookings' icon='car' as={Link} to={'CarBookings'}/> 
                     </Dropdown.Menu>

@@ -30,7 +30,6 @@ const FlightDetailsAdmin = () => {
                     <Button onClick={cancelSelectedFlight} basic color='grey' content='Cancel' />
                 </ButtonGroup>
             </Card.Content>
-
         </Card>
     )
 }
