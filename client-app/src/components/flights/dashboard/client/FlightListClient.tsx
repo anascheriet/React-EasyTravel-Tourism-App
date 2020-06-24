@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { observer } from 'mobx-react-lite'
 import { RootStoreContext } from '../../../../app/stores/rootStore';
-import { Grid, Segment, Container, Header, Label, Button, Item, Icon, Input } from 'semantic-ui-react';
+import { Grid, Segment, Container, Header, Button, Item, Icon, Input } from 'semantic-ui-react';
 import FlightBooking from '../../form/FlightBooking';
 
 const FlightListClient = () => {
@@ -193,11 +193,6 @@ const FlightListClient = () => {
         return  x.type.toLowerCase().match(typeString);
          });
     }
-
-    const setproductId = (id: string) => {
-      flightBookingToAdd!.productId = id;
-    }
-   
 
     return (
         <Grid>

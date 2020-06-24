@@ -35,7 +35,7 @@ const ClientFlighBookList = () => {
                                 {flightBookingsByDate.map((flightB) => {
                                     { var FlBk = clientFlightList.find(a => a.id === flightB.productId) }
                                     return <div>
-                                        <Label color='teal' size='large' key={flightB.bookingDate}>
+                                        <Label color='teal' size='large' key={flightB.bookingDate}   style={{marginTop: "1em"}}>
                                         Booked On: {flightB.bookingDate?.split("T")[0]} At {flightB.bookingDate?.split("T")[1].split('.')[0]}
                                         </Label>
                                         <Segment clearing>

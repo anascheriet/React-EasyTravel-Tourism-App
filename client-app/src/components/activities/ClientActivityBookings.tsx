@@ -14,7 +14,7 @@ const ClientActivityBookings = () => {
         loadAllActivities();
         loadClientActivityBookings(user?.username);
         emptyClientBookings();
-    }, [loadClientActivityBookings, emptyClientBookings, loadAllActivities]);
+    }, [loadClientActivityBookings, emptyClientBookings, loadAllActivities, user]);
 
     if (loadingInitial) return <LoadingComponent content="Loading Your Activity Bookings..." />;
     return (

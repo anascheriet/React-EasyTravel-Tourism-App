@@ -36,7 +36,7 @@ const CarBooking = () => {
         <Form onSubmit={handleFormSubmit}>
             <Header as='h2' content="Choose Your Booking Duration " color='teal'
                 textAlign='center' />
-            <Form.Input label='Starting From: ' onChange={handleInputChange} name="StartingFromDate" type="date" value={carb!.startingfrom} />
+            <Form.Input label='Starting From: ' onChange={handleInputChange} name="StartingFromDate" type="date" value={carb!.startingFromDate} />
             <Form.Input label='Until: ' onChange={handleInputChange} name="EndingDate" value={carb!.endingDate} type="date"
             />
             <Form.Input label='Product ID' onChange={handleInputChange} name="productId" value={carb!.productId || ""} type="text"

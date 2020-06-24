@@ -1,8 +1,8 @@
 import React, { useContext, useEffect } from 'react'
 import { RootStoreContext } from '../../app/stores/rootStore';
 import { LoadingComponent } from '../../app/layout/LoadingComponent';
-import ActvityDashboardAdmin from './admin/ActvityDashboardAdmin';
 import { observer } from 'mobx-react-lite';
+import ActivityDashboardAdmin from './admin/ActivityDashboardAdmin';
 
 const AdminActivity = () => {
     const rootStore = useContext(RootStoreContext);
@@ -19,7 +19,7 @@ const AdminActivity = () => {
 
     return (
         <div>
-            <ActvityDashboardAdmin />
+            <ActivityDashboardAdmin />
         </div>
     )
 }

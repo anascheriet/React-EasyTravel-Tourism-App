@@ -10,7 +10,7 @@ export interface ICar{
 }
 
 export interface ICarBooking{
-    startingfrom: Date | undefined;
+    startingFromDate: Date | undefined;
     endingDate: Date | undefined;
     productId: string;
     bookingDate?: string;

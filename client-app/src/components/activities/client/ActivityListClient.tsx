@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { RootStoreContext } from '../../../app/stores/rootStore';
 import { observer } from 'mobx-react-lite';
-import { Grid, Segment, Container, Header, Icon, Item, Label, Button, Input } from 'semantic-ui-react';
+import { Grid, Segment, Container, Header, Icon, Item, Button, Input } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
 export const ActivityListClient = () => {

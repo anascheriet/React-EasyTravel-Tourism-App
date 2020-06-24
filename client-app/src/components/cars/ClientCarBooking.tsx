@@ -6,12 +6,14 @@ import { observer } from 'mobx-react-lite';
 
 const ClientCarBooking = () => {
     const rootStore = useContext(RootStoreContext);
-    const { loadClientCarBookings, loadingInitial } = rootStore.carStore;
+    const { loadClientCarBookings, loadingInitial, loadAllCars, emptyCarBookings } = rootStore.carStore;
     const { user } = rootStore.userStore;
 
     useEffect(() => {
+        loadAllCars();
         loadClientCarBookings(user?.username);
-    }, [loadClientCarBookings]);
+        emptyCarBookings();
+    }, [loadClientCarBookings, loadAllCars, emptyCarBookings, user]);
 
     if (loadingInitial) return <LoadingComponent content="Loading Your Car Bookings..." />;
 

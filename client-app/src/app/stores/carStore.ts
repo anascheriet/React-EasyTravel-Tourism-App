@@ -20,7 +20,7 @@ export default class CarStore {
   @observable selectedCar: ICar | undefined | null;
   @observable carBookingToAdd: ICarBooking | undefined = {
     productId: "",
-    startingfrom: undefined,
+    startingFromDate: undefined,
     endingDate: undefined
   };
   @observable OfferedCar: ICar | undefined = undefined;
@@ -116,6 +116,10 @@ export default class CarStore {
 
   @action emptyAllCars = () => {
     this.clientCarList = [];
+  }
+
+  @action emptyCarBookings = () => {
+    this.bookedCarList = [];
   }
 
   @action createCar = async (car: ICar) => {

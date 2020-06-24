@@ -3,7 +3,7 @@ import { IActivity } from '../../../app/models/Activity'
 import { RootStoreContext } from '../../../app/stores/rootStore';
 import { v4 as uuid } from "uuid";
 import countries from '../../../app/common/Countries_Cities_DropDown/CountryCityData';
-import { Segment, Form, Input, Button } from 'semantic-ui-react';
+import { Segment, Form, Button } from 'semantic-ui-react';
 
 interface IProps {
     activity: IActivity;

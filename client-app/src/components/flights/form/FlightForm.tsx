@@ -3,7 +3,7 @@ import { v4 as uuid } from "uuid";
 import React, { useContext, useState } from 'react'
 import { RootStoreContext } from "../../../app/stores/rootStore";
 import countries from "../../../app/common/Countries_Cities_DropDown/CountryCityData";
-import { Segment, Form, Button, Header, Icon, Label } from "semantic-ui-react";
+import { Segment, Form, Button, Header, Icon } from "semantic-ui-react";
 
 
 interface IProps {

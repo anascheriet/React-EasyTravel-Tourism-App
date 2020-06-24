@@ -25,7 +25,6 @@ import AdminActivity from "../../components/activities/AdminActivity";
 import ActivityOffer from "../../components/activities/client/ActivityOffer";
 import ClientActivity from "../../components/activities/ClientActivity";
 import ClientCarBooking from "../../components/cars/ClientCarBooking";
-import ClientFlightBookings from "../../components/flights/ClientFlightBooking";
 import ClientFlightBooking from "../../components/flights/ClientFlightBooking";
 import ClientActivityBookings from "../../components/activities/ClientActivityBookings";
 

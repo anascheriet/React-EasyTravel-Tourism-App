@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { observer } from 'mobx-react-lite'
 import { RootStoreContext } from '../../../../app/stores/rootStore';
-import { Card, Image, Label, ButtonGroup, Button } from 'semantic-ui-react';
+import { Card, Image, ButtonGroup, Button } from 'semantic-ui-react';
 
 const FlightDetailsAdmin = () => {
     const rootStore = useContext(RootStoreContext);

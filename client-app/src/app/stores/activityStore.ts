@@ -1,4 +1,4 @@
-import React, { SyntheticEvent } from 'react'
+import { SyntheticEvent } from 'react'
 import { RootStore } from './rootStore';
 import { observable, computed, action } from 'mobx';
 import { IActivity, IActivityBooking } from '../models/Activity';

@@ -14,7 +14,7 @@ const ClientFlightBooking
             loadAllFlights();
             loadClientFlightBookings(user?.username);
             emptyBookedFlight();
-        }, [loadClientFlightBookings,emptyBookedFlight, loadAllFlights]);
+        }, [loadClientFlightBookings,emptyBookedFlight, loadAllFlights, user]);
 
         if (loadingInitial) return <LoadingComponent content="Loading Your Flight Bookings..." />;
         return (

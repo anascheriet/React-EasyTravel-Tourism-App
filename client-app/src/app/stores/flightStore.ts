@@ -2,7 +2,7 @@ import { RootStore } from "./rootStore";
 import { IFlight, IFlightBooking } from "../models/Flight";
 import { observable, computed, action } from "mobx";
 import agent from "../../components/cars/api/agent";
-import { SyntheticEvent, IframeHTMLAttributes } from "react";
+import { SyntheticEvent } from "react";
 
 export default class FlightStore {
     rootStore: RootStore;
