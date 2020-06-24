@@ -37,8 +37,6 @@ const ClientCarBookList = () => {
           }
           else openModal(<CancelBookingErrorModal />)
       }
-
-      
     
     return (
         <div>

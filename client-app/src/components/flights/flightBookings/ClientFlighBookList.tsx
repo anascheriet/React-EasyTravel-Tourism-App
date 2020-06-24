@@ -3,10 +3,15 @@ import { observer } from 'mobx-react-lite';
 import { RootStoreContext } from '../../../app/stores/rootStore';
 import { Label, Segment, Header, Icon, Button, Item, Grid, Container, Input } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
+import { SuccessfullCancellingModal } from '../../../app/layout/SuccessfullCancellingModal';
+import { CancelBookingErrorModal } from '../../../app/layout/CancelBookingErrorModal';
 
 const ClientFlighBookList = () => {
     const rootStore = useContext(RootStoreContext);
-    const { flightBookingsByDate, clientFlightList } = rootStore.flightStore;
+    const { flightBookingsByDate,deleteFlightBooking, clientFlightList } = rootStore.flightStore;
+    const { openModal } = rootStore.modalStore;
+    const {dateDiffInDays} = rootStore.commonStore;
+
 
     const [bookingDateString, setbookingDateString] = useState("");
 
@@ -24,6 +29,13 @@ const ClientFlighBookList = () => {
             return x.bookingDate?.match(bookingDateString);
         });
       }
+
+      const verifyDelete = (id: number, diff: number) => {
+        if(diff > 7){
+            deleteFlightBooking(id).then(() => openModal(<SuccessfullCancellingModal />));
+        }
+        else openModal(<CancelBookingErrorModal />)
+    }
     
     return (
         <div>
@@ -34,7 +46,14 @@ const ClientFlighBookList = () => {
                             <Fragment>
                                 {flightBookingsByDate.map((flightB) => {
                                     { var FlBk = clientFlightList.find(a => a.id === flightB.productId) }
+                                    {var todayDate = new Date().toISOString().slice(0,10);}
+                                    {var datenow = new Date(todayDate)}
+                                    {var dateFrom = new Date(FlBk?.departingDate!)}
+                                    {var diff = dateDiffInDays(datenow,dateFrom)}
+
                                     return <div>
+                                        <Label color='teal' content={diff} /> 
+                                        <Label color='teal' content={flightB.flightBookingId!} /> 
                                         <Label color='teal' size='large' key={flightB.bookingDate}   style={{marginTop: "1em"}}>
                                         Booked On: {flightB.bookingDate?.split("T")[0]} At {flightB.bookingDate?.split("T")[1].split('.')[0]}
                                         </Label>
@@ -65,6 +84,7 @@ const ClientFlighBookList = () => {
                   <b>Total To Pay: {(Number(FlBk?.price) * Number(flightB.adults)) + (Number(flightB.kids) * (0.7 * Number(FlBk?.price))) }$</b>
                                                         <Button color='red'
                                                             floated='right'
+                                                            onClick={(e) => verifyDelete(flightB.flightBookingId!, diff)}
                                                         >
                                                               <Icon name='cancel' />
                                                             Cancel Booking
