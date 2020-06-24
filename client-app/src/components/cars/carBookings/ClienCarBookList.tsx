@@ -37,7 +37,8 @@ const ClientCarBookList = () => {
           }
           else openModal(<CancelBookingErrorModal />)
       }
-    
+
+      
     return (
         <div>
              <Grid>
@@ -50,14 +51,14 @@ const ClientCarBookList = () => {
                                     {var datenow = new Date(todayDate)}
                                     {var dateFrom = new Date(carB.startingFromDate!)}
                                     {var diff = dateDiffInDays(datenow,dateFrom)}
-                                    {var dateEnd = new Date(carB.startingFromDate!)}
-                                    {var days = (dateFrom.getDate() - dateEnd.getDate())}
+                                    {var dateEnd = new Date(carB.endingDate!)}
+                                    {var days = dateDiffInDays(dateFrom,dateEnd)}
+                                  
                                   
                                 
                                     return <div>
                                         {/* <Label color='teal' size='large'>{diff}</Label> */}
                                         {/* <Label color='teal' size='large'>{d}</Label> */}
-                                        <Label color='teal' size='large'>{diff}</Label>
                                         <Label color='teal' style={{marginTop: "1em"}} size='large' key={carB.bookingDate}>
                                         Booked On: {carB.bookingDate?.split("T")[0]} At {carB.bookingDate?.split("T")[1].split('.')[0]}
                                         </Label>
@@ -70,7 +71,7 @@ const ClientCarBookList = () => {
                                                             {CARBk?.name}
                                                         </Item.Header>
                                                         <Item.Description>
-                                                           <b> Booked from {String(carB.startingFromDate).split('T')[0]} To {String(carB.endingDate).split('T')[0]} ({days} days) </b>
+                                                           <b> Booked from {String(carB.startingFromDate).split('T')[0]} To {String(carB.endingDate).split('T')[0]} </b>
                                                         </Item.Description>
                                                         <Item.Meta>
                                                             {CARBk?.price}$ <br/>

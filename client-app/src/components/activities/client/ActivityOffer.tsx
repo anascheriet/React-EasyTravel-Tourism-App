@@ -133,7 +133,7 @@ const ActivityOffer: React.FC<RouteComponentProps<offerId>> = ({ match }) => {
                                     <Comment.Metadata>
                                         <div>Today at 5:42PM</div>
                                     </Comment.Metadata>
-                                    <Comment.Text>Great Car!</Comment.Text>
+                                    <Comment.Text>Such A Great Experience!</Comment.Text>
                                     <Comment.Actions>
                                         <Comment.Action>Reply</Comment.Action>
                                     </Comment.Actions>
@@ -147,7 +147,7 @@ const ActivityOffer: React.FC<RouteComponentProps<offerId>> = ({ match }) => {
                                     <Comment.Metadata>
                                         <div>5 days ago</div>
                                     </Comment.Metadata>
-                                    <Comment.Text>I wish i had this car it's so awesome</Comment.Text>
+                                    <Comment.Text>Had an Amazing Time!</Comment.Text>
                                     <Comment.Actions>
                                         <Comment.Action>Reply</Comment.Action>
                                     </Comment.Actions>

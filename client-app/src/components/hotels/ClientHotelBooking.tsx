@@ -4,11 +4,15 @@ import { LoadingComponent } from '../../app/layout/LoadingComponent';
 import { observer } from 'mobx-react-lite';
 import { Label, Grid, Segment, Item, Button, Icon, Header, Container, Input } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
+import { SuccessfullCancellingModal } from '../../app/layout/SuccessfullCancellingModal';
+import { CancelBookingErrorModal } from '../../app/layout/CancelBookingErrorModal';
 
 const ClientHotelBooking = () => {
     const rootStore = useContext(RootStoreContext);
-    const { loadClientHotelBookings,loadAllHotels, emptyAllHotels,loadingInitial,hotelBookingsByDate,clientHotelsByPrice, emptyHotelBookings } = rootStore.hotelStore;
+    const { loadClientHotelBookings,loadAllHotels,deleteHotelBooking, emptyAllHotels,loadingInitial,hotelBookingsByDate,clientHotelsByPrice, emptyHotelBookings } = rootStore.hotelStore;
     const { user } = rootStore.userStore;
+    const { openModal } = rootStore.modalStore;
+    const {dateDiffInDays} = rootStore.commonStore;
 
     const [bookingDateString, setbookingDateString] = useState("");
 
@@ -36,7 +40,12 @@ const ClientHotelBooking = () => {
 
     if (loadingInitial) return <LoadingComponent content="Loading Your Hotel Bookings..." />;
 
-console.log(hotelBookingsByDate.length);
+    const verifyDelete = (id: number, diff: number) => {
+        if(diff > 7){
+            deleteHotelBooking(id).then(() => openModal(<SuccessfullCancellingModal />));
+        }
+        else openModal(<CancelBookingErrorModal />)
+    }
 
     return (
         <div>
@@ -46,10 +55,13 @@ console.log(hotelBookingsByDate.length);
                             <Fragment>
                                 {hotelBookingsByDate.map((hotelB) => {
                                     { var HTLBk = clientHotelsByPrice.find(a => a.id === hotelB.productId) }
-                                    {var dateFrom = new Date(hotelB.endingDate!)}
-                                    {var dateEnd = new Date(hotelB.startingFromDate!)}
-                                    {var days = (dateFrom.getDate() - dateEnd.getDate())}
-                                    {console.log(HTLBk)}
+                                    {var todayDate = new Date().toISOString().slice(0,10);}
+                                    {var datenow = new Date(todayDate)}
+                                    {var dateFrom = new Date(hotelB.startingFromDate!)}
+                                    {var diff = dateDiffInDays(datenow,dateFrom)}
+                                    {var dateEnd = new Date(hotelB.endingDate!)}
+                                    {var days = dateDiffInDays(dateFrom,dateEnd)}
+                                
                                     return <div>
                                         <Label color='teal' size='large' key={hotelB.bookingDate} style={{marginTop:"1em"}}>
                                         Booked On: {hotelB.bookingDate?.split("T")[0]} At {hotelB.bookingDate?.split("T")[1].split('.')[0]}
@@ -71,7 +83,9 @@ console.log(hotelBookingsByDate.length);
                                                         </Item.Meta>
                                                
                   <b>Total To Pay: {(Number(HTLBk?.price) * days)}$</b>
-                                <Button color='red' floated='right'>
+                                <Button color='red' floated='right'
+                                 onClick={(e) => verifyDelete(hotelB.hotelBookingId!, diff)}
+                                >
                                      <Icon name='cancel' />
                                         Cancel Booking
                                 </Button>         

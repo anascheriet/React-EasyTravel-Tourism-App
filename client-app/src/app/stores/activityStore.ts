@@ -176,11 +176,10 @@ export default class ActivityStore {
         }
     }
 
-    @action deleteActivityBooking = async (event: SyntheticEvent<HTMLButtonElement>, id: number) => {
+    @action deleteActivityBooking = async (id: number) => {
         this.submitting = true;
-        this.target = event.currentTarget.name;
         try {
-          await agent.Cars.deleteBooking(id);
+          await agent.Activities.deleteBooking(id);
           this.bookedActivitiesList.splice(this.bookedActivitiesList.findIndex(a => a.activityBookingId === id), 1);
           this.submitting = false;
           this.target = '';

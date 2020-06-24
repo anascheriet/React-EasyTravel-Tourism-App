@@ -100,9 +100,8 @@ export default class HotelStore {
             }
     }
 
-    @action deleteHotelBooking = async (event: SyntheticEvent<HTMLButtonElement>, id: number) => {
+    @action deleteHotelBooking = async (id: number) => {
         this.submitting = true;
-        this.target = event.currentTarget.name;
         try {
           await agent.Hotels.deleteBooking(id);
           this.bookedHotelList.splice(this.bookedHotelList.findIndex(a => a.hotelBookingId === id), 1);

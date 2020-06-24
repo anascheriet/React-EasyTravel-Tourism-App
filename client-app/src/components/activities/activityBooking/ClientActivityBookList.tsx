@@ -3,10 +3,14 @@ import { observer } from 'mobx-react-lite';
 import { RootStoreContext } from '../../../app/stores/rootStore';
 import { Label, Segment, Item, Button, Icon, Header, Grid, Container, Input } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
+import { SuccessfullCancellingModal } from '../../../app/layout/SuccessfullCancellingModal';
+import { CancelBookingErrorModal } from '../../../app/layout/CancelBookingErrorModal';
 
 const ClientActivityBookList = () => {
     const rootStore = useContext(RootStoreContext);
-    const {  clientActivityList, activityBookingsByDate } = rootStore.activityStore;
+    const {  clientActivityList, activityBookingsByDate, deleteActivityBooking } = rootStore.activityStore;
+    const { openModal } = rootStore.modalStore;
+    const {dateDiffInDays} = rootStore.commonStore;
 
     const [bookingDateString, setbookingDateString] = useState("");
     const [activityDateString, setactivityDateString] = useState("");
@@ -42,6 +46,13 @@ const ClientActivityBookList = () => {
         });
       }
 
+      const verifyDelete = (id: number, diff: number) => {
+        if(diff > 7){
+            deleteActivityBooking(id).then(() => openModal(<SuccessfullCancellingModal />));
+        }
+        else openModal(<CancelBookingErrorModal />)
+    }
+
 
     return (
         <div>
@@ -51,6 +62,11 @@ const ClientActivityBookList = () => {
                             <Fragment>
                                 {activitiesFiltered.map((activityB) => {
                                     { var ActBk = clientActivityList.find(a => a.id === activityB.productId) }
+                                    {var todayDate = new Date().toISOString().slice(0,10);}
+                                    {var datenow = new Date(todayDate)}
+                                    {var dateFrom = new Date(activityB.activityDate!)}
+                                    {var diff = dateDiffInDays(datenow,dateFrom)}
+                                    
                                     return <div>
                                         <Label color='teal' size='large' key={activityB.bookingDate}>
                                         Booked On: {activityB.bookingDate?.split("T")[0]} At {activityB.bookingDate?.split("T")[1].split('.')[0]}
@@ -73,7 +89,9 @@ const ClientActivityBookList = () => {
                                                         </Item.Meta>
                                                         
                   <b>Total To Pay: {(Number(ActBk?.price) * Number(activityB.adults)) + (Number(activityB.kids) * (0.7 * Number(ActBk?.price))) }$</b>
-                                <Button color='red' floated='right'>
+                                <Button color='red' floated='right'
+                                 onClick={(e) => verifyDelete(activityB.activityBookingId!, diff)}
+                                >
                                      <Icon name='cancel' />
                                         Cancel Booking
                                 </Button>         
