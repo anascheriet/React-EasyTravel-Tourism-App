@@ -2,7 +2,7 @@ import { RootStore } from "./rootStore";
 import { IFlight, IFlightBooking } from "../models/Flight";
 import { observable, computed, action } from "mobx";
 import agent from "../../components/cars/api/agent";
-import { SyntheticEvent } from "react";
+import { SyntheticEvent, IframeHTMLAttributes } from "react";
 
 export default class FlightStore {
     rootStore: RootStore;
@@ -13,6 +13,7 @@ export default class FlightStore {
 
     @observable adminFlightList: IFlight[] = [];
     @observable clientFlightList: IFlight[] = [];
+    @observable bookedFlightList: IFlightBooking[] = [];
     @observable selectedFlight: IFlight | undefined | null;
     @observable OfferedFlight: IFlight | undefined = undefined;
     @observable loadingInitial = false;
@@ -20,7 +21,7 @@ export default class FlightStore {
     @observable submitting = false;
     @observable target = '';
     @observable flightBookingToAdd: IFlightBooking | undefined = {
-        productid: "",
+        productId: "",
         adults: "",
         kids: ""
     };
@@ -37,6 +38,12 @@ export default class FlightStore {
         );
     }
 
+    @computed get flightBookingsByDate(){
+        return this.bookedFlightList.slice().sort(
+          (a,b) => Date.parse(a.bookingDate!) - Date.parse(b.bookingDate!)
+        );
+      }
+
     @action loadAdminFlights = async (name: string | undefined) => {
         this.loadingInitial = true;
         try {
@@ -49,6 +56,22 @@ export default class FlightStore {
             this.loadingInitial = false;
         }
     };
+
+    @action loadClientFlightBookings = async (name: string | undefined) => {
+        //let testArray: ICar [] = [];
+        this.loadingInitial = true;
+        try {
+    
+          const flightBs = await agent.Flights.listBookedFlights(name);
+          flightBs.forEach((flightB) => {
+            this.bookedFlightList.push(flightB);
+          });
+          this.loadingInitial = false;
+        } catch (error) {
+          console.log(error);
+          this.loadingInitial = false;
+        }
+      };
 
     @action loadAllFlights = async () => {
         this.loadingInitial = true;
@@ -69,6 +92,10 @@ export default class FlightStore {
 
     @action emptyAllFlights = () => {
         this.clientFlightList = [];
+    }
+
+    @action emptyBookedFlight = () => {
+        this.bookedFlightList = [];
     }
 
     @action createFlight = async (flight: IFlight) => {

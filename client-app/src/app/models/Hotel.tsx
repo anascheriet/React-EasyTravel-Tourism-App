@@ -15,5 +15,5 @@ export interface IHotel {
 export interface IHotelBooking{
     startingfrom: Date | undefined;
     endingDate: Date | undefined;
-    productid: string;
+    productId: string;
 }

@@ -14,6 +14,7 @@ export default class ActivityStore {
 
     @observable adminActivityList: IActivity[] = [];
     @observable clientActivityList: IActivity[] = [];
+    @observable bookedActivitiesList: IActivityBooking[] = [];
     @observable selectedActivity: IActivity | undefined | null;
     @observable OfferedActivity: IActivity | undefined = undefined;
     @observable loadingInitial = false;
@@ -21,7 +22,7 @@ export default class ActivityStore {
     @observable submitting = false;
     @observable target = '';
     @observable activityBookingToAdd: IActivityBooking | undefined = {
-        productid: "",
+        productId: "",
         activityDate: undefined,
         adults: "",
         kids: ""
@@ -39,6 +40,12 @@ export default class ActivityStore {
         );
     }
 
+    @computed get activityBookingsByDate(){
+        return this.bookedActivitiesList.slice().sort(
+          (a,b) => Date.parse(a.bookingDate!) - Date.parse(b.bookingDate!)
+        );
+      }
+
     @action loadAdminActivities = async (name: string | undefined) => {
         this.loadingInitial = true;
         try {
@@ -53,6 +60,24 @@ export default class ActivityStore {
             this.loadingInitial = false;
         }
     };
+
+
+    @action loadClientActivityBookings = async (name: string | undefined) => {
+        //let testArray: ICar [] = [];
+        this.loadingInitial = true;
+        try {
+    
+          const ActivitiesBs = await agent.Activities.listBookedActivities(name);
+          ActivitiesBs.forEach((ActivityB) => {
+            this.bookedActivitiesList.push(ActivityB);
+          });
+          this.loadingInitial = false;
+        } catch (error) {
+          console.log(error);
+          this.loadingInitial = false;
+        }
+      };
+
 
     @action loadAllActivities = async () => {
         this.loadingInitial = true;
@@ -85,6 +110,10 @@ export default class ActivityStore {
 
     @action emptyAdminActivities = () => {
         this.adminActivityList = [];
+    }
+
+    @action emptyClientBookings = () => {
+        this.bookedActivitiesList = [];
     }
 
     @action emptyAllActivities = () => {

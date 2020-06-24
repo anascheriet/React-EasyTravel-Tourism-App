@@ -16,9 +16,10 @@ export default class CarStore {
   //@observable carRegistry = new Map();
   @observable adminCarList: ICar[] = [];
   @observable clientCarList: ICar[] = [];
+  @observable bookedCarList: ICarBooking[] = [];
   @observable selectedCar: ICar | undefined | null;
   @observable carBookingToAdd: ICarBooking | undefined = {
-    productid: "",
+    productId: "",
     startingfrom: undefined,
     endingDate: undefined
   };
@@ -40,6 +41,12 @@ export default class CarStore {
     );
   }
 
+  @computed get carBookingsByDate(){
+    return this.bookedCarList.slice().sort(
+      (a,b) => Date.parse(a.bookingDate!) - Date.parse(b.bookingDate!)
+    );
+  }
+
   @action loadAdminCars = async (name: string | undefined) => {
     //let testArray: ICar [] = [];
     this.loadingInitial = true;
@@ -48,6 +55,22 @@ export default class CarStore {
       const cars = await agent.Cars.adminCars(name);
       cars.forEach((car) => {
         this.adminCarList.push(car);
+      });
+      this.loadingInitial = false;
+    } catch (error) {
+      console.log(error);
+      this.loadingInitial = false;
+    }
+  };
+
+  @action loadClientCarBookings = async (name: string | undefined) => {
+    //let testArray: ICar [] = [];
+    this.loadingInitial = true;
+    try {
+
+      const carBs = await agent.Cars.listBookedCars(name);
+      carBs.forEach((carB) => {
+        this.bookedCarList.push(carB);
       });
       this.loadingInitial = false;
     } catch (error) {

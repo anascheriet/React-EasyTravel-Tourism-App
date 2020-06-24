@@ -31,7 +31,7 @@ const FlightBooking = () => {
         <Form.Input label='Adults:' onChange={handleInputChange} name="adults" type="text" value={flightb.adults} />
         <Form.Input label='Kids:' onChange={handleInputChange} name="kids" value={flightb.kids} type="text"
         />
-        <Form.Input label='Ticket ID' onChange={handleInputChange} name="productid" value={flightb!.productid || ""} type="text"
+        <Form.Input label='Ticket ID' onChange={handleInputChange} name="productId" value={flightb!.productId || ""} type="text"
         />
         <Button
             fluid

@@ -32,7 +32,7 @@ const HotelOffer: React.FC<RouteComponentProps<offerId>> = ({
         loadOfferedHotel(match.params.id);
     }, [match.params.id, loadOfferedHotel])
 
-    hotelBookingToAdd!.productid = match.params.id;
+    hotelBookingToAdd!.productId = match.params.id;
 
 
 

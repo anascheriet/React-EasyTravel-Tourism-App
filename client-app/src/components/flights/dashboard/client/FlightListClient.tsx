@@ -194,8 +194,8 @@ const FlightListClient = () => {
          });
     }
 
-    const setProductId = (id: string) => {
-      flightBookingToAdd!.productid = id;
+    const setproductId = (id: string) => {
+      flightBookingToAdd!.productId = id;
     }
    
 
@@ -227,7 +227,7 @@ const FlightListClient = () => {
             <Item key={flight.id}>
                <>
             <label hidden>
-            {flightBookingToAdd!.productid = flight.id}
+            {flightBookingToAdd!.productId = flight.id}
           </label>
           </>
             

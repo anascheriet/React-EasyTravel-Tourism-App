@@ -32,7 +32,7 @@ const ActivityBooking = () => {
             <Form.Input label='Adults:' onChange={handleInputChange} name="adults" type="text" value={activityb.adults} />
             <Form.Input label='Kids:' onChange={handleInputChange} name="kids" value={activityb.kids} type="text"
             />
-            <Form.Input label='Product ID' onChange={handleInputChange} name="productid" value={activityb!.productid || ""} type="text"
+            <Form.Input label='Product ID' onChange={handleInputChange} name="productid" value={activityb!.productId || ""} type="text"
             />
             <Button
                 fluid

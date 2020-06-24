@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Menu, Container, Dropdown, Image } from "semantic-ui-react";
+import { Menu, Container, Dropdown, Image, Icon } from "semantic-ui-react";
 import { NavLink, Link } from "react-router-dom";
 import { RootStoreContext } from "../../app/stores/rootStore";
 
@@ -14,29 +14,46 @@ export const Navbar = () => {
         </Menu.Item>
 
 
-        <Menu.Item as={NavLink} exact to='/hotels' name="Hotels" />
-        <Menu.Item as={NavLink} exact to='/flights' name="Flight Tickets" />
-        <Menu.Item as={NavLink} exact to='/cars' name="Cars" />
-        {user !== null && user!.status === "SudoAdmin" &&
-          <Menu.Item as={NavLink} exact to='/admins' name="Admins" />}
+        <Menu.Item icon='hotel' as={NavLink} exact to='/hotels' name="Hotels" />
+        <Menu.Item icon='plane' as={NavLink} exact to='/flights' name="Flight Tickets" />
+        <Menu.Item icon='car' as={NavLink} exact to='/cars' name="Cars" />
+       
 
-        <Menu.Item name="Restaurants" />
+        <Menu.Item icon='food' name="Restaurants" />
 
-        <Menu.Item as={NavLink} exact to='/activities' name="Activities" />
+        <Menu.Item icon='ticket' as={NavLink} exact to='/activities' name="Activities" />
 
+        {user?.status === "Client" &&
+        <Menu.Item position='right'>
+          <Icon name='cart' />
+              
+                  <Dropdown text='My Bookings' pointing>
+                    <Dropdown.Menu>
+                      <Dropdown.Item icon='plane' as={Link} to={'FlightBookings'} text='My Flight Bookings' />
+                      <Dropdown.Item as={Link} to={'/Bookings/Hotels'} text='My Hotel Bookings' icon='hotel' />
+                      <Dropdown.Item icon='ticket' text='My Activity Bookings' as={Link} to={'ActivityBookings'}/>
+                      <Dropdown.Item text='My Car Bookings' icon='car' as={Link} to={'CarBookings'}/> 
+                    </Dropdown.Menu>
+                    </Dropdown>
+                
+                  </Menu.Item>
+                }
+                 {user !== null && user!.status === "SudoAdmin" &&
+          <Menu.Item icon='user' as={NavLink} exact to='/admins' name="Admins" />}
         {user! &&
           <Menu.Item position='right'>
             <Image avatar spaced='right' src='assets/user.png' />
-            <Dropdown pointing='top left' text={user!.displayName}>
+            <Dropdown pointing text={user!.displayName}>
               <Dropdown.Menu>
                 <Dropdown.Item as={Link} to={'/profile/username'} text='My profile'
-                  icone='user' />
+                  icon='user' />
                 <Dropdown.Item onClick={logout} text='Logout' icon='power' />
 
               </Dropdown.Menu>
             </Dropdown>
           </Menu.Item>
         }
+        
       </Container>
     </Menu>
   );

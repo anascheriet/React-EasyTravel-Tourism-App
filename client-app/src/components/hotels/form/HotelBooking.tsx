@@ -31,7 +31,7 @@ const HotelBooking = () => {
             <Form.Input label='Starting From: ' onChange={handleInputChange} name="StartingFromDate" type="date" value={hotelb!.startingfrom} />
             <Form.Input label='Until: ' onChange={handleInputChange} name="EndingDate" value={hotelb!.endingDate} type="date"
             />
-            <Form.Input label='Product ID' onChange={handleInputChange} name="productid" value={hotelb!.productid || ""} type="text"
+            <Form.Input label='Product ID' onChange={handleInputChange} name="productId" value={hotelb!.productId || ""} type="text"
             />
             <Button
                 fluid

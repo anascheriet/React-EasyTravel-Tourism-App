@@ -14,6 +14,7 @@ export interface IActivity{
 export interface IActivityBooking{
     adults: string;
     kids: string;
-    productid: string;
+    productId: string;
     activityDate: Date | undefined;
+    bookingDate?: string;
 }

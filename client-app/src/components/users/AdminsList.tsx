@@ -64,7 +64,7 @@ const AdminsList: React.FC = () => {
                                     size='small'
                                     onClick={() => openModal(<RegisterForm />)}
                                 >
-                                    <Icon name='user' /> Add A New Admin
+                                    <Icon name='add user' /> Add Admin
           </Button>
                             </Table.HeaderCell>
                         </Table.Row>

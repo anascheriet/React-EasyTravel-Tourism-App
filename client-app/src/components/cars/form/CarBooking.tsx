@@ -39,7 +39,7 @@ const CarBooking = () => {
             <Form.Input label='Starting From: ' onChange={handleInputChange} name="StartingFromDate" type="date" value={carb!.startingfrom} />
             <Form.Input label='Until: ' onChange={handleInputChange} name="EndingDate" value={carb!.endingDate} type="date"
             />
-            <Form.Input label='Product ID' onChange={handleInputChange} name="productid" value={carb!.productid || ""} type="text"
+            <Form.Input label='Product ID' onChange={handleInputChange} name="productId" value={carb!.productId || ""} type="text"
             />
             <Button
                 fluid

@@ -32,7 +32,7 @@ const CarOffer: React.FC<RouteComponentProps<offerId>> = ({ match }) => {
         loadOfferedCar(match.params.id);
     }, [match.params.id,loadOfferedCar])
 
-    carBookingToAdd!.productid = match.params.id;
+    carBookingToAdd!.productId = match.params.id;
     
     return (
         <Grid>

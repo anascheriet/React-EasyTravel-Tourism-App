@@ -24,6 +24,10 @@ import ClientFlight from "../../components/flights/ClientFlight";
 import AdminActivity from "../../components/activities/AdminActivity";
 import ActivityOffer from "../../components/activities/client/ActivityOffer";
 import ClientActivity from "../../components/activities/ClientActivity";
+import ClientCarBooking from "../../components/cars/ClientCarBooking";
+import ClientFlightBookings from "../../components/flights/ClientFlightBooking";
+import ClientFlightBooking from "../../components/flights/ClientFlightBooking";
+import ClientActivityBookings from "../../components/activities/ClientActivityBookings";
 
 function App() {
   const rootStore = useContext(RootStoreContext);
@@ -46,7 +50,7 @@ function App() {
     <div className="App">
       <ModalContainer />
       <Route exact path="/" component={WelcomePage} />
-      {user === null && <Route exact path="/" component={WelcomePage} /> }
+      {user === null && <Route exact path="/" component={WelcomePage} />}
       <Route path={'/(.+)'}
         render={() => (
           <Fragment>
@@ -63,12 +67,20 @@ function App() {
 
                 {user?.status === "Client" ? (
                   <Route exact path="/flights" component={ClientFlight} />) : (<Route exact path="/flights" component={AdminFlight} />)}
-               {user?.status === "Client" ? (
+                {user?.status === "Client" ? (
                   <Route exact path="/activities" component={ClientActivity} />) : (<Route exact path="/flights" component={AdminActivity} />)}
+                   {user?.status === "Client" ? (
+                    <Route exact path="/CarBookings" component={ClientCarBooking} />) : (<Route exact path="/CarBookings" component={NotFound} />)}
+                    {user?.status === "Client" ? (
+                    <Route exact path="/ActivityBookings" component={ClientActivityBookings} />) : (<Route exact path="/ActivityBookings" component={NotFound} />)}
+                    {user?.status === "Client" ? (
+                    <Route exact path="/FlightBookings" component={ClientFlightBooking} /> ) : (<Route exact path="/FlightBookings" component={NotFound} />)}
 
                 <Route path="/cars/:id" component={CarOffer} />
                 <Route path="/hotels/:id" component={HotelOffer} />
                 <Route path="/activities/:id" component={ActivityOffer} />
+              
+               
                 <Route exact path="/admins" component={Admins} />
                 <Route component={NotFound} />
               </Switch>

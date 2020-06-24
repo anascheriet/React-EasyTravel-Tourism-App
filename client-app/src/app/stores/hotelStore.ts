@@ -15,13 +15,14 @@ export default class HotelStore {
     @observable adminHotelList: IHotel[] = [];
     @observable clientHotelList: IHotel[] = [];
     @observable selectedHotel: IHotel | undefined | null;
+    @observable bookedHotelList: IHotelBooking[] = [];
     @observable OfferedHotel: IHotel | undefined = undefined;
     @observable loadingInitial = false;
     @observable editMode = false;
     @observable submitting = false;
     @observable target = '';
     @observable hotelBookingToAdd: IHotelBooking | undefined = {
-        productid: "",
+        productId: "",
         startingfrom: undefined,
         endingDate: undefined
     };
@@ -50,6 +51,22 @@ export default class HotelStore {
             this.loadingInitial = false;
         }
     };
+
+    @action loadClientHotelBookings = async (name: string | undefined) => {
+        //let testArray: ICar [] = [];
+        this.loadingInitial = true;
+        try {
+    
+          const HotelBs = await agent.Hotels.listBookedHotels(name);
+          HotelBs.forEach((HotelB) => {
+            this.bookedHotelList.push(HotelB);
+          });
+          this.loadingInitial = false;
+        } catch (error) {
+          console.log(error);
+          this.loadingInitial = false;
+        }
+      };
 
     @action loadAllHotels = async () => {
         this.loadingInitial = true;

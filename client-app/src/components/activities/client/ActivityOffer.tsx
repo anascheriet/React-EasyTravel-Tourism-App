@@ -34,7 +34,7 @@ const ActivityOffer: React.FC<RouteComponentProps<offerId>> = ({ match }) => {
         loadOfferedActivity(match.params.id);
     }, [match.params.id, loadOfferedActivity])
 
-    activityBookingToAdd!.productid = match.params.id;
+    activityBookingToAdd!.productId = match.params.id;
 
     return (
         <Grid>

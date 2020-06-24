@@ -49,7 +49,7 @@ namespace server_app.App_Logic.Activities.ActivityBookings
                     Kids = request.Kids
                 };
 
-
+                _context.ActivityBookings.Add(booking);
                 var success = await _context.SaveChangesAsync() > 0;
 
                 if (success) return Unit.Value;

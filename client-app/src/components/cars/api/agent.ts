@@ -53,7 +53,8 @@ const Cars = {
     create: (car: ICar) => requests.post('/cars', car),
     update: (car: ICar) => requests.put(`/cars/${car.id}`, car),
     delete: (id: string) => requests.del(`/cars/${id}`),
-    createBooking: (carbooking: ICarBooking) => requests.post('carbooking', carbooking)
+    createBooking: (carbooking: ICarBooking) => requests.post('carbooking', carbooking),
+    listBookedCars: (name: string | undefined): Promise<ICarBooking[]> => requests.get(`carbooking/${name}`),
 }
 
 const Hotels = {
@@ -63,7 +64,8 @@ const Hotels = {
     create: (hotel: IHotel) => requests.post('/hotel', hotel),
     update: (hotel: IHotel) => requests.put(`/hotel/${hotel.id}`, hotel),
     delete: (id: string) => requests.del(`/hotel/${id}`),
-    createBooking: (hotelbooking: IHotelBooking) => requests.post('hotelbooking', hotelbooking)
+    createBooking: (hotelbooking: IHotelBooking) => requests.post('hotelbooking', hotelbooking),
+    listBookedHotels: (name: string | undefined): Promise<IHotelBooking[]> => requests.get(`hotelbooking/${name}`),
 }
 
 const Flights = {
@@ -73,7 +75,8 @@ const Flights = {
     create: (flight: IFlight) => requests.post('/flight', flight),
     update: (flight: IFlight) => requests.put(`/flight/${flight.id}`, flight),
     delete: (id: string) => requests.del(`/flight/${id}`),
-    createBooking: (flightbooking: IFlightBooking ) => requests.post('flightbooking', flightbooking),
+    createBooking: (flightbooking: IFlightBooking) => requests.post('flightbooking', flightbooking),
+    listBookedFlights: (name: string | undefined): Promise<IFlightBooking[]> => requests.get(`flightbooking/${name}`),
 }
 
 const Activities = {
@@ -83,7 +86,8 @@ const Activities = {
     create: (activity: IActivity) => requests.post('/activity', activity),
     update: (activity: IActivity) => requests.put(`/activity/${activity.id}`, activity),
     delete: (id: string) => requests.del(`/activity/${id}`),
-    createBooking: (activitybooking: IActivityBooking ) => requests.post('activitybooking', activitybooking),
+    createBooking: (activitybooking: IActivityBooking) => requests.post('activitybooking', activitybooking),
+    listBookedActivities: (name: string | undefined): Promise<IActivityBooking[]> => requests.get(`activitybooking/${name}`),
 }
 
 const User = {
