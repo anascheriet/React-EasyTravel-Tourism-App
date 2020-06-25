@@ -73,7 +73,7 @@ const Hotels = {
 
 const Restaurants = {
     list: (): Promise<IRestaurant[]> => requests.get('/restaurant'),
-    adminRestaurants: (name: string | undefined): Promise<IRestaurant[]> => requests.get(`hotel/adminRestaurants/${name}`),
+    adminRestaurants: (name: string | undefined): Promise<IRestaurant[]> => requests.get(`restaurant/adminRestaurants/${name}`),
     details: (id: string) => requests.get(`/restaurant/${id}`),
     create: (restaurant: IRestaurant) => requests.post('/restaurant', restaurant),
     update: (restaurant: IRestaurant) => requests.put(`/restaurant/${restaurant.id}`, restaurant),

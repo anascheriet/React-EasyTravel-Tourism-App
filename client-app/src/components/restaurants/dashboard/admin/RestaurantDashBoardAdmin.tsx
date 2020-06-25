@@ -9,6 +9,7 @@ import { Grid } from 'semantic-ui-react';
 const RestaurantDashBoardAdmin:React.FC = () => {
     const rootStore = useContext(RootStoreContext);
     const { editMode, selectedRestaurant } = rootStore.restaurantStore;
+    
     return (
         <div>
              <Grid>

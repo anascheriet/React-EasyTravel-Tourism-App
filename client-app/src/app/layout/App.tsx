@@ -66,11 +66,11 @@ function App() {
                 {user?.status === "Client" ? (
                   <Route exact path="/cars" component={ClientCar} />) : (<Route exact path="/cars" component={AdminCar} />)}
                   {user?.status === "Client" ? (
-                  <Route exact path="/restaurants" component={ClientRestaurant} />) : (<Route exact path="/restaurants" component={RestaurantDashBoardAdmin} />)}
+                  <Route exact path="/restaurants" component={ClientRestaurant} />) : (<Route exact path="/restaurants" component={AdminRestaurants} />)}
                 {user?.status === "Client" ? (
                   <Route exact path="/hotels" component={ClientHotel} />) : (<Route exact path="/hotels" component={AdminHotel} />)}
 
-                
+            
 
                 {user?.status === "Client" ? (
                   <Route exact path="/flights" component={ClientFlight} />) : (<Route exact path="/flights" component={AdminFlight} />)}
