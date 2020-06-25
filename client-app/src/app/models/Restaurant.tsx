@@ -9,3 +9,12 @@ export interface IRestaurant {
     city: string;
     CreatorName: string | undefined;
 }
+
+export interface IRestaurantBooking {
+    restaurantBookingId?: number;
+    people: string;
+    productId: string;
+    mealTime: string;
+    mealDate: Date | undefined;
+    bookingDate?: string;
+}

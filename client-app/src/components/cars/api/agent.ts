@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import { IHotel, IHotelBooking } from "../../../app/models/Hotel";
 import { IFlight, IFlightBooking } from "../../../app/models/Flight";
 import { IActivity, IActivityBooking } from "../../../app/models/Activity";
-import { IRestaurant } from "../../../app/models/Restaurant";
+import { IRestaurant, IRestaurantBooking } from "../../../app/models/Restaurant";
 
 axios.defaults.baseURL = 'http://localhost:5000';
 
@@ -78,6 +78,9 @@ const Restaurants = {
     create: (restaurant: IRestaurant) => requests.post('/restaurant', restaurant),
     update: (restaurant: IRestaurant) => requests.put(`/restaurant/${restaurant.id}`, restaurant),
     delete: (id: string) => requests.del(`/restaurant/${id}`),
+    createBooking: (restaurantbooking: IRestaurantBooking) => requests.post('restaurantbooking', restaurantbooking),
+    listBookedRestaurants: (name: string | undefined): Promise<IRestaurantBooking[]> => requests.get(`restaurantbooking/${name}`),
+    deleteBooking: (id: number) => requests.del(`/restaurantbooking/${id}`),
 }
 
 const Flights = {

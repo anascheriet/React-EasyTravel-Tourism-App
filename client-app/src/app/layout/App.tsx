@@ -31,6 +31,8 @@ import ClientHotelBooking from "../../components/hotels/ClientHotelBooking";
 import AdminRestaurants from "../../components/restaurants/AdminRestaurants";
 import ClientRestaurant from "../../components/restaurants/ClientRestaurant";
 import RestaurantDashBoardAdmin from "../../components/restaurants/dashboard/admin/RestaurantDashBoardAdmin";
+import RestaurantOffer from "../../components/restaurants/dashboard/client/RestaurantOffer";
+import ClientRestaurantsBookings from "../../components/restaurants/ClientRestaurantsBookings";
 
 function App() {
   const rootStore = useContext(RootStoreContext);
@@ -84,10 +86,13 @@ function App() {
                   <Route exact path="/FlightBookings" component={ClientFlightBooking} />) : (<Route exact path="/FlightBookings" component={NotFound} />)}
                 {user?.status === "Client" ? (
                   <Route exact path="/HotelBookings" component={ClientHotelBooking} />) : (<Route exact path="/HotelBookings" component={NotFound} />)}
+                  {user?.status === "Client" ? (
+                  <Route exact path="/RestaurantBookings" component={ClientRestaurantsBookings} />) : (<Route exact path="/RestaurantBookings" component={NotFound} />)}
 
                 <Route path="/cars/:id" component={CarOffer} />
                 <Route path="/hotels/:id" component={HotelOffer} />
                 <Route path="/activities/:id" component={ActivityOffer} />
+                <Route path="/restaurants/:id" component={RestaurantOffer} />
 
 
                 <Route exact path="/admins" component={Admins} />

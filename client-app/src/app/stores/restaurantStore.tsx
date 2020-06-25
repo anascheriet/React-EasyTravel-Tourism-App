@@ -1,7 +1,7 @@
 import React, { SyntheticEvent } from 'react'
 import { RootStore } from './rootStore'
-import { IRestaurant } from '../models/Restaurant';
-import { observable, action } from 'mobx';
+import { IRestaurant, IRestaurantBooking } from '../models/Restaurant';
+import { observable, action, computed } from 'mobx';
 import agent from '../../components/cars/api/agent';
 export default class RestaurantStore {
 
@@ -12,12 +12,28 @@ export default class RestaurantStore {
     }
     @observable adminRestaurantList: IRestaurant[] = [];
     @observable clientRestaurantList: IRestaurant[] = [];
+    @observable bookedRestaurantsList: IRestaurantBooking[] = [];
     @observable selectedRestaurant: IRestaurant | undefined | null;
+    @observable OfferedRestaurant: IRestaurant | undefined = undefined;
+
+    @observable restaurantBookingToAdd: IRestaurantBooking | undefined = {
+        productId: "",
+        mealDate: undefined,
+        people: "",
+        mealTime: ""
+    };
 
     @observable loadingInitial = false;
     @observable editMode = false;
     @observable submitting = false;
     @observable target = '';
+
+
+    @computed get restaurantBookingsByDate(){
+        return this.bookedRestaurantsList.slice().sort(
+          (a,b) => Date.parse(a.bookingDate!) - Date.parse(b.bookingDate!)
+        );
+      }
 
 
     @action loadAdminRestaurants = async (name: string | undefined) => {
@@ -33,6 +49,22 @@ export default class RestaurantStore {
         }
     };
 
+    @action loadClientRestaurantBookings = async (name: string | undefined) => {
+        //let testArray: ICar [] = [];
+        this.loadingInitial = true;
+        try {
+    
+          const RestaurantsBs = await agent.Restaurants.listBookedRestaurants(name);
+          RestaurantsBs.forEach((RestaurantB) => {
+            this.bookedRestaurantsList.push(RestaurantB);
+          });
+          this.loadingInitial = false;
+        } catch (error) {
+          console.log(error);
+          this.loadingInitial = false;
+        }
+      };
+
     @action loadAllRestaurants = async () => {
         this.loadingInitial = true;
         try {
@@ -46,8 +78,26 @@ export default class RestaurantStore {
         }
     };
 
+    @action loadOfferedRestaurant = async (id: string) => {
+        let restaurant = this.clientRestaurantList.find(x => x.id === id);
+        if (restaurant) {
+            this.OfferedRestaurant = restaurant;
+        }
+        else
+            try {
+                restaurant = await agent.Restaurants.details(id);
+                this.OfferedRestaurant = restaurant;
+            } catch (error) {
+                console.log(error);
+            }
+    }
+
     @action emptyAdminRestaurants = () => {
         this.adminRestaurantList = [];
+    }
+
+    @action emptyClientBookings = () => {
+        this.bookedRestaurantsList = [];
     }
 
     @action emptyAllRestaurants = () => {
@@ -66,6 +116,19 @@ export default class RestaurantStore {
             console.log(error);
         }
     }
+
+    @action createRestaurantBooking = async (restaurantBooking: IRestaurantBooking) => {
+        this.submitting = true;
+        try {
+            this.restaurantBookingToAdd = restaurantBooking;
+            await agent.Restaurants.createBooking(restaurantBooking);
+            this.rootStore.modalStore.closeModal();
+        } catch (error) {
+            this.submitting = false;
+            console.log(error);
+        }
+    };
+
 
     @action editRestaurant = async (restaurant: IRestaurant) => {
         this.submitting = true;
@@ -97,6 +160,20 @@ export default class RestaurantStore {
             console.log(error);
         }
     }
+
+    @action deleteRestaurantBooking = async (id: number) => {
+        this.submitting = true;
+        try {
+          await agent.Restaurants.deleteBooking(id);
+          this.bookedRestaurantsList.splice(this.bookedRestaurantsList.findIndex(a => a.restaurantBookingId === id), 1);
+          this.submitting = false;
+          this.target = '';
+        } catch (error) {
+          this.submitting = false;
+          this.target = '';
+          console.log(error);
+        }
+      }
 
     @action openCreateForm = () => {
         this.editMode = true;
