@@ -18,7 +18,6 @@ namespace server_app.App_Logic.Restaurants
             public string City { get; set; }
             public string Meals { get; set; }
             public string PhoneNumber { get; set; }
-            public string People { get; set; }
         }
 
         public class Handler : IRequestHandler<Command>
@@ -42,7 +41,6 @@ namespace server_app.App_Logic.Restaurants
                 restaurant.Country = request.Country ?? restaurant.Country;
                 restaurant.City = request.City ?? restaurant.City;
                 restaurant.Adress = request.Adress ?? restaurant.Adress;
-                restaurant.People = request.People ?? restaurant.People;
                 restaurant.PhoneNumber = request.PhoneNumber ?? restaurant.PhoneNumber;
 
 

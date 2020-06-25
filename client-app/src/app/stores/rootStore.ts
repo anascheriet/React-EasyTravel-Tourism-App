@@ -6,6 +6,7 @@ import ModalStore from './modalStore';
 import HotelStore from './hotelStore';
 import FlightStore from './flightStore';
 import ActivityStore from './activityStore';
+import RestaurantStore from './restaurantStore';
 
 export class RootStore {
     carStore: CarStore;
@@ -15,6 +16,7 @@ export class RootStore {
     hotelStore: HotelStore;
     flightStore: FlightStore;
     activityStore: ActivityStore;
+    restaurantStore: RestaurantStore;
 
     constructor(){
         this.carStore = new CarStore(this);
@@ -24,6 +26,7 @@ export class RootStore {
         this.hotelStore = new HotelStore(this);
         this.flightStore = new FlightStore(this);
         this.activityStore = new ActivityStore(this);
+        this.restaurantStore = new RestaurantStore(this);
     }
 }
 

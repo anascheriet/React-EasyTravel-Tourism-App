@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import { IHotel, IHotelBooking } from "../../../app/models/Hotel";
 import { IFlight, IFlightBooking } from "../../../app/models/Flight";
 import { IActivity, IActivityBooking } from "../../../app/models/Activity";
+import { IRestaurant } from "../../../app/models/Restaurant";
 
 axios.defaults.baseURL = 'http://localhost:5000';
 
@@ -70,6 +71,15 @@ const Hotels = {
     deleteBooking: (id: number) => requests.del(`/hotelbooking/${id}`),
 }
 
+const Restaurants = {
+    list: (): Promise<IRestaurant[]> => requests.get('/restaurant'),
+    adminRestaurants: (name: string | undefined): Promise<IRestaurant[]> => requests.get(`hotel/adminRestaurants/${name}`),
+    details: (id: string) => requests.get(`/restaurant/${id}`),
+    create: (restaurant: IRestaurant) => requests.post('/restaurant', restaurant),
+    update: (restaurant: IRestaurant) => requests.put(`/restaurant/${restaurant.id}`, restaurant),
+    delete: (id: string) => requests.del(`/restaurant/${id}`),
+}
+
 const Flights = {
     list: (): Promise<IFlight[]> => requests.get('/flight'),
     adminFlights: (name: string | undefined): Promise<IFlight[]> => requests.get(`flight/adminFlights/${name}`),
@@ -107,5 +117,6 @@ export default {
     User,
     Hotels,
     Flights,
-    Activities
+    Activities,
+    Restaurants
 }

@@ -10,7 +10,6 @@ namespace server_app.models
         public string City { get; set; }
         public string Meals { get; set; }
         public string PhoneNumber { get; set; }
-        public string People { get; set; }
         public string CreatorName { get; set; }
 
         [ForeignKey("Creator")]

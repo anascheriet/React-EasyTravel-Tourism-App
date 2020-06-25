@@ -19,7 +19,7 @@ export const Navbar = () => {
         <Menu.Item icon='car' as={NavLink} exact to='/cars' name="Cars" />
        
 
-        <Menu.Item icon='food' name="Restaurants" />
+        <Menu.Item icon='food' as={NavLink} exact to='/restaurants' name="Restaurants" />
 
         <Menu.Item icon='ticket' as={NavLink} exact to='/activities' name="Activities" />
 

@@ -21,7 +21,6 @@ namespace server_app.App_Logic.Restaurants
             public int CreatorId { get; set; }
             public string CreatorName { get; set; }
             public string Meals { get; set; }
-            public string People { get; set; }
         }
 
         public class CommandValidator : AbstractValidator<Command>
@@ -65,7 +64,6 @@ namespace server_app.App_Logic.Restaurants
                     Adress = request.Adress,
                     Meals = request.Meals,
                     PhoneNumber = request.PhoneNumber,
-                    People = request.People,
                     CreatorId = user != null ? user.Id : request.CreatorId,
                     CreatorName = user != null ? user.UserName : request.CreatorName,
                 };
