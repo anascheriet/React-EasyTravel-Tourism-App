@@ -9,7 +9,7 @@ const RestaurantDetailsAdmin = () => {
     return (
         <Card fluid>
             {/* <Image src={`/assets/carImages/${selectedRestaurant!.name}.jpg`} fluid /> */}
-            <Image src='/assets/placeholder.png' fluid />
+            <Image src={`/assets/mealImages/${selectedRestaurant!.name}.jpg`} fluid />
             <Card.Content>
                 <Card.Header>{selectedRestaurant!.name}</Card.Header>
                 <Card.Meta>

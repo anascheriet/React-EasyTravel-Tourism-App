@@ -138,13 +138,13 @@ const RestaurantListAdmin = () => {
         <Item.Group divided>
           {restaurantsFiltered.map((restaurant) => (
             <Item key={restaurant.id}>
-              <Item.Image src="/assets/placeholder.png" size='medium' />
+              <Item.Image src={`/assets/mealImages/${restaurant?.name}.jpg`} size='medium' />
               <Item.Content>
                 <Item.Header as="a">{restaurant.name}</Item.Header>
                 <Item.Meta>{restaurant.meals}</Item.Meta>
                 <Item.Meta>
                   {/* <Flag name={car.country} /> */}
-                  {restaurant.city}, {restaurant.country}
+          {restaurant.adress}, {restaurant.city}, {restaurant.country}
                 </Item.Meta>
                 <Item.Description>
                   <div>{restaurant.description}</div>
@@ -166,7 +166,6 @@ const RestaurantListAdmin = () => {
                     color="red"
   
                   />
-                  <Label basic content={restaurant.adress} />
                 </Item.Extra>
               </Item.Content>
             </Item>

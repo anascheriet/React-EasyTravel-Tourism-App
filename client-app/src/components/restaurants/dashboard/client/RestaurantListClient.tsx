@@ -82,7 +82,7 @@ const RestaurantListClient = () => {
           <Header as='h2' floated="left">
             <Icon name='food' />
             <Header.Content>
-              Restaurant Stay Deals
+              Restaurant Offers
   
             <Header.Subheader>
                 Search and Book an offer of your choice !
@@ -100,12 +100,13 @@ const RestaurantListClient = () => {
         <Item.Group divided>
           {restaurantsFiltered.map((restaurant) => (
             <Item key={restaurant.id}>
-              <Item.Image size='small' src='/assets/placeholder.png' />
+              <Item.Image size='small' src={`/assets/mealImages/${restaurant?.name}.jpg`} />
               <Item.Content>
               <Item.Header as="a">{restaurant.name}</Item.Header>
-              <Item.Meta>Meals: {restaurant.meals}</Item.Meta>
+              <Item.Meta>{restaurant.meals}</Item.Meta>
               <Item.Meta>
-                {restaurant.city}, {restaurant.country}
+                  <Icon color='teal' name="marker"/>
+               {restaurant.adress}, {restaurant.city}, {restaurant.country}
               </Item.Meta>
               <Item.Description>
                 <div>{restaurant.description}</div>
@@ -119,7 +120,6 @@ const RestaurantListClient = () => {
                   content="View"
                   color="blue"
                 />
-                <Label basic content={restaurant.adress} />
               </Item.Extra>
             </Item.Content>
           </Item>

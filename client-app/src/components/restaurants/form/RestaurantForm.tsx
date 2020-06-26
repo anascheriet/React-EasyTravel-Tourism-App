@@ -120,6 +120,13 @@ export const RestaurantForm: React.FC<IProps> = ({
                 value={restaurant.adress}
             />
 
+            <Form.Input
+                name='meals'
+                onChange={handleInputChange}
+                placeholder="Type Of Meals"
+                value={restaurant.meals}
+            />
+
 
 
 
@@ -146,16 +153,6 @@ export const RestaurantForm: React.FC<IProps> = ({
                         {city}
                     </option>
                 })}
-
-            </select>
-            <select value={restaurant.meals} onChange={handleInputChange} name="meals"
-                style={{ marginTop: "1em" }}
-
-            >
-                <option selected disabled value="">Select Package Options</option>
-                <option key="PP" value="Parking, Spa, Gym & Pool"> Parking, Spa, Gym & Pool</option>
-                <option key="SP" value="Parking & Pool"> Parking & Pool</option>
-                <option key="BP" value="Parking">Parking</option>
 
             </select>
             <Button

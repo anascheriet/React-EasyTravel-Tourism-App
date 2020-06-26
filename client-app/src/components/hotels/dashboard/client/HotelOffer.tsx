@@ -55,9 +55,6 @@ const HotelOffer: React.FC<RouteComponentProps<offerId>> = ({
                                     <Item.Content>
                                         <h1><b>{OfferedHotel?.name}</b></h1>
                                         <p>
-                                            <strong>{OfferedHotel?.package} available </strong>
-                                        </p>
-                                        <p>
                                             <strong>${OfferedHotel?.price} per Night</strong>
                                         </p>
                                     </Item.Content>
@@ -90,6 +87,16 @@ const HotelOffer: React.FC<RouteComponentProps<offerId>> = ({
                             </Grid.Column>
                             <Grid.Column width={11}>
                                 <span>{OfferedHotel?.adress}, {OfferedHotel?.city}, {OfferedHotel?.country}</span>
+                            </Grid.Column>
+                        </Grid>
+                    </Segment>
+                    <Segment attached='top'>
+                        <Grid  verticalAlign='middle'>
+                            <Grid.Column width={1}>
+                                <Icon size='large' color='teal' name='plus' />
+                            </Grid.Column>
+                            <Grid.Column width={15}>
+                                <p>{OfferedHotel?.package}</p>
                             </Grid.Column>
                         </Grid>
                     </Segment>

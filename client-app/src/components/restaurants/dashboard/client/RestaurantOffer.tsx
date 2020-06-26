@@ -46,7 +46,7 @@ const RestaurantOffer: React.FC<RouteComponentProps<offerId>> = ({ match }) => {
 
                 <Segment.Group>
                     <Segment basic attached='top' style={{ padding: '0' }}>
-                        <Image src='/assets/placeholder.png'  style={restaurantImageStyle} fluid />
+                        <Image src={`/assets/mealImages/${OfferedRestaurant?.name}.jpg`}  style={restaurantImageStyle} fluid />
                         <Segment basic style={restaurantImageTextStyle} >
                             <Item.Group>
                                 <Item>
@@ -56,7 +56,7 @@ const RestaurantOffer: React.FC<RouteComponentProps<offerId>> = ({ match }) => {
                                             {/* <strong>{OfferedRestaurant?.options} </strong> */}
                                         </p>
                                         <p>
-                                            Cuisine Type: <strong>{OfferedRestaurant?.meals} $</strong>
+                                            Cuisine Type: <strong>{OfferedRestaurant?.meals}</strong>
                                         </p>
                                     </Item.Content>
                                 </Item>
@@ -87,7 +87,7 @@ const RestaurantOffer: React.FC<RouteComponentProps<offerId>> = ({ match }) => {
                                 <Icon name='marker' size='large' color='teal' />
                             </Grid.Column>
                             <Grid.Column width={11}>
-                                <span>{OfferedRestaurant?.city}, {OfferedRestaurant?.country}</span>
+                                <span>{OfferedRestaurant?.adress}, {OfferedRestaurant?.city}, {OfferedRestaurant?.country}</span>
                             </Grid.Column>
                         </Grid>
                     </Segment>
