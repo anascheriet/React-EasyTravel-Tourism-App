@@ -3,11 +3,14 @@ import { observer } from 'mobx-react-lite'
 import { RootStoreContext } from '../../../../app/stores/rootStore';
 import { Grid, Segment, Container, Header, Button, Item, Icon, Input } from 'semantic-ui-react';
 import FlightBooking from '../../form/FlightBooking';
+import { NeedToSigIn } from '../../../../app/layout/needToSigIn';
 
 const FlightListClient = () => {
     const rootStore = useContext(RootStoreContext);
     const { clientFlightsByPrice, flightBookingToAdd } = rootStore.flightStore;
     const { openModal } = rootStore.modalStore;
+    const {user} = rootStore.userStore;
+
 
     const [depDateString, setdepDateString] = useState("");
     const [retDateString, setretDateString] = useState("");
@@ -241,12 +244,15 @@ const FlightListClient = () => {
                  {flight.type ==="Round Trip" &&
                   <div><b>Return Flight:</b> {flight.combinedDestination} at &nbsp; 
                   {flight.returnDepartingTime} <Icon name="long arrow alternate right" color="orange" size="big" /> {flight.combinedDepLocation} at {flight.returnArrivingTime} on {String(flight.returningDate).split("T")[0]}  </div>}
-                  <Button color='orange' 
+                  {user && <Button color='orange' 
                   floated='right'
                   onClick={() => openModal(<FlightBooking />)}>
-            Book
-            <Icon name='chevron right' />
-          </Button>
+                 Book
+                <Icon name='chevron right' />
+                 </Button>}
+                 {user === null &&
+                        <Button color='orange' onClick={() => openModal(<NeedToSigIn/>)}>Book <Icon name='chevron right' /></Button>
+                        }
           {/* {String(flight.returningDate).split("T")[0]} */}
                 </Item.Description>
               </Item.Content>

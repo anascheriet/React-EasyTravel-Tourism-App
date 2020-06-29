@@ -4,6 +4,7 @@ import { RouteComponentProps } from 'react-router-dom';
 import { RootStoreContext } from '../../../../app/stores/rootStore';
 import { Grid, Segment, Image, Item, Button, Icon, Header, Comment, Form } from 'semantic-ui-react';
 import HotelBooking from '../../form/HotelBooking';
+import { NeedToSigIn } from '../../../../app/layout/needToSigIn';
 
 
 const hotelImageTextStyle = {
@@ -26,6 +27,7 @@ const HotelOffer: React.FC<RouteComponentProps<offerId>> = ({
     const rootStore = useContext(RootStoreContext);
     const { loadOfferedHotel, OfferedHotel, hotelBookingToAdd } = rootStore.hotelStore;
     const { openModal } = rootStore.modalStore;
+    const {user} = rootStore.userStore;
 
     
     useEffect(() => {
@@ -63,7 +65,12 @@ const HotelOffer: React.FC<RouteComponentProps<offerId>> = ({
                         </Segment>
                     </Segment>
                     <Segment clearing attached='bottom'>
+                    {user &&
                         <Button color='orange' onClick={() => openModal(<HotelBooking />)}>Book This Offer</Button>
+                    }
+                      {user === null &&
+                        <Button color='orange' onClick={() => openModal(<NeedToSigIn/>)}>Book This Offer</Button>
+                        }
                     </Segment>
                 </Segment.Group>
 

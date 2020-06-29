@@ -7,6 +7,7 @@ import HotelStore from './hotelStore';
 import FlightStore from './flightStore';
 import ActivityStore from './activityStore';
 import RestaurantStore from './restaurantStore';
+import ArticleStore from './articleStore';
 
 export class RootStore {
     carStore: CarStore;
@@ -17,6 +18,7 @@ export class RootStore {
     flightStore: FlightStore;
     activityStore: ActivityStore;
     restaurantStore: RestaurantStore;
+    articleStore: ArticleStore
 
     constructor(){
         this.carStore = new CarStore(this);
@@ -27,6 +29,7 @@ export class RootStore {
         this.flightStore = new FlightStore(this);
         this.activityStore = new ActivityStore(this);
         this.restaurantStore = new RestaurantStore(this);
+        this.articleStore = new ArticleStore(this);
     }
 }
 

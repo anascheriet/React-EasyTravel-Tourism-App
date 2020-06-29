@@ -33,6 +33,7 @@ import ClientRestaurant from "../../components/restaurants/ClientRestaurant";
 import RestaurantDashBoardAdmin from "../../components/restaurants/dashboard/admin/RestaurantDashBoardAdmin";
 import RestaurantOffer from "../../components/restaurants/dashboard/client/RestaurantOffer";
 import ClientRestaurantsBookings from "../../components/restaurants/ClientRestaurantsBookings";
+import AdminArticle from "../../components/articles/AdminArticle";
 
 function App() {
   const rootStore = useContext(RootStoreContext);
@@ -65,29 +66,31 @@ function App() {
               <Switch>
                 <Route exact path="/Login" component={LoginForm} />
 
-                {user?.status === "Client" ? (
-                  <Route exact path="/cars" component={ClientCar} />) : (<Route exact path="/cars" component={AdminCar} />)}
-                  {user?.status === "Client" ? (
-                  <Route exact path="/restaurants" component={ClientRestaurant} />) : (<Route exact path="/restaurants" component={AdminRestaurants} />)}
-                {user?.status === "Client" ? (
-                  <Route exact path="/hotels" component={ClientHotel} />) : (<Route exact path="/hotels" component={AdminHotel} />)}
+                {user?.status === "Admin" ? (
+                  <Route exact path="/cars" component={AdminCar} />) : (<Route exact path="/cars" component={ClientCar} />)}
+                  {user?.status === "Admin" ? (
+                  <Route exact path="/restaurants" component={AdminRestaurants} />) : (<Route exact path="/restaurants" component={ClientRestaurant} />)}
+                {user?.status === "Admin" ? (
+                  <Route exact path="/hotels" component={AdminHotel} />) : (<Route exact path="/hotels" component={ClientHotel} />)}
 
-            
+                {user?.status === "Admin" ? (
+                  <Route exact path="/flights" component={AdminFlight} />) : (<Route exact path="/flights" component={ClientFlight} />)}
 
-                {user?.status === "Client" ? (
-                  <Route exact path="/flights" component={ClientFlight} />) : (<Route exact path="/flights" component={AdminFlight} />)}
-                {user?.status === "Client" ? (
-                  <Route exact path="/activities" component={ClientActivity} />) : (<Route exact path="/flights" component={AdminActivity} />)}
-                {user?.status === "Client" ? (
-                  <Route exact path="/CarBookings" component={ClientCarBooking} />) : (<Route exact path="/CarBookings" component={NotFound} />)}
-                {user?.status === "Client" ? (
-                  <Route exact path="/ActivityBookings" component={ClientActivityBookings} />) : (<Route exact path="/ActivityBookings" component={NotFound} />)}
-                {user?.status === "Client" ? (
-                  <Route exact path="/FlightBookings" component={ClientFlightBooking} />) : (<Route exact path="/FlightBookings" component={NotFound} />)}
-                {user?.status === "Client" ? (
-                  <Route exact path="/HotelBookings" component={ClientHotelBooking} />) : (<Route exact path="/HotelBookings" component={NotFound} />)}
-                  {user?.status === "Client" ? (
-                  <Route exact path="/RestaurantBookings" component={ClientRestaurantsBookings} />) : (<Route exact path="/RestaurantBookings" component={NotFound} />)}
+                {user?.status === "Admin" ? (
+                  <Route exact path="/activities" component={AdminActivity} />) : (<Route exact path="/activities" component={ClientActivity} />)}
+          
+                {user?.status === "Admin" ? (
+                  <Route exact path="/CarBookings" component={NotFound} />) : (<Route exact path="/CarBookings" component={ClientCarBooking} />)}
+                {user?.status === "Admin" ? (
+                  <Route exact path="/ActivityBookings" component={NotFound} />) : (<Route exact path="/ActivityBookings" component={ClientActivityBookings} />)}
+                {user?.status === "Admin" ? (
+                  <Route exact path="/FlightBookings" component={NotFound} />) : (<Route exact path="/FlightBookings" component={ClientFlightBooking} />)}
+                {user?.status === "Admin" ? (
+                  <Route exact path="/HotelBookings" component={NotFound} />) : (<Route exact path="/HotelBookings" component={ClientHotelBooking} />)}
+                  {user?.status === "Admin" ? (
+                  <Route exact path="/RestaurantBookings" component={NotFound} />) : (<Route exact path="/RestaurantBookings" component={ClientRestaurantsBookings} />)}
+                   {user != null ? (
+                  <Route exact path="/Myarticles" component={NotFound} />) : (<Route exact path="/Myarticles" component={AdminArticle} />)}
 
                 <Route path="/cars/:id" component={CarOffer} />
                 <Route path="/hotels/:id" component={HotelOffer} />

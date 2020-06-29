@@ -44,6 +44,7 @@ namespace server_app.App_Logic.Articles
 
                 var article = new Article
                 {
+                    Name = request.Name,
                     Body = request.Body,
                     CreatorId = user != null ? user.Id : request.CreatorId,
                     CreatorName = user != null ? user.UserName : request.CreatorName,

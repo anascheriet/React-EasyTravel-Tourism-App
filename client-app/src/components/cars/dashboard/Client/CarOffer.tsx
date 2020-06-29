@@ -4,6 +4,7 @@ import { observer } from 'mobx-react-lite';
 import { RootStoreContext } from '../../../../app/stores/rootStore';
 import { Grid, Segment, Item, Image, Header, Button, Icon, Comment, Form } from 'semantic-ui-react';
 import CarBooking from '../../form/CarBooking';
+import { NeedToSigIn }  from '../../../../app/layout/needToSigIn';
 
 
 
@@ -25,10 +26,10 @@ const CarOffer: React.FC<RouteComponentProps<offerId>> = ({ match }) => {
     const rootStore = useContext(RootStoreContext);
     const {loadOfferedCar, OfferedCar, carBookingToAdd } = rootStore.carStore;
     const { openModal } = rootStore.modalStore;
+    const {user} = rootStore.userStore;
 
  
     useEffect(() => {
-        
         loadOfferedCar(match.params.id);
     }, [match.params.id,loadOfferedCar])
 
@@ -37,13 +38,7 @@ const CarOffer: React.FC<RouteComponentProps<offerId>> = ({ match }) => {
     return (
         <Grid>
             <Grid.Column width={10}>
-
-
-
                 {/* Car Header */}
-
-
-
                 <Segment.Group>
                     <Segment basic attached='top' style={{ padding: '0' }}>
                         <Image src={`/assets/carImages/${OfferedCar?.name}.jpg`} fluid />
@@ -64,7 +59,12 @@ const CarOffer: React.FC<RouteComponentProps<offerId>> = ({ match }) => {
                         </Segment>
                     </Segment>
                     <Segment clearing attached='bottom'>
+                        {user &&
                         <Button color='orange' onClick={() => openModal(<CarBooking/>)}>Book This Car</Button>
+                        }
+                        {user === null &&
+                        <Button color='orange' onClick={() => openModal(<NeedToSigIn/>)}>Book This Car</Button>
+                        }
                     </Segment>
                 </Segment.Group>
 

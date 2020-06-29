@@ -3,6 +3,7 @@ import { observable, computed, action } from "mobx";
 import agent from "../../components/cars/api/agent";
 import { history } from "../..";
 import { RootStore } from "./rootStore";
+import { useLocation } from "react-router-dom";
 
 export default class UserStore {
 
@@ -46,7 +47,8 @@ export default class UserStore {
             this.user = user;
             this.rootStore.commonStore.setToken(user.token);
             this.rootStore.modalStore.closeModal();
-            history.push('/cars');
+            let location = useLocation();
+            history.push(location.pathname);
         } catch (error) {
             throw error;
         }

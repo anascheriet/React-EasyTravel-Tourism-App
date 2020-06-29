@@ -4,6 +4,7 @@ import { RootStoreContext } from '../../../app/stores/rootStore';
 import { observer } from 'mobx-react-lite';
 import { Grid, Segment, Item, Image, Button, Icon, Header, Comment, Form } from 'semantic-ui-react';
 import ActivityBooking from '../form/ActivityBooking';
+import { NeedToSigIn } from '../../../app/layout/needToSigIn';
 
 const activityImageStyle = {
     filter: 'brightness(50%)'
@@ -28,6 +29,7 @@ const ActivityOffer: React.FC<RouteComponentProps<offerId>> = ({ match }) => {
     const rootStore = useContext(RootStoreContext);
     const { loadOfferedActivity, OfferedActivity, activityBookingToAdd } = rootStore.activityStore;
     const { openModal } = rootStore.modalStore;
+    const {user} = rootStore.userStore;
 
     useEffect(() => {
 
@@ -66,7 +68,11 @@ const ActivityOffer: React.FC<RouteComponentProps<offerId>> = ({ match }) => {
                         </Segment>
                     </Segment>
                     <Segment clearing attached='bottom'>
-                        <Button color='orange' onClick={() => openModal(<ActivityBooking />)}>Book This Activity</Button>
+                        {user &&
+                        <Button color='orange' onClick={() => openModal(<ActivityBooking />)}>Book This Activity</Button>}
+                        {user === null &&
+                        <Button color='orange' onClick={() => openModal(<NeedToSigIn/>)}>Book This Activity</Button>
+                        }
                     </Segment>
                 </Segment.Group>
 

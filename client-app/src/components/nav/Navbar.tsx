@@ -48,6 +48,8 @@ export const Navbar = () => {
               <Dropdown.Menu>
                 <Dropdown.Item as={Link} to={'/profile/username'} text='My profile'
                   icon='user' />
+                  <Dropdown.Item as={Link} to={'Myarticles'} text='My articles'
+                  icon='quote right' />
                 <Dropdown.Item onClick={logout} text='Logout' icon='power' />
 
               </Dropdown.Menu>

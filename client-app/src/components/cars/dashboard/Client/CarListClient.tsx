@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 export const CarListClient = () => {
     const rootStore = useContext(RootStoreContext);
     const { ClientCarsByPrice } = rootStore.carStore;
+    const {user} = rootStore.userStore;
   
     const [citySearchString, setCitySearchString] = useState('');
   

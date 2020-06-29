@@ -30,6 +30,7 @@ namespace server_app.App_Logic.Articles
                 if (article == null)
                     throw new RestException(HttpStatusCode.NotFound, new { article = "article Not Found" });
 
+                article.Name = request.Name ?? article.Name;
                 article.Body = request.Body ?? article.Body;
 
 

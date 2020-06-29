@@ -7,6 +7,7 @@ import { IHotel, IHotelBooking } from "../../../app/models/Hotel";
 import { IFlight, IFlightBooking } from "../../../app/models/Flight";
 import { IActivity, IActivityBooking } from "../../../app/models/Activity";
 import { IRestaurant, IRestaurantBooking } from "../../../app/models/Restaurant";
+import { IArticle } from "../../../app/models/Article";
 
 axios.defaults.baseURL = 'http://localhost:5000';
 
@@ -107,6 +108,15 @@ const Activities = {
     deleteBooking: (id: number) => requests.del(`/activitybooking/${id}`),
 }
 
+const Articles = {
+    list: (): Promise<IArticle[]> => requests.get('/article'),
+    creatorArticles: (name: string | undefined): Promise<IArticle[]> => requests.get(`article/creatorArticles/${name}`),
+    details: (id: string) => requests.get(`/article/${id}`),
+    create: (article: IArticle) => requests.post('/article', article),
+    update: (article: IArticle) => requests.put(`/article/${article.id}`, article),
+    delete: (id: string) => requests.del(`/article/${id}`),
+}
+
 const User = {
     listadmins: (): Promise<IUserFormValues[]> => requests.get('users/admins'),
     listsudoadmins: (): Promise<IUserFormValues[]> => requests.get('users/sudoadmins'),
@@ -121,5 +131,6 @@ export default {
     Hotels,
     Flights,
     Activities,
-    Restaurants
+    Restaurants,
+    Articles
 }

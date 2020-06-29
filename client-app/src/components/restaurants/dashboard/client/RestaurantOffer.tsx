@@ -4,6 +4,7 @@ import { RouteComponentProps } from 'react-router-dom';
 import { RootStoreContext } from '../../../../app/stores/rootStore';
 import { Image, Item, Segment, Button, Grid, Icon, Header, Comment, Form } from 'semantic-ui-react';
 import RestaurantBooking from '../../form/RestaurantBooking';
+import { NeedToSigIn } from '../../../../app/layout/needToSigIn';
 
 const restaurantImageStyle = {
     filter: 'brightness(50%)'
@@ -28,6 +29,7 @@ const RestaurantOffer: React.FC<RouteComponentProps<offerId>> = ({ match }) => {
     const rootStore = useContext(RootStoreContext);
     const { loadOfferedRestaurant, OfferedRestaurant, restaurantBookingToAdd } = rootStore.restaurantStore;
     const { openModal } = rootStore.modalStore;
+    const {user} = rootStore.userStore;
 
     useEffect(() => {
 
@@ -64,7 +66,10 @@ const RestaurantOffer: React.FC<RouteComponentProps<offerId>> = ({ match }) => {
                         </Segment>
                     </Segment>
                     <Segment clearing attached='bottom'>
-                        <Button color='orange' onClick={() => openModal(<RestaurantBooking />)}>Book This Restaurant</Button>
+                        {user &&<Button color='orange' onClick={() => openModal(<RestaurantBooking />)}>Book This Restaurant</Button>}
+                        {user === null &&
+                        <Button color='orange' onClick={() => openModal(<NeedToSigIn/>)}>Book This Restaurant</Button>
+                        }
                     </Segment>
                 </Segment.Group>
 
