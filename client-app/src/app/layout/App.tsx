@@ -34,6 +34,8 @@ import RestaurantDashBoardAdmin from "../../components/restaurants/dashboard/adm
 import RestaurantOffer from "../../components/restaurants/dashboard/client/RestaurantOffer";
 import ClientRestaurantsBookings from "../../components/restaurants/ClientRestaurantsBookings";
 import AdminArticle from "../../components/articles/AdminArticle";
+import HomePage from "../../components/Home/HomePage";
+import FullArticle from "../../components/articles/client/FullArticle";
 
 function App() {
   const rootStore = useContext(RootStoreContext);
@@ -89,16 +91,19 @@ function App() {
                   <Route exact path="/HotelBookings" component={NotFound} />) : (<Route exact path="/HotelBookings" component={ClientHotelBooking} />)}
                   {user?.status === "Admin" ? (
                   <Route exact path="/RestaurantBookings" component={NotFound} />) : (<Route exact path="/RestaurantBookings" component={ClientRestaurantsBookings} />)}
+                   
                    {user != null ? (
-                  <Route exact path="/Myarticles" component={NotFound} />) : (<Route exact path="/Myarticles" component={AdminArticle} />)}
+                  <Route exact path="/Myarticles" component={AdminArticle} />) : (<Route exact path="/Myarticles" component={NotFound} />)}
 
                 <Route path="/cars/:id" component={CarOffer} />
                 <Route path="/hotels/:id" component={HotelOffer} />
                 <Route path="/activities/:id" component={ActivityOffer} />
                 <Route path="/restaurants/:id" component={RestaurantOffer} />
+                <Route path="/articles/:id" component={FullArticle} />
 
 
                 <Route exact path="/admins" component={Admins} />
+                <Route exact path="/Home" component={HomePage} />
                 <Route component={NotFound} />
               </Switch>
             </Container>

@@ -1,11 +1,14 @@
 import React, { useContext } from "react";
-import { Menu, Container, Dropdown, Image, Icon } from "semantic-ui-react";
+import { Menu, Container, Dropdown, Image, Icon, Button, MenuItem } from "semantic-ui-react";
 import { NavLink, Link } from "react-router-dom";
 import { RootStoreContext } from "../../app/stores/rootStore";
+import { LoginForm } from "../users/LoginForm";
+import RegisterForm from "../users/RegisterForm";
 
 export const Navbar = () => {
   const rootStore = useContext(RootStoreContext);
   const { user, logout } = rootStore.userStore;
+  const { openModal } = rootStore.modalStore;
   return (
     <Menu fixed="top" inverted>
       <Container>
@@ -41,6 +44,13 @@ export const Navbar = () => {
                 }
                  {user !== null && user!.status === "SudoAdmin" &&
           <Menu.Item icon='user' as={NavLink} exact to='/admins' name="Admins" />}
+
+        {user === null && 
+        <Menu.Menu position='right'>
+        <Menu.Item content="Log In" onClick={() => openModal(<LoginForm />)} />
+        <Menu.Item content="Sign Up" onClick={() => openModal(<RegisterForm />)} />
+        </Menu.Menu>
+        }
         {user! &&
           <Menu.Item position='right'>
             <Image avatar spaced='right' src='assets/user.png' />

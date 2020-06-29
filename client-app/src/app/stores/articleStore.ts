@@ -14,6 +14,7 @@ export default class ArticleStore {
     @observable adminArticleList: IArticle[] = [];
     @observable allArticleList: IArticle[] = [];
     @observable selectedArticle: IArticle | undefined | null;
+    @observable FullArticle: IArticle | undefined = undefined;
     @observable loadingInitial = false;
     @observable editMode = false;
     @observable submitting = false;
@@ -49,6 +50,21 @@ export default class ArticleStore {
             this.loadingInitial = false;
         }
     };
+
+    @action loadFullCar = async (id: string) => {
+        let article = this.allArticleList.find(x => x.id === id);
+        if (article) {
+          this.FullArticle = article;
+        }
+        else
+          try {
+            article = await agent.Articles.details(id);
+            this.FullArticle = article;
+          } catch (error) {
+            console.log(error);
+          }
+    
+      }
 
     @action emptyAdminArticles = () => {
         this.adminArticleList = [];

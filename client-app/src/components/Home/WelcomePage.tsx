@@ -35,7 +35,7 @@ const WelcomePage = () => {
                             <Button onClick={() => openModal(<RegisterForm />)} size='huge' inverted>
                                 Sign Up
                             </Button>
-                            <Button as={Link} to='' size='huge' inverted>
+                            <Button as={Link} to='/Home' size='huge' inverted>
                                 Take a tour
                             </Button>
 
