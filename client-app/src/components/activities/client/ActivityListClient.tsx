@@ -155,7 +155,7 @@ export const ActivityListClient = () => {
                 </Item.Extra>}
                   <Item.Meta>{activity.price}$</Item.Meta>
                   <Item.Meta>
-                    <Icon name="marker"/>
+                    <Icon name="marker" color='teal'/>
                     {activity.city}, {activity.country}
                   </Item.Meta>
                   <Item.Description>

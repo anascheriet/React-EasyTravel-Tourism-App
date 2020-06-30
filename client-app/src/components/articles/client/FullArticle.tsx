@@ -27,12 +27,13 @@ const FullArticle: React.FC<RouteComponentProps<offerId>>= ({
             {/* Car Header */}
             <Segment.Group>
                 <Segment basic attached='top' style={{ padding: '0' }}>
-                    <Image src='/assets/placeholder.png' fluid />
+                <Image src={`/assets/articleImages/${FullArticle?.name}.jpg`} fluid/>
                     <Segment basic >
                         <Item.Group>
                             <Item>
                                 <Item.Content>
                                     <h1><b>{FullArticle?.name}</b></h1>
+                                    By: {FullArticle?.creatorName}
                                 </Item.Content>
                             </Item>
                         </Item.Group>
@@ -85,7 +86,7 @@ const FullArticle: React.FC<RouteComponentProps<offerId>>= ({
                                 <Comment.Metadata>
                                     <div>Today at 5:42PM</div>
                                 </Comment.Metadata>
-                                <Comment.Text>Great Car!</Comment.Text>
+                                <Comment.Text>Great Article !</Comment.Text>
                                 <Comment.Actions>
                                     <Comment.Action>Reply</Comment.Action>
                                 </Comment.Actions>
@@ -99,7 +100,7 @@ const FullArticle: React.FC<RouteComponentProps<offerId>>= ({
                                 <Comment.Metadata>
                                     <div>5 days ago</div>
                                 </Comment.Metadata>
-                                <Comment.Text>I wish i had this car it's so awesome</Comment.Text>
+                                <Comment.Text>Very Useful information !</Comment.Text>
                                 <Comment.Actions>
                                     <Comment.Action>Reply</Comment.Action>
                                 </Comment.Actions>

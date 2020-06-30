@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react'
 import { observer } from 'mobx-react-lite'
 import { RootStoreContext } from '../../../../app/stores/rootStore'
-import { Segment, Container, Header, Icon, Button, Grid, Input, Item, Label } from 'semantic-ui-react';
+import { Segment, Container, Header, Icon, Button, Grid, Input, Item, Label, Image } from 'semantic-ui-react';
 
 const HotelListAdmin: React.FC = () => {
 
@@ -139,7 +139,7 @@ const HotelListAdmin: React.FC = () => {
       <Item.Group divided>
         {hotelsFiltered.map((hotel) => (
           <Item key={hotel.id}>
-            <Item.Image src="/assets/placeholder.png" size='medium' />
+            <Image fluid src={`/assets/HotelImages/${hotel!.name}.jpg`} wrapped ui={false} size="medium" />
             <Item.Content>
               <Item.Header as="a">{hotel.name}</Item.Header>
               <Item.Meta>{hotel.price}$ per day</Item.Meta>

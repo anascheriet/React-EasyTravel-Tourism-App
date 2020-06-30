@@ -7,6 +7,9 @@ import CarBooking from '../../form/CarBooking';
 import { NeedToSigIn }  from '../../../../app/layout/needToSigIn';
 
 
+const carImageStyle = {
+    filter: 'brightness(50%)'
+}
 
 const carImageTextStyle = {
     position: 'absolute',
@@ -14,7 +17,7 @@ const carImageTextStyle = {
     left: '5%',
     width: '100%',
     height: 'auto',
-    color: 'black'
+    color: 'white'
 };
 
 
@@ -41,7 +44,7 @@ const CarOffer: React.FC<RouteComponentProps<offerId>> = ({ match }) => {
                 {/* Car Header */}
                 <Segment.Group>
                     <Segment basic attached='top' style={{ padding: '0' }}>
-                        <Image src={`/assets/carImages/${OfferedCar?.name}.jpg`} fluid />
+                        <Image src={`/assets/carImages/${OfferedCar?.name}.jpg`} style={carImageStyle} fluid />
                         <Segment basic style={carImageTextStyle}>
                             <Item.Group>
                                 <Item>

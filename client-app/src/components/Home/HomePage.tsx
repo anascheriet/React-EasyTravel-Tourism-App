@@ -27,6 +27,58 @@ const HomePage = () => {
         <Grid>
              <Grid.Column width={16}>
 
+
+
+                 {/* Restaurants */}
+        <Segment clearing> 
+        <Container clearing  >
+        <Button floated="right" as={Link} to={'restaurants/'} color="orange" >
+            Discover More <Icon name="chevron right" />
+        </Button>    
+        <Header as='h2' dividing floated="left">
+            <Icon name='food' />
+            <Header.Content>
+              Restaurants
+  
+            <Header.Subheader>
+               Discover a Wonderful Mix of Cuisines !
+               
+                    </Header.Subheader>
+            </Header.Content>
+          </Header>
+           
+        </Container>
+        <Container style={{marginTop:"5em"}}>
+            <Card.Group>
+        {clientRestaurantList.slice(0,3).map((resto) => {
+                        return (
+                            <Card>
+                                <img style={{height:"200px"}} src={`/assets/mealImages/${resto?.name}.jpg`} />
+                                <Card.Content>
+                                    <Card.Header>{resto.name}</Card.Header>
+                                    <Card.Meta>
+                                        {resto.meals}
+                                    </Card.Meta>
+                                    <Card.Description>
+                                        {resto.description}
+                                    </Card.Description>
+                                </Card.Content>
+                                <Card.Content extra>
+        <Button content="View" icon='eye' fluid as={Link} to={`/restaurants/${resto.id}`} />
+      </Card.Content>
+                            </Card>
+                        )
+                    })}
+                    </Card.Group>
+        </Container>
+                    
+                </Segment>
+
+
+
+
+                 {/* activities */}
+
              <Segment clearing> 
         <Container clearing  >
         <Button floated="right" as={Link} to={'activities/'} color="orange" >
@@ -50,7 +102,7 @@ const HomePage = () => {
         {ClientActivitiesByPrice.slice(0,3).map((activity) => {
                         return (
                             <Card>
-                                <Image fluid src={`/assets/activityImages/${activity?.name}.jpg`} wrapped ui={false} />
+                                 <img style={{height:"200px"}} src={`/assets/activityImages/${activity?.name}.jpg`} />
                                 <Card.Content>
                                     <Card.Header>{activity.name}</Card.Header>
                                     <Card.Meta>
@@ -98,12 +150,15 @@ const HomePage = () => {
         {clientHotelsByPrice.slice(0,3).map((hotel) => {
                         return (
                             <Card>
-                                <Image fluid src="/assets/placeholder.png" wrapped ui={false} />
+                                 <img style={{height:"200px"}} src={`/assets/hotelImages/${hotel?.name}.jpg`} />
                                 <Card.Content>
                                     <Card.Header>{hotel.name}</Card.Header>
                                     <Card.Meta>
                                         ${hotel.price}
                                     </Card.Meta>
+                                    <Card.Description>
+                                        {hotel.city}, {hotel.country}
+                                    </Card.Description>
                                     <Card.Description>
                                         {hotel.description}
                                     </Card.Description>
@@ -122,51 +177,7 @@ const HomePage = () => {
 
 
 
-                 {/* Cars */}
-        <Segment clearing> 
-        <Container clearing  >
-        <Button floated="right" as={Link} to={'restaurants/'} color="orange" >
-            Discover More <Icon name="chevron right" />
-        </Button>    
-        <Header as='h2' dividing floated="left">
-            <Icon name='food' />
-            <Header.Content>
-              Restaurants
-  
-            <Header.Subheader>
-               Discover a Wonderful Mix of Cuisines !
-               
-                    </Header.Subheader>
-            </Header.Content>
-          </Header>
-           
-        </Container>
-        <Container style={{marginTop:"5em"}}>
-            <Card.Group>
-        {clientRestaurantList.slice(0,3).map((resto) => {
-                        return (
-                            <Card>
-                                <Image fluid src={`/assets/mealImages/${resto?.name}.jpg`} wrapped ui={false} />
-                                <Card.Content>
-                                    <Card.Header>{resto.name}</Card.Header>
-                                    <Card.Meta>
-                                        ${resto.meals}
-                                    </Card.Meta>
-                                    <Card.Description>
-                                        {resto.description}
-                                    </Card.Description>
-                                </Card.Content>
-                                <Card.Content extra>
-        <Button content="View" icon='eye' fluid as={Link} to={`/restaurants/${resto.id}`} />
-      </Card.Content>
-                            </Card>
-                        )
-                    })}
-                    </Card.Group>
-        </Container>
-                    
-                </Segment>
-
+              
 
 
                    {/* Articles */}
@@ -189,11 +200,11 @@ const HomePage = () => {
         {allArticleList.slice(0,3).map((article) => {
                         return (
                             <Card>
-                                <Image fluid src="/assets/placeholder.png" wrapped ui={false} />
+                                <img style={{height:"200px"}} src={`/assets/articleImages/${article?.name}.jpg`} />
                                 <Card.Content>
                                     <Card.Header>{article.name}</Card.Header>
                                     <Card.Meta>
-                                        ${article.body.slice(0,100)}...
+                                        {article.body.slice(0,100)}...
                                     </Card.Meta>
                                 </Card.Content>
                                 <Card.Content extra>

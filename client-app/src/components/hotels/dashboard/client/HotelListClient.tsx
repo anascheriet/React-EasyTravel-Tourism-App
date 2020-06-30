@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react'
 import { observer } from 'mobx-react-lite'
 import { RootStoreContext } from '../../../../app/stores/rootStore';
-import { Segment, Container, Header, Icon, Grid, Input, Item, Button, Label } from 'semantic-ui-react';
+import { Segment, Container, Header, Icon, Grid, Input, Item, Button, Label, Image } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
 const HotelListClient = () => {
@@ -148,7 +148,7 @@ const HotelListClient = () => {
         <Item.Group divided>
           {hotelsFiltered.map((hotel) => (
             <Item key={hotel.id}>
-              <Item.Image size='small' src='/assets/placeholder.png' />
+              <Image fluid src={`/assets/HotelImages/${hotel?.name}.jpg`} wrapped ui={false} />
               <Item.Content>
               <Item.Header as="a">{hotel.name}</Item.Header>
               {user?.status==="SudoAdmin" &&<Item.Extra>

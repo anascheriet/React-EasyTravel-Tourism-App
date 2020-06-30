@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react'
 import { observer } from 'mobx-react-lite'
 import { RootStoreContext } from '../../../app/stores/rootStore';
-import { Segment, Container, Header, Icon, Button, Grid, Input, Item } from 'semantic-ui-react';
+import { Segment, Container, Header, Icon, Button, Grid, Input, Item, Image } from 'semantic-ui-react';
 
 const ArticleListAdmin: React.FC = () => {
     const rootStore = useContext(RootStoreContext);
@@ -73,6 +73,7 @@ const ArticleListAdmin: React.FC = () => {
         <Item.Group divided>
           {articlesFiltered.map((article) => (
             <Item key={article.id}>
+              <Image fluid src={`/assets/articleImages/${article!.name}.jpg`} wrapped ui={false} size="medium" />
               <Item.Content>
                 <Item.Header as="a">{article.name}</Item.Header>
                 <Item.Meta>

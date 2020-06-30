@@ -99,13 +99,23 @@ const ActivityOffer: React.FC<RouteComponentProps<offerId>> = ({ match }) => {
                             </Grid.Column>
                         </Grid>
                     </Segment>
-                    <Segment attached='top'>
+                    <Segment attached>
                         <Grid  verticalAlign='middle'>
                             <Grid.Column width={1}>
                                 <Icon size='large' color='teal' name='clock' />
                             </Grid.Column>
                             <Grid.Column width={15}>
                                 <p>{OfferedActivity?.duration}</p>
+                            </Grid.Column>
+                        </Grid>
+                    </Segment>
+                    <Segment attached>
+                        <Grid verticalAlign='middle'>
+                            <Grid.Column width={1}>
+                                <Icon name='gift' size='large' color='teal' />
+                            </Grid.Column>
+                            <Grid.Column width={11}>
+                                <span>{OfferedActivity?.package}</span>
                             </Grid.Column>
                         </Grid>
                     </Segment>

@@ -12,19 +12,21 @@ export const Navbar = () => {
   return (
     <Menu fixed="top" inverted>
       <Container>
-        <Menu.Item header as={NavLink} exact to='/'>
+        <Menu.Item header as={NavLink} exact to='/Home'>
+          <img src="/assets/logo.png" alt='logo' style={{marginRight: '10px'}} />
           Easy Travel
         </Menu.Item>
 
 
         <Menu.Item icon='hotel' as={NavLink} exact to='/hotels' name="Hotels" />
         <Menu.Item icon='plane' as={NavLink} exact to='/flights' name="Flight Tickets" />
-        <Menu.Item icon='car' as={NavLink} exact to='/cars' name="Cars" />
+       
        
 
         <Menu.Item icon='food' as={NavLink} exact to='/restaurants' name="Restaurants" />
 
         <Menu.Item icon='ticket' as={NavLink} exact to='/activities' name="Activities" />
+        <Menu.Item icon='car' as={NavLink} exact to='/cars' name="Cars" />
 
         {user?.status === "Client" &&
         <Menu.Item position='right'>

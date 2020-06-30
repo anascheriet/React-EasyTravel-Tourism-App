@@ -9,7 +9,7 @@ const HotelDetailsAdmin: React.FC = () => {
     return (
         <Card fluid>
             {/* <Image src={`/assets/carImages/${selectedHotel!.name}.jpg`} fluid /> */}
-            <Image src='/assets/placeholder.png' fluid />
+            <Image fluid src={`/assets/HotelImages/${selectedHotel!.name}.jpg`} wrapped ui={false} />
             <Card.Content>
                 <Card.Header>{selectedHotel!.name}</Card.Header>
                 <Card.Meta>

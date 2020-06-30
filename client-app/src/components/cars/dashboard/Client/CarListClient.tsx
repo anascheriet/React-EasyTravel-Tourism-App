@@ -156,7 +156,7 @@ export const CarListClient = () => {
                 </Item.Extra>}
                 <Item.Meta>{car.price}$</Item.Meta>
                 <Item.Meta>
-                  <Icon name="marker"/>
+                  <Icon name="marker" color='teal'/>
                   {car.city}, {car.country}
                 </Item.Meta>
                 <Item.Description>
