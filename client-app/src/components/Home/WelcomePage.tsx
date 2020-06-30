@@ -21,7 +21,7 @@ const WelcomePage = () => {
 
                         </Header>
                         <Button as={Link} to='/Home' size='huge' inverted>
-                            Go to Cars
+                            Go to HomePage
                         </Button>
                     </Fragment>
                 ) : (
@@ -30,7 +30,7 @@ const WelcomePage = () => {
                                 <Image suze="massive" src='/assets/logo.png' alt='logo' style={{marginBottom: 12}}/>
                                 Easy Travel
                             </Header>
-                            <Header as='h2' inverted content='Easily Discover the World !'>
+                            <Header as='h2' inverted content='Travel The World From Your Screen !'>
 
                             </Header>
                             <Button onClick={() => openModal(<LoginForm />)} size='huge' inverted>
