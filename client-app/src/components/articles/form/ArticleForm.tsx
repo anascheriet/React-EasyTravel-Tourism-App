@@ -24,7 +24,7 @@ const ArticleForm: React.FC<IProps> = ({
                 id: "",
                 name: "",
                 body: "",
-                CreatorName: ""
+                creatorName: ""
             };
         }
     };

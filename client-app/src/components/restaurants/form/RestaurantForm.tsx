@@ -28,7 +28,7 @@ export const RestaurantForm: React.FC<IProps> = ({
                 options: "",
                 country: "",
                 city: "",
-                CreatorName: "",
+                creatorName: "",
                 adress: "",
                 phoneNumber: "",
             };
@@ -84,7 +84,7 @@ export const RestaurantForm: React.FC<IProps> = ({
     }
 
 
-    restaurant!.CreatorName = user?.displayName;
+    restaurant!.creatorName = user?.displayName;
 
 
     return (

@@ -37,7 +37,7 @@ export const CarForm: React.FC<IProps> = ({
         options: "",
         country: "",
         city: "",
-        CreatorName: ""
+        creatorName: ""
       };
     }
   };

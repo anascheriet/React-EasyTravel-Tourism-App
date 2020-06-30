@@ -18,7 +18,7 @@ export interface IFlight {
     returnDepartingTime: string;
     returningDate: Date | undefined;
     
-    CreatorName: string | undefined;
+    creatorName: string | undefined;
 
     combinedDepLocation?: string;
     combinedDestination?: string

@@ -7,12 +7,15 @@ import { Link } from 'react-router-dom';
 const RestaurantListClient = () => {
     const rootStore = useContext(RootStoreContext);
     const { clientRestaurantList } = rootStore.restaurantStore;
+    const {user} = rootStore.userStore;
 
     const [citySearchString, setCitySearchString] = useState('');
 
     const [countrySearchString, setCountrySearchString] = useState("");
 
     const [nameSearchString, setNameSearchString] = useState("");
+
+    const [adminNameSearchString, setAdminNameSearchString] = useState("");
 
     const handleCountryFilterChange = (event: any) => {
         setCountrySearchString(event.target.value);
@@ -27,51 +30,95 @@ const RestaurantListClient = () => {
         setNameSearchString(event.target.value);
     }
 
+    const handleAdminNameFilterChange = (event: any) => {
+      setAdminNameSearchString(event.target.value);
+    }
+
     var restaurantsFiltered = clientRestaurantList;
 
-
-    if (citySearchString.length > 0 && countrySearchString.length > 0 && nameSearchString.length > 0) {
-        restaurantsFiltered = restaurantsFiltered.filter((x) => {
-            return x.city.toLowerCase().match(citySearchString) && x.country.toLowerCase().match(countrySearchString)
-                && x.name.toLowerCase().match(nameSearchString);
-        });
+    if (citySearchString.length > 0 && countrySearchString.length > 0 && nameSearchString.length > 0 && adminNameSearchString.length > 0) {
+      restaurantsFiltered = restaurantsFiltered.filter((x) => {
+        return x.city.toLowerCase().match(citySearchString) && x.country.toLowerCase().match(countrySearchString)
+          && x.name.toLowerCase().match(nameSearchString) && x.creatorName!.toLowerCase().match(adminNameSearchString);
+      });
     }
-    else if (citySearchString.length > 0 && countrySearchString.length > 0 && nameSearchString.length === 0) {
-        restaurantsFiltered = restaurantsFiltered.filter((x) => {
-            return x.city.toLowerCase().match(citySearchString) && x.country.toLowerCase().match(countrySearchString);
-        });
+    else if (citySearchString.length > 0 && countrySearchString.length > 0 && adminNameSearchString.length > 0 && nameSearchString.length === 0) {
+      restaurantsFiltered = restaurantsFiltered.filter((x) => {
+        return x.city.toLowerCase().match(citySearchString) && x.country.toLowerCase().match(countrySearchString) && x.creatorName!.toLowerCase().match(adminNameSearchString);
+      });
     }
-    else if (citySearchString.length > 0 && countrySearchString.length === 0 && nameSearchString.length > 0) {
-        restaurantsFiltered = restaurantsFiltered.filter((x) => {
-            return x.city.toLowerCase().match(citySearchString) && x.name.toLowerCase().match(nameSearchString);
-        });
+    else if (citySearchString.length > 0 && countrySearchString.length === 0 && adminNameSearchString.length > 0 && nameSearchString.length > 0) {
+      restaurantsFiltered = restaurantsFiltered.filter((x) => {
+        return x.city.toLowerCase().match(citySearchString) && x.name.toLowerCase().match(nameSearchString) && x.creatorName!.toLowerCase().match(adminNameSearchString);
+      });
     }
-    else if (citySearchString.length === 0 && countrySearchString.length > 0 && nameSearchString.length > 0) {
-        restaurantsFiltered = restaurantsFiltered.filter((x) => {
-            return x.name.toLowerCase().match(nameSearchString) && x.country.toLowerCase().match(countrySearchString);
-        });
+    else if (citySearchString.length === 0 && countrySearchString.length > 0 && nameSearchString.length > 0 && adminNameSearchString.length > 0) {
+      restaurantsFiltered = restaurantsFiltered.filter((x) => {
+        return x.name.toLowerCase().match(nameSearchString) && x.country.toLowerCase().match(countrySearchString) && x.creatorName!.toLowerCase().match(adminNameSearchString);
+      });
     }
-    else if (citySearchString.length > 0 && countrySearchString.length === 0 && nameSearchString.length === 0) {
-        restaurantsFiltered = restaurantsFiltered.filter((x) => {
-            return x.city.toLowerCase().match(citySearchString);
-        });
+    else if (citySearchString.length > 0 && countrySearchString.length > 0 && nameSearchString.length > 0 && adminNameSearchString.length === 0) {
+      restaurantsFiltered = restaurantsFiltered.filter((x) => {
+        return x.city.toLowerCase().match(citySearchString) && x.name.toLowerCase().match(nameSearchString) && x.country.toLowerCase().match(countrySearchString) 
+      });
     }
-    else if (citySearchString.length === 0 && countrySearchString.length > 0 && nameSearchString.length === 0) {
-        restaurantsFiltered = restaurantsFiltered.filter((x) => {
-            return x.country.toLowerCase().match(countrySearchString);
-        });
+    else if (citySearchString.length > 0 && countrySearchString.length > 0 && nameSearchString.length === 0 && adminNameSearchString.length === 0) {
+      restaurantsFiltered = restaurantsFiltered.filter((x) => {
+        return x.city.toLowerCase().match(citySearchString) && x.country.toLowerCase().match(countrySearchString)
+      });
     }
-    else if (citySearchString.length === 0 && countrySearchString.length === 0 && nameSearchString.length > 0) {
-        restaurantsFiltered = restaurantsFiltered.filter((x) => {
-            return x.name.toLowerCase().match(nameSearchString);
-        });
+    else if (citySearchString.length > 0 && countrySearchString.length === 0 && nameSearchString.length > 0 && adminNameSearchString.length === 0) {
+      restaurantsFiltered = restaurantsFiltered.filter((x) => {
+        return x.city.toLowerCase().match(citySearchString) && x.name.toLowerCase().match(nameSearchString)
+      });
+    }
+    else if (citySearchString.length > 0 && countrySearchString.length === 0 && nameSearchString.length === 0 && adminNameSearchString.length > 0) {
+      restaurantsFiltered = restaurantsFiltered.filter((x) => {
+        return x.city.toLowerCase().match(citySearchString) && x.creatorName!.toLowerCase().match(adminNameSearchString)
+      });
+    }
+    else if (citySearchString.length === 0 && countrySearchString.length > 0 && nameSearchString.length > 0 && adminNameSearchString.length === 0) {
+      restaurantsFiltered = restaurantsFiltered.filter((x) => {
+        return x.country.toLowerCase().match(countrySearchString) && x.name.toLowerCase().match(nameSearchString)
+      });
+    }
+    else if (citySearchString.length === 0 && countrySearchString.length > 0 && nameSearchString.length === 0 && adminNameSearchString.length > 0) {
+      restaurantsFiltered = restaurantsFiltered.filter((x) => {
+        return x.country.toLowerCase().match(countrySearchString) && x.creatorName!.toLowerCase().match(adminNameSearchString)
+      });
+    }
+    else if (citySearchString.length === 0 && countrySearchString.length === 0 && nameSearchString.length > 0 && adminNameSearchString.length > 0) {
+      restaurantsFiltered = restaurantsFiltered.filter((x) => {
+        return x.name.toLowerCase().match(nameSearchString) && x.creatorName!.toLowerCase().match(adminNameSearchString)
+      });
+    }
+    else if (citySearchString.length > 0 && countrySearchString.length === 0 && nameSearchString.length === 0 &&adminNameSearchString.length === 0) {
+      restaurantsFiltered = restaurantsFiltered.filter((x) => {
+        return x.city.toLowerCase().match(citySearchString);
+      });
+    }
+    else if (citySearchString.length === 0 && countrySearchString.length > 0 && nameSearchString.length === 0 &&adminNameSearchString.length === 0) {
+      restaurantsFiltered = restaurantsFiltered.filter((x) => {
+        return x.country.toLowerCase().match(countrySearchString);
+      });
+    }
+    else if (citySearchString.length === 0 && countrySearchString.length === 0 && nameSearchString.length > 0 &&adminNameSearchString.length === 0) {
+      restaurantsFiltered = restaurantsFiltered.filter((x) => {
+        return x.name.toLowerCase().match(nameSearchString);
+      });
+    }
+    else if (citySearchString.length === 0 && countrySearchString.length === 0 && nameSearchString.length === 0 &&adminNameSearchString.length > 0) {
+      restaurantsFiltered = restaurantsFiltered.filter((x) => {
+        return x.creatorName!.toLowerCase().match(adminNameSearchString);
+      });
     }
 
     useEffect(() => {
         setCitySearchString(citySearchString.trim().toLowerCase());
         setCountrySearchString(countrySearchString.trim().toLowerCase());
-        setNameSearchString(nameSearchString.trim().toLowerCase());
-      }, [citySearchString, countrySearchString, nameSearchString])
+        setNameSearchString(nameSearchString.toLowerCase());
+        setAdminNameSearchString(adminNameSearchString.toLowerCase());
+      }, [citySearchString, countrySearchString, nameSearchString,adminNameSearchString])
 
 
     return (
@@ -103,6 +150,9 @@ const RestaurantListClient = () => {
               <Item.Image size='small' src={`/assets/mealImages/${restaurant?.name}.jpg`} />
               <Item.Content>
               <Item.Header as="a">{restaurant.name}</Item.Header>
+              {user?.status==="SudoAdmin" &&<Item.Extra>
+                <Label color="teal"> Created By: {restaurant.creatorName!}</Label>
+                </Item.Extra>}
               <Item.Meta>{restaurant.meals}</Item.Meta>
               <Item.Meta>
                   <Icon color='teal' name="marker"/>
@@ -163,7 +213,14 @@ const RestaurantListClient = () => {
               <Input type="text" icon="search" fluid
                 value={nameSearchString}
                 onChange={handleNameFilterChange}
-                placeholder="Filter by number of rooms..." />
+                placeholder="Filter Name..." />
+            <br/>
+              {user?.status==="SudoAdmin" &&
+                <Input type="text" icon="search" fluid
+                value={adminNameSearchString}
+                onChange={handleAdminNameFilterChange}
+                placeholder="Filter By Admin..." />
+              }
             
         </Container>
         </Segment>

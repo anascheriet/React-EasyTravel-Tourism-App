@@ -30,7 +30,7 @@ export const HotelForm: React.FC<IProps> = ({
                 options: "",
                 country: "",
                 city: "",
-                CreatorName: "",
+                creatorName: "",
                 adress: "",
                 package: "",
             };
@@ -86,7 +86,7 @@ export const HotelForm: React.FC<IProps> = ({
     }
 
 
-    hotel!.CreatorName = user?.displayName;
+    hotel!.creatorName = user?.displayName;
 
     return (
         <Segment clearing >
@@ -176,7 +176,7 @@ export const HotelForm: React.FC<IProps> = ({
                     floated="right"
                     positive
                     type="submit"
-                    onClick={(() => console.log(hotel.CreatorName, hotel.package))}
+                    onClick={(() => console.log(hotel.creatorName, hotel.package))}
                     content="Submit" />
                 <Button
                     style={{ marginTop: "0.7em" }}

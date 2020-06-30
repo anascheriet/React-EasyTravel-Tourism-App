@@ -8,7 +8,7 @@ export interface IHotel {
     people: string;
     country: string;
     city: string;
-    CreatorName: string | undefined;
+    creatorName: string | undefined;
     package: string
 }
 

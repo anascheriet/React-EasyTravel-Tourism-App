@@ -19,7 +19,7 @@ const AdminsList: React.FC = () => {
                     <Header.Content>
                         Admins List
                   <Header.Subheader>
-                            Manage The Application Admins
+                            See The Application Admins
                   </Header.Subheader>
                     </Header.Content>
                 </Header>
@@ -27,11 +27,10 @@ const AdminsList: React.FC = () => {
                 <Header as='h3' dividing>
                     
   </Header>
-                <Table compact celled definition>
+                <Table compact celled >
                     <Table.Header>
 
                         <Table.Row>
-                            <Table.HeaderCell />
                             <Table.HeaderCell>Display Name</Table.HeaderCell>
                             <Table.HeaderCell>E-mail</Table.HeaderCell>
                             <Table.HeaderCell>Status</Table.HeaderCell>
@@ -42,9 +41,6 @@ const AdminsList: React.FC = () => {
                         {adminList.map((admin) => {
                             return (
                                 <Table.Row>
-                                    <Table.Cell collapsing>
-                                        <Button content="Delete" negative />
-                                    </Table.Cell>
                                     <Table.Cell>{admin.displayName}</Table.Cell>
                                     <Table.Cell>{admin.email}</Table.Cell>
                                     <Table.Cell>{admin.status}</Table.Cell>

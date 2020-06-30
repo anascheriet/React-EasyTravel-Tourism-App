@@ -41,7 +41,7 @@ export const FlightForm: React.FC<IProps> = ({
                 returnArrivingTime: "",
                 returningDate: undefined,
 
-                CreatorName: "",
+                creatorName: "",
             };
         }
     };
@@ -123,7 +123,7 @@ export const FlightForm: React.FC<IProps> = ({
 
 
 
-    flight!.CreatorName = user?.displayName;
+    flight!.creatorName = user?.displayName;
 
 
     return (

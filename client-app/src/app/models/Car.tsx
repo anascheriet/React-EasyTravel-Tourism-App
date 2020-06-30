@@ -6,7 +6,7 @@ export interface ICar{
     options: string;
     country: string;
     city: string;
-    CreatorName: string;
+    creatorName: string;
 }
 
 export interface ICarBooking{

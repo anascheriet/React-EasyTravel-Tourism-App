@@ -8,7 +8,7 @@ export interface IActivity{
     country: string;
     city: string;
     duration : string;
-    CreatorName: string;
+    creatorName: string;
 }
 
 export interface IActivityBooking{

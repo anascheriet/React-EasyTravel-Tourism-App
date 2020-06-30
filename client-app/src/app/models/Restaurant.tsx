@@ -7,7 +7,7 @@ export interface IRestaurant {
     phoneNumber: string;
     country: string;
     city: string;
-    CreatorName: string | undefined;
+    creatorName: string | undefined;
 }
 
 export interface IRestaurantBooking {

@@ -7,12 +7,15 @@ import { Link } from 'react-router-dom';
 const HotelListClient = () => {
     const rootStore = useContext(RootStoreContext);
     const { clientHotelsByPrice } = rootStore.hotelStore;
+    const {user} = rootStore.userStore;
 
     const [citySearchString, setCitySearchString] = useState('');
   
     const [countrySearchString, setCountrySearchString] = useState("");
   
     const [roomsSearchString, setRoomsSearchString] = useState("");
+    const [adminNameSearchString, setAdminNameSearchString] = useState("");
+  
   
     const handleCountryFilterChange = (event: any) => {
       setCountrySearchString(event.target.value);
@@ -26,6 +29,9 @@ const HotelListClient = () => {
     const handleRoomsFilterChange = (event: any) => {
         setRoomsSearchString(event.target.value);
     }
+    const handleAdminNameFilterChange = (event: any) => {
+      setAdminNameSearchString(event.target.value);
+    }
 
     var hotelsFiltered = clientHotelsByPrice;
 
@@ -33,42 +39,83 @@ const HotelListClient = () => {
         setCitySearchString(citySearchString.trim().toLowerCase());
         setCountrySearchString(countrySearchString.trim().toLowerCase());
         setRoomsSearchString(roomsSearchString.trim().toLowerCase());
-      }, [citySearchString, countrySearchString, roomsSearchString])
+        setAdminNameSearchString(adminNameSearchString.toLowerCase());
+      }, [citySearchString, countrySearchString, roomsSearchString,adminNameSearchString])
 
-      if (citySearchString.length > 0 && countrySearchString.length > 0 && roomsSearchString.length > 0) {
+      if (citySearchString.length > 0 && countrySearchString.length > 0 && roomsSearchString.length > 0 && adminNameSearchString.length > 0) {
         hotelsFiltered = hotelsFiltered.filter((x) => {
           return x.city.toLowerCase().match(citySearchString) && x.country.toLowerCase().match(countrySearchString)
-            && String(x.rooms).match(roomsSearchString);
+            && String(x.rooms).match(roomsSearchString) && x.creatorName!.toLowerCase().match(adminNameSearchString);
         });
       }
-      else if (citySearchString.length > 0 && countrySearchString.length > 0 && roomsSearchString.length === 0) {
+      else if (citySearchString.length > 0 && countrySearchString.length > 0 && roomsSearchString.length > 0 && adminNameSearchString.length === 0) {
         hotelsFiltered = hotelsFiltered.filter((x) => {
-          return x.city.toLowerCase().match(citySearchString) && x.country.toLowerCase().match(countrySearchString);
+          return x.city.toLowerCase().match(citySearchString) && x.country.toLowerCase().match(countrySearchString) && String(x.rooms).match(roomsSearchString);
         });
       }
-      else if (citySearchString.length > 0 && countrySearchString.length === 0 && roomsSearchString.length > 0) {
+      else if (citySearchString.length > 0 && countrySearchString.length === 0 && roomsSearchString.length > 0 && adminNameSearchString.length > 0) {
         hotelsFiltered = hotelsFiltered.filter((x) => {
-          return x.city.toLowerCase().match(citySearchString) && String(x.rooms).match(roomsSearchString);
+          return x.city.toLowerCase().match(citySearchString) && String(x.rooms).match(roomsSearchString) &&  x.creatorName!.toLowerCase().match(adminNameSearchString);
         });
       }
-      else if (citySearchString.length === 0 && countrySearchString.length > 0 && roomsSearchString.length > 0) {
+      else if (citySearchString.length === 0 && countrySearchString.length > 0 && roomsSearchString.length > 0 && adminNameSearchString.length > 0) {
         hotelsFiltered = hotelsFiltered.filter((x) => {
-          return String(x.rooms).match(roomsSearchString) && x.country.toLowerCase().match(countrySearchString);
+          return String(x.rooms).match(roomsSearchString) && x.country.toLowerCase().match(countrySearchString) &&  x.creatorName!.toLowerCase().match(adminNameSearchString);
         });
       }
-      else if (citySearchString.length > 0 && countrySearchString.length === 0 && roomsSearchString.length === 0) {
+      else if (citySearchString.length > 0 && countrySearchString.length > 0 && roomsSearchString.length === 0 && adminNameSearchString.length > 0) {
+        hotelsFiltered = hotelsFiltered.filter((x) => {
+          return x.city.toLowerCase().match(citySearchString) && x.country.toLowerCase().match(countrySearchString) &&  x.creatorName!.toLowerCase().match(adminNameSearchString);
+        });
+      }
+      else if (citySearchString.length > 0 && countrySearchString.length > 0 && roomsSearchString.length === 0 && adminNameSearchString.length === 0) {
+        hotelsFiltered = hotelsFiltered.filter((x) => {
+          return x.city.toLowerCase().match(citySearchString) && x.country.toLowerCase().match(countrySearchString)
+        });
+      }
+      else if (citySearchString.length > 0 && countrySearchString.length === 0 && roomsSearchString.length > 0 && adminNameSearchString.length === 0) {
+        hotelsFiltered = hotelsFiltered.filter((x) => {
+          return x.city.toLowerCase().match(citySearchString) && x.rooms.toLowerCase().match(roomsSearchString)
+        });
+      }
+      else if (citySearchString.length > 0 && countrySearchString.length === 0 && roomsSearchString.length === 0 && adminNameSearchString.length > 0) {
+        hotelsFiltered = hotelsFiltered.filter((x) => {
+          return x.city.toLowerCase().match(citySearchString) && x.creatorName!.toLowerCase().match(adminNameSearchString)
+        });
+      }
+      else if (citySearchString.length === 0 && countrySearchString.length > 0 && roomsSearchString.length > 0 && adminNameSearchString.length === 0) {
+        hotelsFiltered = hotelsFiltered.filter((x) => {
+          return x.country.toLowerCase().match(countrySearchString) && x.rooms.toLowerCase().match(roomsSearchString)
+        });
+      }
+      else if (citySearchString.length === 0 && countrySearchString.length > 0 && roomsSearchString.length === 0 && adminNameSearchString.length > 0) {
+        hotelsFiltered = hotelsFiltered.filter((x) => {
+          return x.country.toLowerCase().match(countrySearchString) && x.creatorName!.toLowerCase().match(adminNameSearchString)
+        });
+      }
+      else if (citySearchString.length === 0 && countrySearchString.length === 0 && roomsSearchString.length > 0 && adminNameSearchString.length > 0) {
+        hotelsFiltered = hotelsFiltered.filter((x) => {
+          return x.rooms.toLowerCase().match(roomsSearchString) && x.creatorName!.toLowerCase().match(adminNameSearchString)
+        });
+      }
+      else if (citySearchString.length > 0 && countrySearchString.length === 0 && roomsSearchString.length === 0  && adminNameSearchString.length === 0) {
         hotelsFiltered = hotelsFiltered.filter((x) => {
           return x.city.toLowerCase().match(citySearchString);
         });
       }
-      else if (citySearchString.length === 0 && countrySearchString.length > 0 && roomsSearchString.length === 0) {
+      else if (citySearchString.length === 0 && countrySearchString.length > 0 && roomsSearchString.length === 0 && adminNameSearchString.length === 0) {
         hotelsFiltered = hotelsFiltered.filter((x) => {
           return x.country.toLowerCase().match(countrySearchString);
         });
       }
-      else if (citySearchString.length === 0 && countrySearchString.length === 0 && roomsSearchString.length > 0) {
+      else if (citySearchString.length === 0 && countrySearchString.length === 0 && roomsSearchString.length > 0 && adminNameSearchString.length === 0) {
         hotelsFiltered = hotelsFiltered.filter((x) => {
           return String(x.rooms).match(roomsSearchString);
+        });
+      }
+      else if (citySearchString.length === 0 && countrySearchString.length === 0 && roomsSearchString.length === 0 && adminNameSearchString.length > 0) {
+        hotelsFiltered = hotelsFiltered.filter((x) => {
+          return x.creatorName!.match(adminNameSearchString);
         });
       }
     
@@ -104,6 +151,9 @@ const HotelListClient = () => {
               <Item.Image size='small' src='/assets/placeholder.png' />
               <Item.Content>
               <Item.Header as="a">{hotel.name}</Item.Header>
+              {user?.status==="SudoAdmin" &&<Item.Extra>
+                <Label color="teal"> Created By: {hotel.creatorName}</Label>
+                </Item.Extra>}
               <Item.Meta>{hotel.price}$ per day</Item.Meta>
               <Item.Meta>
                 {hotel.city}, {hotel.country}
@@ -166,6 +216,13 @@ const HotelListClient = () => {
                 value={roomsSearchString}
                 onChange={handleRoomsFilterChange}
                 placeholder="Filter by number of rooms..." />
+                <br/>
+                 {user?.status==="SudoAdmin" &&
+                <Input type="text" icon="search" fluid
+                value={adminNameSearchString}
+                onChange={handleAdminNameFilterChange}
+                placeholder="Filter By Admin..." />
+              }
             
         </Container>
         </Segment>

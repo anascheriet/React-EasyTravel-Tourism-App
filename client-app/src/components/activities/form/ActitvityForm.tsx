@@ -30,7 +30,7 @@ export const ActitvityForm: React.FC<IProps> = (
                 country: "",
                 duration: "",
                 city: "",
-                CreatorName: ""
+                creatorName: ""
             };
         }
     };
