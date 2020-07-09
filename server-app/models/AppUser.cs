@@ -9,7 +9,9 @@ namespace server_app.models
         
         public string DisplayName { get; set; }
         public string Status { get; set; }
+        public string Bio { get; set; }
         public virtual ICollection<Car> CarsCreated { get; set; }
         public virtual ICollection<CarBooking> carBookings{get;set;}
+        public virtual ICollection<Photo> Photos{get;set;}
     }
 }

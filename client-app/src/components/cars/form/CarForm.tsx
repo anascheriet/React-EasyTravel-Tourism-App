@@ -157,8 +157,6 @@ export const CarForm: React.FC<IProps> = ({
 
         </select>
 
-
-
         <Button
           style={{ marginTop: "0.7em" }}
           floated="right"

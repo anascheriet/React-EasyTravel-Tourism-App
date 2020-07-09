@@ -17,6 +17,7 @@ namespace server_app.Data
         public DbSet<Activity> Activities { get; set; }
         public DbSet<Restaurant> Restaurants { get; set; }
         public DbSet<Article> Articles { get; set; }
+        public DbSet<Photo> Photos { get; set; }
         public DbSet<RestaurantBooking> RestaurantBookings { get; set; }
         public DbSet<FlightBooking> FlightBookings { get; set; }
         public DbSet<CarBooking> CarBookings { get; set; }

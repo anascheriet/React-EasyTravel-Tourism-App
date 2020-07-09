@@ -2,6 +2,18 @@
   "version": 3,
   "targets": {
     ".NETCoreApp,Version=v3.1": {
+      "CloudinaryDotNet/1.11.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "12.0.1"
+        },
+        "compile": {
+          "lib/netstandard1.3/CloudinaryDotNet.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.3/CloudinaryDotNet.dll": {}
+        }
+      },
       "FluentValidation/8.6.2": {
         "type": "package",
         "dependencies": {
@@ -1584,6 +1596,21 @@
     }
   },
   "libraries": {
+    "CloudinaryDotNet/1.11.0": {
+      "sha512": "pPz/CnKc1kkqjRtLiXDxVl/xjFKNBEKjhSy2266LL4/Y0NngXaJVjI4Lw7Yhh+yCiwM6Rwo40V1j1jzFgoyLsA==",
+      "type": "package",
+      "path": "cloudinarydotnet/1.11.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "cloudinarydotnet.1.11.0.nupkg.sha512",
+        "cloudinarydotnet.nuspec",
+        "lib/net45/CloudinaryDotNet.dll",
+        "lib/net45/CloudinaryDotNet.xml",
+        "lib/netstandard1.3/CloudinaryDotNet.dll",
+        "lib/netstandard1.3/CloudinaryDotNet.xml"
+      ]
+    },
     "FluentValidation/8.6.2": {
       "sha512": "N2vz+f6pAX9AI19hu83U2LJjjc/ETzWGlICVanu3DIG76QhzEu3PR/CQSFBX69PRuBTivrW4jhBzeV7dXIfqyw==",
       "type": "package",
@@ -5527,6 +5554,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
+      "CloudinaryDotNet >= 1.11.0",
       "FluentValidation >= 8.6.2",
       "FluentValidation.AspNetCore >= 8.6.2",
       "MediatR.Extensions.Microsoft.DependencyInjection >= 8.0.0",
@@ -5548,11 +5576,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\anasc\\Desktop\\PFA_REACT-EasyTravel\\server-app\\server-app.csproj",
+      "projectUniqueName": "c:\\Users\\anasc\\Desktop\\PFA_REACT-EasyTravel\\server-app\\server-app.csproj",
       "projectName": "server-app",
-      "projectPath": "C:\\Users\\anasc\\Desktop\\PFA_REACT-EasyTravel\\server-app\\server-app.csproj",
+      "projectPath": "c:\\Users\\anasc\\Desktop\\PFA_REACT-EasyTravel\\server-app\\server-app.csproj",
       "packagesPath": "C:\\Users\\anasc\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\anasc\\Desktop\\PFA_REACT-EasyTravel\\server-app\\obj\\",
+      "outputPath": "c:\\Users\\anasc\\Desktop\\PFA_REACT-EasyTravel\\server-app\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\PROGRAM FILES\\DOTNET\\sdk\\NuGetFallbackFolder"
@@ -5582,6 +5610,10 @@
     "frameworks": {
       "netcoreapp3.1": {
         "dependencies": {
+          "CloudinaryDotNet": {
+            "target": "Package",
+            "version": "[1.11.0, )"
+          },
           "FluentValidation": {
             "target": "Package",
             "version": "[8.6.2, )"

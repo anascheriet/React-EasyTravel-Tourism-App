@@ -24,10 +24,7 @@ export const RegisterForm = () => {
     if (user?.status === "SudoAdmin") {
         RegisterLabel = "Add A New Admin"
     }
-    else if (sudoadminList.length !== 0) {
-        RegisterLabel = "Sign Up To Easy Travel";
-    }
-    else  RegisterLabel = "Create The Sytem Admin Account";
+    else  RegisterLabel = "Sign Up To Easy Travel";
     return (
         <div>
             <FinalForm

@@ -75,7 +75,7 @@ const RestaurantBookListClient = () => {
                                         <Segment clearing>
                                             <Item.Group>
                                                 <Item key={mealB.productId}>
-                                                <Item.Image src='/assets/placeholder.png' fluid />
+                                                <Item.Image src={`/assets/mealImages/${RstBk?.name}.jpg`}  fluid />
                                                     <Item.Content>
                                                         <Item.Header as="a">
                                                             {RstBk?.name}
@@ -84,7 +84,7 @@ const RestaurantBookListClient = () => {
                                                            <b> Booked for: {String(mealB.mealDate!).split('T')[0]}</b>
                                                         </Item.Description>
                                                         <Item.Meta>
-                                                            {RstBk?.phoneNumber}$ <br/>
+                                                            {RstBk?.phoneNumber} <br/>
                                                             {mealB.people} people <br/>
                                                             
                                                         </Item.Meta>

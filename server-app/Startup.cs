@@ -19,6 +19,7 @@ using Microsoft.AspNetCore.Authorization;
 using FluentValidation.AspNetCore;
 using server_app.Middleware;
 using server_app.App_Logic.Users;
+using server_app.Infrastructure.Photos;
 
 namespace server_app
 {
@@ -82,6 +83,8 @@ namespace server_app
 
             services.AddScoped<IJwtGenerator, JwtGenerator>();
             services.AddScoped<IUserAccessor, UserAccessor>();
+            services.AddScoped<IPhotoAccessor, PhotoAccessor>();
+            services.Configure<CloudinarySettings>(Configuration.GetSection("Cloudinary"));
 
         }
 

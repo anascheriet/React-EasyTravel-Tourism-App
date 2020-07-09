@@ -26,7 +26,7 @@ const RestaurantBooking = () => {
 
     return (
         <Form onSubmit={handleFormSubmit}>
-            <Header as='h2' content="Choose Your Booking Duration " color='teal'
+            <Header as='h2' content="Fill Your Booking Info" color='teal'
                 textAlign='center' />
             <Form.Input label='Book This Restaurant For: ' onChange={handleInputChange} name="mealDate" type="date" value={restaurantb.mealDate} />
             <Form.Input label='Number Of People:' onChange={handleInputChange} name="people" type="text" value={restaurantb.people} />
