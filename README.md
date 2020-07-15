@@ -24,3 +24,9 @@ This App was Developed using ReactJs and .NET Core
   - Add Admins
  ## Functionalities to add
 - Payment System to pay for the bookings.
+
+## Starting the App
+
+`dotnet run` To start the API server
+
+`npm start` To start the developement Server . Go to link `http://localhost:3000/`.
