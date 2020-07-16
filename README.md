@@ -1,5 +1,5 @@
 ![logo](https://user-images.githubusercontent.com/23432615/87607144-f6080380-c6fc-11ea-8023-3da84fb4a389.png)
-# EasyTravel
+# EasyTravel : A tourist Guide App
 This App was Developed using ReactJs and .NET Core
 
 ## To Do
