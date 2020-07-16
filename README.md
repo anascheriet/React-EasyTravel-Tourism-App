@@ -24,6 +24,7 @@ This App was Developed using ReactJs and .NET Core
   - Add Admins
  ## Functionalities to add
 - Payment System to pay for the bookings.
+- Photo Cloud Management (ex: Cloudinary).
 
 ## Starting the App
 
