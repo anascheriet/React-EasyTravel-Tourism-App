@@ -1,6 +1,6 @@
 ![logo](https://user-images.githubusercontent.com/23432615/87607144-f6080380-c6fc-11ea-8023-3da84fb4a389.png)
 # EasyTravel : A tourist Guide App
-This App was Developed using ReactJs and .NET Core
+This App was Developed using ReactJs, Mobx and .NET Core
 
 ## To Do
 `npm install` - Will add all the needed modules to start the App.
