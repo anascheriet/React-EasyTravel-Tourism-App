@@ -14,7 +14,7 @@
     <PackageReference Include="FluentValidation" Version="8.6.2"/>
     <PackageReference Include="Microsoft.Rest.ClientRuntime" Version="3.0.3"/>
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.6.0"/>
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.4"/>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.18"/>
     <PackageReference Include="FluentValidation.AspNetCore" Version="8.6.2"/>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.5"/>
     <PackageReference Include="CloudinaryDotNet" Version="1.11.0"/>
